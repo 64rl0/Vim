@@ -3,8 +3,12 @@
 " Enable color syntax highlighting
 syntax on
 
+" Disabling background so we use the shell bg
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+
 " Vim Theme
-colorscheme twilight256
+colorscheme molokai
 
 " The width of a TAB is set to 4. Still it is a \t. It is just that Vim
 "    will interpret it to be having a width of 4
