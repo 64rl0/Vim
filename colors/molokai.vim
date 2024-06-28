@@ -233,9 +233,9 @@ if &t_Co > 255
    hi SpecialKey      ctermfg=59
 
    if exists("g:rehash256") && g:rehash256 == 1
-       hi Normal       ctermfg=252 ctermbg=234
-       hi CursorLine               ctermbg=236   cterm=none
-       hi CursorLineNr ctermfg=208               cterm=none
+       hi Normal          ctermfg=252 ctermbg=234
+       hi CursorLine                  ctermbg=236   cterm=none
+       hi CursorLineNr    ctermfg=208               cterm=none
 
        hi Boolean         ctermfg=141
        hi Character       ctermfg=222
@@ -262,6 +262,7 @@ if &t_Co > 255
        hi Statement       ctermfg=197               cterm=bold
        hi Tag             ctermfg=197
        hi Title           ctermfg=203
+       hi VisualNOS       ctermfg=255 ctermbg=245
        hi Visual          ctermfg=255 ctermbg=245
 
        hi Comment         ctermfg=244
