@@ -95,4 +95,3 @@ nnoremap gr *``:%s/<C-R>///gc<left><left><left>
 
 " Search word under the cursor
 nnoremap gf *``/<C-R>/<CR>N
-
