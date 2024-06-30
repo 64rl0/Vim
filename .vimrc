@@ -1,5 +1,10 @@
 " .vimrc
 
+"   __|    \    _ \  |      _ \   __| __ __| __ __|
+"  (      _ \     /  |     (   | (_ |    |      |
+" \___| _/  _\ _|_\ ____| \___/ \___|   _|     _|
+
+
 " Enable color syntax highlighting
 syntax on
 
