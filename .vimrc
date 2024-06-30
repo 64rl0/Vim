@@ -95,3 +95,20 @@ nnoremap gr *``:%s/<C-R>///gc<left><left><left>
 
 " Search word under the cursor
 nnoremap gf *``/<C-R>/<CR>N
+
+
+" -------
+" PLUGINS
+" -------
+" vim-gitgutter
+" Don't let vim-gitgutter set up any mappings at all
+let g:gitgutter_map_keys = 0
+
+" Signs colours
+highlight GitGutterAdd    ctermfg=34
+highlight GitGutterChange ctermfg=39
+highlight GitGutterDelete ctermfg=160
+
+" Disable SignColumn background colour
+highlight SignColumn guibg=NONE ctermbg=NONE
+
