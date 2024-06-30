@@ -9,11 +9,18 @@
 syntax on
 
 " Disabling background so we use the shell bg
-autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight CursorLine ctermbg=NONE guibg=NONE
 
 " Vim Theme
 colorscheme molokai
+
+" Enable the cursor line highlight
+set cursorline
+
+" Enable line numbers
+set number
 
 " The width of a TAB is set to 4. Still it is a \t. It is just that Vim
 "    will interpret it to be having a width of 4
@@ -31,8 +38,8 @@ set expandtab
 " Yank and paste with the system clipboard
 set clipboard^=unnamed,unnamedplus
 
-" Enable line numbers
-set number
+" Set the leader key
+let mapleader = ","
 
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
@@ -104,6 +111,12 @@ nnoremap gf *``/<C-R>/<CR>N
 " Don't let vim-gitgutter set up any mappings at all
 let g:gitgutter_map_keys = 0
 
+" Preview a hunk changes
+nmap gph <Plug>(GitGutterPreviewHunk)
+
+" Execute :pclose and close hunk preview
+nmap <leader>c :pclose<CR>
+
 " Signs colours
 highlight GitGutterAdd    ctermfg=34
 highlight GitGutterChange ctermfg=39
@@ -111,4 +124,44 @@ highlight GitGutterDelete ctermfg=160
 
 " Disable SignColumn background colour
 highlight SignColumn guibg=NONE ctermbg=NONE
+
+" Show and hide hunk as the pointer enter and leaves the changed hunk 
+" Define a variable to keep track of autocommand status
+let g:gitgutter_autocommand_enabled = 0
+
+" Function to enable the autocommand
+function! GitGutterAutoPreviewHunkEnable()
+  if !g:gitgutter_autocommand_enabled
+    augroup GitGutterAutocommand
+      autocmd!
+      autocmd CursorMoved * if gitgutter#hunk#in_hunk(line(".")) | GitGutterPreviewHunk | else | pclose | endif
+    augroup END
+    let g:gitgutter_autocommand_enabled = 1
+    echo "GitGutter autocommand enabled"
+  else
+    echo "GitGutter autocommand is already enabled"
+  endif
+endfunction
+
+" Function to disable the autocommand
+function! GitGutterAutoPreviewHunkDisable()
+  if g:gitgutter_autocommand_enabled
+    augroup GitGutterAutocommand
+      autocmd!
+    augroup END
+    let g:gitgutter_autocommand_enabled = 0
+    pclose
+    echo "GitGutter autocommand disabled"
+  else
+    echo "GitGutter autocommand is already disabled"
+  endif
+endfunction
+
+" Create commands to enable and disable the autocommand
+command! GitGutterAutoPreviewHunkEnable call GitGutterAutoPreviewHunkEnable()  
+command! GitGutterAutoPreviewHunkDisable call GitGutterAutoPreviewHunkDisable() 
+
+" Map shortcuts to enable and disable GitGutterAutoPreviewHunk
+nmap gphe :GitGutterAutoPreviewHunkEnable<CR>
+nmap gphd :GitGutterAutoPreviewHunkDisable<CR>
 
