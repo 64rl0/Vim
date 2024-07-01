@@ -112,11 +112,11 @@ noremap G mjG
 " Jump to last change
 nnoremap gI `.
 
-" Search and replace word under the cursor
-nnoremap gr *``:%s/<C-R>///gc<left><left><left>
-
 " Search word under the cursor
-nnoremap gf *``/<C-R>/<CR>N
+nnoremap <leader>f *``/<C-R>/<CR>N
+
+" Search and replace word under the cursor
+nnoremap <leader>r *``:%s/<C-R>///gc<left><left><left>
 
 
 " ----
