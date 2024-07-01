@@ -59,7 +59,7 @@ nnoremap <leader>O :<C-U>bprevious<CR>
 " | - Separates multiple Vim commands.
 " :edit! - Reloads the current buffer, discarding any changes made
 "    after the previous write command.
-command W :<C-U>execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :<C-U>execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Disable arrow keys in ALL modes
 noremap <Up> <NOP>
