@@ -63,13 +63,13 @@ command! W :<C-U>execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Disable arrow keys in ALL modes
 noremap <Up> <NOP>
-noremap! <Up> <NOP>
+inoremap <Up> <NOP>
 noremap <Down> <NOP>
-noremap! <Down> <NOP>
+inoremap <Down> <NOP>
 noremap <Left> <NOP>
-noremap! <Left> <NOP>
+inoremap <Left> <NOP>
 noremap <Right> <NOP>
-noremap! <Right> <NOP>
+inoremap <Right> <NOP>
 
 " Disable Page Up, Page Down, Home, and End keys in INSERT mode
 noremap! <PageUp> <NOP>
