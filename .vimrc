@@ -197,5 +197,5 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
 " Only the extensions listed will be loaded
-let g:airline_extensions = ['tabline', 'hunks']
+" let g:airline_extensions = ['tabline', 'hunks']
 
