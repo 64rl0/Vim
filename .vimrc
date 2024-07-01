@@ -91,9 +91,11 @@ noremap K 5k
 
 " Move cursor and screen down 1/2 page
 noremap <C-M> <C-D>
+inoremap <C-M> <ESC><C-D>
 
 " Move cursor and screen up 1/2 page
 noremap <C-,> <C-U>
+inoremap <C-M> <ESC><C-D>
 
 " Move screen up 5 lines (without moving cursor)
 noremap <C-J> 5<C-E>
