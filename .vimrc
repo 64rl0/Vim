@@ -41,6 +41,12 @@ set clipboard^=unnamed,unnamedplus
 " Set the leader key
 let mapleader = "\\"
 
+" Open file explorer (netrw)
+noremap <leader>o :<C-U>Ex<CR>
+
+" Close file explorer (netrw)
+noremap <leader>O :<C-U>bprevious<CR>
+
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
 " :<C-U> Clears any existing input in the command-line buffer
@@ -91,9 +97,11 @@ noremap , <C-U>
 
 " Move screen up 5 lines (without moving cursor)
 noremap <C-J> 5<C-E>
+noremap! <C-J> <ESC>5<C-E>
 
 " Move screen down 5 lines (without moving cursor)
 noremap <C-K> 5<C-Y>
+noremap! <C-K> <ESC>5<C-Y>
 
 " Jump to last change
 nnoremap gI `.
