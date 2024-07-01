@@ -115,7 +115,7 @@ nnoremap gI `.
 " Search word under the cursor
 nnoremap <leader>f *``/<C-R>/<CR>N
 
-" Search and replace word under the cursor
+" Replace word under the cursor
 nnoremap <leader>r *``:%s/<C-R>///gc<left><left><left>
 
 
