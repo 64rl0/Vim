@@ -43,7 +43,8 @@ let mapleader = ","
 
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
-" :execute  - Begins an execution of multiple Vim commands
+" :<C-U> Clears any existing input in the command-line buffer 
+" execute Begins an execution of multiple Vim commands
 " ':silent w !sudo tee % > /dev/null'
 "    writes the current buffer to a file using the tee command with
 "    superuser privileges (using sudo)
@@ -52,7 +53,7 @@ let mapleader = ","
 " | - Separates multiple Vim commands.
 " :edit! - Reloads the current buffer, discarding any changes made
 "    after the previous write command.
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command W :<C-U>execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Disable arrow keys in ALL modes
 noremap <Up> <NOP>
@@ -104,18 +105,29 @@ nnoremap gr *``:%s/<C-R>///gc<left><left><left>
 nnoremap gf *``/<C-R>/<CR>N
 
 
+" ----
+" TABS
+" ----
+" Tab new
+noremap <C-T> :<C-U>tabnew<CR>
+
+" Tab next
+noremap <C-Tab> :<C-U>tabnext<CR>
+noremap <right> :<C-U>tabnext<CR>
+
+" Tab previous
+noremap <C-S-Tab> :<C-U>tabprevious<CR>
+noremap <left> :<C-U>tabprevious<CR>
+
+
 " -------
 " PLUGINS
 " -------
+" -------------
 " vim-gitgutter
+" -------------
 " Don't let vim-gitgutter set up any mappings at all
 let g:gitgutter_map_keys = 0
-
-" Preview a hunk changes
-nmap gph <Plug>(GitGutterPreviewHunk)
-
-" Execute :pclose and close hunk preview
-nmap <leader>c :pclose<CR>
 
 " Signs colours
 highlight GitGutterAdd    ctermfg=34
@@ -162,6 +174,28 @@ command! GitGutterAutoPreviewHunkEnable call GitGutterAutoPreviewHunkEnable()
 command! GitGutterAutoPreviewHunkDisable call GitGutterAutoPreviewHunkDisable() 
 
 " Map shortcuts to enable and disable GitGutterAutoPreviewHunk
-nmap gphe :GitGutterAutoPreviewHunkEnable<CR>
-nmap gphd :GitGutterAutoPreviewHunkDisable<CR>
+nmap <leader>phe :<C-U>GitGutterAutoPreviewHunkEnable<CR>
+nmap <leader>phd :<C-U>GitGutterAutoPreviewHunkDisable<CR>
+
+" Preview a hunk changes
+nmap ph :<C-U>GitGutterPreviewHunk<CR>
+
+" Execute :pclose and close hunk preview
+nmap <leader>c :<C-U>pclose<CR>
+
+" -----------
+" vim-airline
+" -----------
+" 
+let g:airline_enabled = 1
+
+" Theme
+let g:airline_theme = 'simple'
+
+" Automatically displays all buffers when there's only one tab open 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_close_button = 0
+
+" Only the extensions listed will be loaded
+let g:airline_extensions = ['tabline', 'hunks']
 
