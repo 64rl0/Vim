@@ -130,7 +130,7 @@ nnoremap <leader>f *``/<C-R>/<CR>N
 " Replace word under the cursor
 nnoremap <leader>r *``:%s/<C-R>///gc<left><left><left>
 
-" Comment line out wuth #
+" Comment line out with #
 noremap <leader># 0i# <ESC>0
 
 " Comment line out with "
