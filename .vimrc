@@ -43,7 +43,7 @@ let mapleader = ","
 
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
-" :<C-U> Clears any existing input in the command-line buffer 
+" :<C-U> Clears any existing input in the command-line buffer
 " execute Begins an execution of multiple Vim commands
 " ':silent w !sudo tee % > /dev/null'
 "    writes the current buffer to a file using the tee command with
@@ -137,7 +137,7 @@ highlight GitGutterDelete ctermfg=160
 " Disable SignColumn background colour
 highlight SignColumn guibg=NONE ctermbg=NONE
 
-" Show and hide hunk as the pointer enter and leaves the changed hunk 
+" Show and hide hunk as the pointer enter and leaves the changed hunk
 " Define a variable to keep track of autocommand status
 let g:gitgutter_autocommand_enabled = 0
 
@@ -170,8 +170,8 @@ function! GitGutterAutoPreviewHunkDisable()
 endfunction
 
 " Create commands to enable and disable the autocommand
-command! GitGutterAutoPreviewHunkEnable call GitGutterAutoPreviewHunkEnable()  
-command! GitGutterAutoPreviewHunkDisable call GitGutterAutoPreviewHunkDisable() 
+command! GitGutterAutoPreviewHunkEnable call GitGutterAutoPreviewHunkEnable()
+command! GitGutterAutoPreviewHunkDisable call GitGutterAutoPreviewHunkDisable()
 
 " Map shortcuts to enable and disable GitGutterAutoPreviewHunk
 nmap <leader>phe :<C-U>GitGutterAutoPreviewHunkEnable<CR>
@@ -186,16 +186,16 @@ nmap <leader>c :<C-U>pclose<CR>
 " -----------
 " vim-airline
 " -----------
-" 
+" Enable vim-airline
 let g:airline_enabled = 1
 
 " Theme
 let g:airline_theme = 'simple'
 
-" Automatically displays all buffers when there's only one tab open 
+" Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
 " Only the extensions listed will be loaded
-let g:airline_extensions = ['tabline', 'hunks']
+" let g:airline_extensions = ['tabline', 'hunks']
 
