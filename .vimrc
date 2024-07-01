@@ -72,10 +72,10 @@ noremap <Right> <NOP>
 inoremap <Right> <NOP>
 
 " Disable Page Up, Page Down, Home, and End keys in INSERT mode
-noremap! <PageUp> <NOP>
-noremap! <PageDown> <NOP>
-noremap! <Home> <NOP>
-noremap! <End> <NOP>
+inoremap <PageUp> <NOP>
+inoremap <PageDown> <NOP>
+inoremap <Home> <NOP>
+inoremap <End> <NOP>
 
 " Move cursor to the first character in a line
 noremap H ^
