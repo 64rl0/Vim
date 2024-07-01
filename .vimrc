@@ -39,7 +39,7 @@ set expandtab
 set clipboard^=unnamed,unnamedplus
 
 " Set the leader key
-let mapleader = ","
+let mapleader = "\\"
 
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
@@ -197,5 +197,5 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
 " Only the extensions listed will be loaded
-" let g:airline_extensions = ['tabline', 'hunks']
+let g:airline_extensions = ['tabline', 'hunks']
 
