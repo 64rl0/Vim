@@ -105,7 +105,7 @@ inoremap <C-J> <ESC>5<C-E>
 noremap <C-K> 5<C-Y>
 inoremap <C-K> <ESC>5<C-Y>
 
-" Drop a mark before jumping so we can easily come back wiht `j
+" Drop a mark before jumping so we can easily come back wiht 'j
 noremap gg mjgg
 noremap G mjG
 
