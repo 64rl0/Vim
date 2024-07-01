@@ -89,21 +89,33 @@ noremap J 5j
 " Move cursor up file 5 lines
 noremap K 5k
 
-" Move cursor and screen down 1/2 page
-noremap <C-M> <C-D>
-inoremap <C-M> <ESC><C-D>
+" Move screen down without moving cursor
+" ALT-SHIFT-J
+noremap Ô 5<C-E>
+inoremap Ô <ESC>5<C-E>
 
-" Move cursor and screen up 1/2 page
-noremap <C-,> <C-U>
-inoremap <C-M> <ESC><C-D>
+" Move screen up without moving cursor
+" ALT-SHIFT-K
+noremap  5<C-Y>
+inoremap  <ESC>5<C-Y>
 
-" Move screen up 5 lines (without moving cursor)
-noremap <C-J> 5<C-E>
-inoremap <C-J> <ESC>5<C-E>
+" Move screen down 5 lines with cursor
+noremap <C-J> 5<C-E>5j
+inoremap <C-J> <ESC>5<C-E>5j
 
-" Move screen down 5 lines (without moving cursor)
-noremap <C-K> 5<C-Y>
-inoremap <C-K> <ESC>5<C-Y>
+" Move screen up 5 lines with cursor
+noremap <C-K> 5<C-Y>5k
+inoremap <C-K> <ESC>5<C-Y>5k
+
+" Move screen down 1/2 page with cursor
+" ALT-J
+noremap ∆ <C-D>
+inoremap ∆ <ESC><C-D>
+
+" Move screen up 1/2 page with cursor
+" ALT-K
+noremap ˚ <C-U>
+inoremap ˚ <ESC><C-U>
 
 " Drop a mark before jumping so we can easily come back wiht 'j
 noremap gg mjgg
@@ -195,7 +207,7 @@ nmap <leader>phd :<C-U>GitGutterAutoPreviewHunkDisable<CR>
 nmap ph :<C-U>GitGutterPreviewHunk<CR>
 
 " Execute :pclose and close hunk preview
-nmap <leader>c :<C-U>pclose<CR>
+nmap PH :<C-U>pclose<CR>
 
 " -----------
 " vim-airline
