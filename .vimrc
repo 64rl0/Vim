@@ -77,6 +77,7 @@ inoremap <PageDown> <NOP>
 inoremap <Home> <NOP>
 inoremap <End> <NOP>
 
+
 " Move cursor to the first character in a line
 noremap H ^
 
@@ -117,12 +118,22 @@ inoremap ∆ <ESC><C-D>
 noremap ˚ <C-U>
 inoremap ˚ <ESC><C-U>
 
-" Drop a mark before jumping so we can easily come back wiht 'j
-noremap gg mjgg
-noremap G mjG
+
+" Drop a mark before jumping so we can easily come back with 'j
+function! MarkAndJump(prefix)
+    if v:count > 0
+        execute "normal! m" . "j" . v:count . a:prefix
+    else
+        execute "normal! m" . "j" . a:prefix
+    endif
+endfunction
+
+nnoremap <silent> gg :<C-U>call MarkAndJump("gg")<CR>
+nnoremap <silent> G :<C-U>call MarkAndJump("G")<CR>
 
 " Jump to last change
 nnoremap gI `.
+
 
 " Search word under the cursor
 nnoremap <leader>f *``/<C-R>/<CR>N
@@ -130,14 +141,15 @@ nnoremap <leader>f *``/<C-R>/<CR>N
 " Replace word under the cursor
 nnoremap <leader>r *``:%s/<C-R>///gc<left><left><left>
 
+
 " Comment line out with #
-noremap <leader># 0i# <ESC>0
+nnoremap <leader># 0i# <ESC>0
 
 " Comment line out with "
-noremap <leader>" 0i" <ESC>0
+nnoremap <leader>" 0i" <ESC>0
 
 " Comment line out with //
-noremap <leader>/ 0i// <ESC>0
+nnoremap <leader>/ 0i// <ESC>0
 
 
 " ----
@@ -178,39 +190,35 @@ let g:gitgutter_autocommand_enabled = 0
 
 " Function to enable the autocommand
 function! GitGutterAutoPreviewHunkEnable()
-  if !g:gitgutter_autocommand_enabled
-    augroup GitGutterAutocommand
-      autocmd!
-      autocmd CursorMoved * if gitgutter#hunk#in_hunk(line(".")) | GitGutterPreviewHunk | else | pclose | endif
-    augroup END
-    let g:gitgutter_autocommand_enabled = 1
-    echo "GitGutter autocommand enabled"
-  else
-    echo "GitGutter autocommand is already enabled"
-  endif
+    if !g:gitgutter_autocommand_enabled
+        augroup GitGutterAutocommand
+            autocmd!
+            autocmd CursorMoved * if gitgutter#hunk#in_hunk(line(".")) | GitGutterPreviewHunk | else | pclose | endif
+        augroup END
+        let g:gitgutter_autocommand_enabled = 1
+        echo "GitGutter autocommand enabled"
+    else
+        echo "GitGutter autocommand is already enabled"
+    endif
 endfunction
 
 " Function to disable the autocommand
 function! GitGutterAutoPreviewHunkDisable()
-  if g:gitgutter_autocommand_enabled
-    augroup GitGutterAutocommand
-      autocmd!
-    augroup END
-    let g:gitgutter_autocommand_enabled = 0
-    pclose
-    echo "GitGutter autocommand disabled"
-  else
-    echo "GitGutter autocommand is already disabled"
-  endif
+    if g:gitgutter_autocommand_enabled
+        augroup GitGutterAutocommand
+            autocmd!
+        augroup END
+        let g:gitgutter_autocommand_enabled = 0
+        pclose
+        echo "GitGutter autocommand disabled"
+    else
+        echo "GitGutter autocommand is already disabled"
+    endif
 endfunction
 
-" Create commands to enable and disable the autocommand
-command! GitGutterAutoPreviewHunkEnable call GitGutterAutoPreviewHunkEnable()
-command! GitGutterAutoPreviewHunkDisable call GitGutterAutoPreviewHunkDisable()
-
 " Map shortcuts to enable and disable GitGutterAutoPreviewHunk
-nmap <leader>phe :<C-U>GitGutterAutoPreviewHunkEnable<CR>
-nmap <leader>phd :<C-U>GitGutterAutoPreviewHunkDisable<CR>
+nmap <leader>aph :<C-U>call GitGutterAutoPreviewHunkEnable()<CR>
+nmap <leader>APH :<C-U>call GitGutterAutoPreviewHunkDisable()<CR>
 
 " Preview a hunk changes
 nmap ph :<C-U>GitGutterPreviewHunk<CR>
