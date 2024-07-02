@@ -225,7 +225,7 @@ nmap PH :<C-U>pclose<CR>
 let g:airline_enabled = 1
 
 " Theme
-let g:airline_theme = 'simple'
+let g:airline_theme = 'simple_carlogtt_ver'
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
