@@ -177,10 +177,10 @@ let g:netrw_liststyle = 1
 " Make vertical splitting the default for previewing files
 let g:netrw_preview = 1
 
-" The v key splits the window vertically with the new window and cursor at the right
+" The v key splits the window vertically with the new window and cursor at the left
 let g:netrw_altv = 0
 
-" The o key splits the window horizontally with the new window and cursor at the bottom
+" The o key splits the window horizontally with the new window and cursor at the top
 let g:netrw_alto = 0
 
 " Specify initial size of new windows made with o or v
