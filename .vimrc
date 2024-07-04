@@ -171,6 +171,16 @@ noremap <left> :<C-U>tabprevious<CR>
 " -------
 " PLUGINS
 " -------
+" -----
+" netrw
+" -----
+" Disable top banner
+let g:netrw_banner = 0
+
+" List style
+let g:netrw_liststyle = 2
+
+
 " -------------
 " vim-gitgutter
 " -------------
