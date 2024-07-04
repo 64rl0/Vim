@@ -187,7 +187,7 @@ let g:netrw_altv = 1
 let g:netrw_alto = 1
 
 " Specify initial size of new windows made with o or v
-let g:netrw_winsize = 30
+let g:netrw_winsize = 70
 
 
 " -------------
