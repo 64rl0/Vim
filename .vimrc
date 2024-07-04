@@ -178,13 +178,13 @@ let g:netrw_liststyle = 1
 let g:netrw_preview = 1
 
 " The v key splits the window vertically with the new window and cursor at the right
-let g:netrw_altv = 1
+let g:netrw_altv = 0
 
 " The o key splits the window horizontally with the new window and cursor at the bottom
-let g:netrw_alto = 1
+let g:netrw_alto = 0
 
 " Specify initial size of new windows made with o or v
-let g:netrw_winsize = 80
+let g:netrw_winsize = 20
 
 " ToggleNetrw
 let g:NetrwIsOpen=0
@@ -201,7 +201,7 @@ function! ToggleNetrw()
         let g:NetrwIsOpen=0
     else
         let g:NetrwIsOpen=1
-        silent Ex
+        silent Lexplore
     endif
 endfunction
 
