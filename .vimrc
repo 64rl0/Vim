@@ -187,7 +187,7 @@ let g:netrw_preview = 1
 let g:netrw_altv = 1
 
 " The o key splits the window horizontally with the new window and cursor at the bottom
-let g:netrw_alto = 0
+let g:netrw_alto = 1
 
 " Specify initial size of new windows made with o or v
 let g:netrw_winsize = 80
