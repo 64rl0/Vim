@@ -183,6 +183,12 @@ let g:netrw_liststyle = 1
 " The v key splits the window vertically with the new window and cursor at the right
 let g:netrw_altv = 1
 
+" The o key splits the window horizontally with the new window and cursor at the bottom
+let g:netrw_alto = 1
+
+" Specify initial size of new windows made with o or v
+let g:netrw_winsize = 30
+
 
 " -------------
 " vim-gitgutter
