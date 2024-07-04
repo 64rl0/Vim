@@ -178,7 +178,7 @@ noremap <left> :<C-U>tabprevious<CR>
 let g:netrw_banner = 0
 
 " List style
-let g:netrw_liststyle = 2
+let g:netrw_liststyle = 1
 
 
 " -------------
