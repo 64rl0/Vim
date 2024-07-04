@@ -180,6 +180,9 @@ let g:netrw_banner = 0
 " List style
 let g:netrw_liststyle = 1
 
+" The v key splits the window vertically with the new window and cursor at the right
+let g:netrw_altv = 1
+
 
 " -------------
 " vim-gitgutter
