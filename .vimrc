@@ -195,13 +195,13 @@ function! ToggleNetrw()
         while (i >= 1)
             if (getbufvar(i, "&filetype") == "netrw")
                 silent exe "bwipeout " . i
+                let g:NetrwIsOpen=0
             endif
             let i-=1
         endwhile
-        let g:NetrwIsOpen=0
     else
-        let g:NetrwIsOpen=1
         silent Lexplore
+        let g:NetrwIsOpen=1
     endif
 endfunction
 
