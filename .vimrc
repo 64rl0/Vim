@@ -23,6 +23,10 @@ colorscheme molokai
 " Enable the cursor line highlight
 set cursorline
 
+" Show (partial) command in the status bar
+set showcmd
+set showcmdloc="statusline"
+
 " Enable line numbers
 set number
 
@@ -88,21 +92,24 @@ noremap J 5j
 " Move cursor up file 5 lines
 noremap K 5k
 
-" Move screen down without moving cursor
-" ALT-SHIFT-J
-noremap Ô 5<C-E>
-inoremap Ô <ESC>5<C-E>
 
-" Move screen up without moving cursor
-" ALT-SHIFT-K
-noremap  5<C-Y>
-inoremap  <ESC>5<C-Y>
+" Remap jump to last line on the window
+noremap gH H
+
+" Remap jump to middle line on the window
+noremap gM M
+
+" Remap jump to first line on the window
+noremap gL L
+
 
 " Move screen down 5 lines with cursor
+" CTRL-J
 noremap <C-J> 5<C-E>5j
 inoremap <C-J> <ESC>5<C-E>5j
 
 " Move screen up 5 lines with cursor
+" CTRL-K
 noremap <C-K> 5<C-Y>5k
 inoremap <C-K> <ESC>5<C-Y>5k
 
@@ -115,6 +122,16 @@ inoremap ∆ <ESC><C-D>
 " ALT-K
 noremap ˚ <C-U>
 inoremap ˚ <ESC><C-U>
+
+" Move screen down without moving cursor
+" ALT-SHIFT-J
+noremap Ô 5<C-E>
+inoremap Ô <ESC>5<C-E>
+
+" Move screen up without moving cursor
+" ALT-SHIFT-K
+noremap  5<C-Y>
+inoremap  <ESC>5<C-Y>
 
 
 " Drop a mark before jumping so we can easily come back with 'j
