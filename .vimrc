@@ -227,7 +227,7 @@ highlight SignColumn guibg=NONE ctermbg=NONE
 " Define a variable to keep track of autocommand status
 let g:gitgutter_autocommand_enabled = 0
 
-" Function to enable the autocommand
+" Function to enable the GitGutterAutoPreviewHunk
 function! GitGutterAutoPreviewHunkEnable()
     if !g:gitgutter_autocommand_enabled
         augroup GitGutterAutocommand
@@ -241,7 +241,7 @@ function! GitGutterAutoPreviewHunkEnable()
     endif
 endfunction
 
-" Function to disable the autocommand
+" Function to disable the GitGutterAutoPreviewHunk
 function! GitGutterAutoPreviewHunkDisable()
     if g:gitgutter_autocommand_enabled
         augroup GitGutterAutocommand
@@ -255,9 +255,17 @@ function! GitGutterAutoPreviewHunkDisable()
     endif
 endfunction
 
+" Function to toggle the GitGutterAutoPreviewHunk
+function! ToggleGitGutterAutoPreviewHunk()
+    if g:gitgutter_autocommand_enabled
+        call GitGutterAutoPreviewHunkDisable()
+    else
+        call GitGutterAutoPreviewHunkEnable()
+    endif
+endfunction
+
 " Map shortcuts to enable and disable GitGutterAutoPreviewHunk
-nmap <leader>aph :<C-U>call GitGutterAutoPreviewHunkEnable()<CR>
-nmap <leader>APH :<C-U>call GitGutterAutoPreviewHunkDisable()<CR>
+nmap <leader>aph :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
 
 " Preview a hunk changes
 nmap ph :<C-U>GitGutterPreviewHunk<CR>
