@@ -30,8 +30,11 @@ set number
 set showcmd
 set showcmdloc="statusline"
 
-" The width of a TAB is set to 4. Still it is a \t. It is just that Vim
-" will interpret it to be having a width of 4
+" The time in milliseconds that is waited for a key code or mapped key sequence to complete
+set timeoutlen=1500
+
+" The width of a TAB is set to 4.
+" Still it is a \t. It is just that Vim will interpret it to be having a width of 4
 set tabstop=4
 
 " Sets the number of columns for a TAB
@@ -99,16 +102,6 @@ noremap J 5j
 noremap K 5k
 
 
-" Remap jump to last line on the window
-noremap gH H
-
-" Remap jump to middle line on the window
-noremap gM M
-
-" Remap jump to first line on the window
-noremap gL L
-
-
 " Move screen down 5 lines with cursor
 " CTRL-J
 noremap <C-J> 5<C-E>5j
@@ -155,6 +148,15 @@ nnoremap <silent> G :<C-U>call MarkAndJump("G")<CR>
 " Jump to last change
 nnoremap gI `.
 
+" Jump to last line on the window
+noremap gH H
+
+" Jump to middle line on the window
+noremap gM M
+
+" Jump to first line on the window
+noremap gL L
+
 
 " Search word under the cursor
 nnoremap <leader>f *``/<C-R>/<CR>N
@@ -174,18 +176,162 @@ nnoremap <leader>/ 0i// <ESC>0
 
 
 " ----
+" BUFFERS
+" ----
+" Enter buffer navigation
+nnoremap <C-W>b :<C-U>call EnterBuffersNavigationMode()<CR>
+
+" Function to enter buffer navigation mode and set temporary mappings
+function! EnterBuffersNavigationMode()
+    " Save the current mappings
+    let g:save_left = maparg('h', 'n')
+    let g:save_right = maparg('l', 'n')
+
+    " Set new mappings for navigation
+    nnoremap <silent> h :<C-U>bprevious<CR>
+    nnoremap <silent> l :<C-U>bnext<CR>
+
+    " Set <Esc> to exit buffers navigation mode and restore mappings
+    nnoremap <silent> <Esc> :<C-U>call ExitBuffersNavigationMode()<CR>
+
+    " Notify user
+    echo "BuffersNavigationMode enabled"
+endfunction
+
+" Function to exit buffers navigation mode and restore original mappings
+function! ExitBuffersNavigationMode()
+    if !empty(g:save_left)
+        execute 'nnoremap <silent> h ' . g:save_left
+        unlet g:save_left
+    else
+        nunmap <silent> h
+    endif
+
+    if !empty(g:save_right)
+        execute 'nnoremap <silent> l ' . g:save_right
+        unlet g:save_right
+    else
+        nunmap <silent> l
+    endif
+
+    " Unmap <Esc> from exiting buffers navigation mode
+    nunmap <silent> <Esc>
+
+    " Notify user
+    echo "BuffersNavigationMode disabled"
+endfunction
+
+
+" ----
+" WINDOWS
+" ----
+" Enter resize mode
+nnoremap <C-W>r :<C-U>call EnterResizeMode()<CR>
+
+" Function to enter resize mode and set temporary mappings
+function! EnterResizeMode()
+    " Save the current mappings
+    let g:save_up = maparg('<Up>', 'n')
+    let g:save_down = maparg('<Down>', 'n')
+    let g:save_left = maparg('<Left>', 'n')
+    let g:save_right = maparg('<Right>', 'n')
+
+    " Set new mappings for resizing
+    nnoremap <silent> <Up> :<C-U>resize +3<CR>
+    nnoremap <silent> <Down> :<C-U>resize -3<CR>
+    nnoremap <silent> <Left> :<C-U>vertical resize -3<CR>
+    nnoremap <silent> <Right> :<C-U>vertical resize +3<CR>
+
+    " Set <Esc> to exit resize mode and restore mappings
+    nnoremap <silent> <Esc> :<C-U>call ExitResizeMode()<CR>
+
+    " Notify user
+    echo "ResizeWindowMode enabled"
+endfunction
+
+" Function to exit resize mode and restore original mappings
+function! ExitResizeMode()
+    if has_key(g:, 'save_up')
+        execute 'nnoremap <silent> <Up> ' . g:save_up
+        unlet g:save_up
+    else
+        nunmap <silent> <Up>
+    endif
+
+    if has_key(g:, 'save_down')
+        execute 'nnoremap <silent> <Down> ' . g:save_down
+        unlet g:save_down
+    else
+        nunmap <silent> <Down>
+    endif
+
+    if has_key(g:, 'save_left')
+        execute 'nnoremap <silent> <Left> ' . g:save_left
+        unlet g:save_left
+    else
+        nunmap <silent> <Left>
+    endif
+
+    if has_key(g:, 'save_right')
+        execute 'nnoremap <silent> <Right> ' . g:save_right
+        unlet g:save_right
+    else
+        nunmap <silent> <Right>
+    endif
+
+    " Unmap <Esc> from exiting resize mode
+    nunmap <silent> <Esc>
+
+    " Notify user
+    echo "ResizeWindowMode disabled"
+endfunction
+
+
+" ----
 " TABS
 " ----
-" Tab new
-noremap <C-T> :<C-U>tabnew<CR>
+" Enter tabs navigation
+nnoremap <C-W>t :<C-U>call EnterTabsNavigationMode()<CR>
 
-" Tab next
-noremap <C-Tab> :<C-U>tabnext<CR>
-noremap <right> :<C-U>tabnext<CR>
+" Function to enter tabs navigation mode and set temporary mappings
+function! EnterTabsNavigationMode()
+    " Save the current mappings
+    let g:save_left = maparg('h', 'n')
+    let g:save_right = maparg('l', 'n')
 
-" Tab previous
-noremap <C-S-Tab> :<C-U>tabprevious<CR>
-noremap <left> :<C-U>tabprevious<CR>
+    " Set new mappings for navigation
+    nnoremap <silent> h :<C-U>tabprevious<CR>
+    nnoremap <silent> l :<C-U>tabnext<CR>
+
+    " Set <Esc> to exit tabs navigation mode and restore mappings
+    nnoremap <silent> <Esc> :<C-U>call ExitTabsNavigationMode()<CR>
+
+    " Notify user
+    echo "TabsNavigationMode enabled"
+endfunction
+
+" Function to exit tabs navigation mode and restore original mappings
+function! ExitTabsNavigationMode()
+    if !empty(g:save_left)
+        execute 'nnoremap <silent> h ' . g:save_left
+        unlet g:save_left
+    else
+        nunmap <silent> h
+    endif
+
+    if !empty(g:save_right)
+        execute 'nnoremap <silent> l ' . g:save_right
+        unlet g:save_right
+    else
+        nunmap <silent> l
+    endif
+
+    " Unmap <Esc> from exiting tabs navigation mode
+    nunmap <silent> <Esc>
+
+    " Notify user
+    echo "TabsNavigationMode disabled"
+endfunction
 
 
 " -------
@@ -232,7 +378,7 @@ function! ToggleNetrw()
 endfunction
 
 " Toggle netrw only NORMAL mode
-nnoremap <leader>e :<C-U>call ToggleNetrw()<CR>
+nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
 
 
 " -------------
