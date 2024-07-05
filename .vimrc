@@ -187,7 +187,7 @@ let g:netrw_alto = 0
 let g:netrw_winsize = 20
 
 " ToggleNetrw
-let g:NetrwIsOpen=0
+let g:NetrwIsOpen = 0
 
 function! ToggleNetrw()
     if g:NetrwIsOpen
@@ -224,54 +224,70 @@ highlight GitGutterDelete ctermfg=160
 highlight SignColumn guibg=NONE ctermbg=NONE
 
 " Show and hide hunk as the pointer enter and leaves the changed hunk
-" Define a variable to keep track of autocommand status
-let g:gitgutter_autocommand_enabled = 0
+let g:GitGutterAutoPreviewStatus = 0
 
 " Function to enable the GitGutterAutoPreviewHunk
 function! GitGutterAutoPreviewHunkEnable()
-    if !g:gitgutter_autocommand_enabled
+    if !g:GitGutterAutoPreviewStatus
         augroup GitGutterAutocommand
             autocmd!
             autocmd CursorMoved * if gitgutter#hunk#in_hunk(line(".")) | GitGutterPreviewHunk | else | pclose | endif
         augroup END
-        let g:gitgutter_autocommand_enabled = 1
-        echo "GitGutter autocommand enabled"
+        let g:GitGutterAutoPreviewStatus = 1
+        echo "GitGutterAutoPreview enabled"
     else
-        echo "GitGutter autocommand is already enabled"
+        echo "GitGutterAutoPreview is already enabled"
     endif
 endfunction
 
 " Function to disable the GitGutterAutoPreviewHunk
 function! GitGutterAutoPreviewHunkDisable()
-    if g:gitgutter_autocommand_enabled
+    if g:GitGutterAutoPreviewStatus
         augroup GitGutterAutocommand
             autocmd!
+            pclose
         augroup END
-        let g:gitgutter_autocommand_enabled = 0
-        pclose
-        echo "GitGutter autocommand disabled"
+        let g:GitGutterAutoPreviewStatus = 0
+        echo "GitGutterAutoPreview disabled"
     else
-        echo "GitGutter autocommand is already disabled"
+        echo "GitGutterAutoPreview is already disabled"
     endif
 endfunction
 
 " Function to toggle the GitGutterAutoPreviewHunk
 function! ToggleGitGutterAutoPreviewHunk()
-    if g:gitgutter_autocommand_enabled
-        call GitGutterAutoPreviewHunkDisable()
-    else
+    if !g:GitGutterAutoPreviewStatus
         call GitGutterAutoPreviewHunkEnable()
+    else
+        call GitGutterAutoPreviewHunkDisable()
+    endif
+endfunction
+
+" Show and hide hunk
+let g:GitGutterPreviewStatus = 0
+
+" Function to toggle the GitGutterPreviewHunk
+function! ToggleGitGutterPreviewHunk()
+    if !g:GitGutterPreviewStatus
+        let l:output = execute('GitGutterPreviewHunk')
+        if l:output !~ 'Cursor is not in a hunk'
+            let g:GitGutterPreviewStatus = 1
+        else
+            echo "Cursor is not in a hunk"
+        endif
+    else
+        execute 'pclose'
+        let g:GitGutterPreviewStatus = 0
+
     endif
 endfunction
 
 " Map shortcuts to enable and disable GitGutterAutoPreviewHunk
-nmap <leader>aph :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
+nmap <leader>pha :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
 
 " Preview a hunk changes
-nmap ph :<C-U>GitGutterPreviewHunk<CR>
+nmap <leader>ph :<C-U>call ToggleGitGutterPreviewHunk()<CR>
 
-" Execute :pclose and close hunk preview
-nmap PH :<C-U>pclose<CR>
 
 " -----------
 " vim-airline
