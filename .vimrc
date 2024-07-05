@@ -6,6 +6,9 @@
 " \___| _/  _\ _|_\ ____| \___/ \___|   _|     _|
 
 
+"This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way
+set nocompatible
+
 " Enable color syntax highlighting
 syntax on
 
