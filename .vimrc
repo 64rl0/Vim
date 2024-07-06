@@ -228,6 +228,77 @@ endfunction
 " ----
 " WINDOWS
 " ----
+" Enter windows navigation
+nnoremap <C-W>w :<C-U>call EnterWindowsNavigationMode()<CR>
+
+" Function to enter windows navigation mode and set temporary mappings
+function! EnterWindowsNavigationMode()
+    " Save the current mappings
+    let g:save_rotate = maparg('w', 'n')
+    let g:save_up = maparg('k', 'n')
+    let g:save_down = maparg('j', 'n')
+    let g:save_left = maparg('h', 'n')
+    let g:save_right = maparg('l', 'n')
+
+    " Set new mappings for navigation
+    nnoremap <silent> w <C-W>w
+    nnoremap <silent> k <C-W>k
+    nnoremap <silent> j <C-W>j
+    nnoremap <silent> h <C-W>h
+    nnoremap <silent> l <C-W>l
+
+    " Set <Esc> to exit windows navigation mode and restore mappings
+    nnoremap <silent> <Esc> :<C-U>call ExitWindowsNavigationMode()<CR>
+
+    " Notify user
+    echo "WindowsNavigationMode enabled"
+endfunction
+
+" Function to exit windows navigation mode and restore original mappings
+function! ExitWindowsNavigationMode()
+    if !empty(g:save_rotate)
+        execute 'nnoremap <silent> w ' . g:save_rotate
+        unlet g:save_rotate
+    else
+        nunmap <silent> w
+    endif
+
+    if !empty(g:save_up)
+        execute 'nnoremap <silent> k ' . g:save_up
+        unlet g:save_up
+    else
+        nunmap <silent> k
+    endif
+
+    if !empty(g:save_down)
+        execute 'nnoremap <silent> j ' . g:save_down
+        unlet g:save_down
+    else
+        nunmap <silent> j
+    endif
+
+    if !empty(g:save_left)
+        execute 'nnoremap <silent> h ' . g:save_left
+        unlet g:save_left
+    else
+        nunmap <silent> h
+    endif
+
+    if !empty(g:save_right)
+        execute 'nnoremap <silent> l ' . g:save_right
+        unlet g:save_right
+    else
+        nunmap <silent> l
+    endif
+
+    " Unmap <Esc> from exiting windows navigation mode
+    nunmap <silent> <Esc>
+
+    " Notify user
+    echo "WindowsNavigationMode disabled"
+endfunction
+
+
 " Enter resize mode
 nnoremap <C-W>r :<C-U>call EnterResizeMode()<CR>
 
@@ -475,7 +546,12 @@ let g:airline_theme = 'catppuccin_mocha'
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 
 " Only the extensions listed will be loaded
 " let g:airline_extensions = ['tabline', 'hunks']
