@@ -25,7 +25,7 @@ let g:airline#themes#violet#palette.insert_replace = {
 let g:airline#themes#violet#palette.visual = {
             \ 'airline_a': [ s:V1[0]   , s:V1[1]   , s:V1[2]   , s:V1[3]   , ''     ] }
 
-let g:airline#themes#violet#palette.replace = copy(g:airline#themes#violet#palette.normal)
+let g:airline#themes#violet#palette.replace = copy(airline#themes#violet#palette.normal)
 let g:airline#themes#violet#palette.replace.airline_a = [ s:RE[0] , s:RE[1] , s:RE[2] , s:RE[3] , '' ]
 
 let s:IA = [ s:N1[1] , s:N3[1] , s:N1[3] , s:N3[3] , '' ]

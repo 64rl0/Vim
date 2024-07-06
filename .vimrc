@@ -18,7 +18,10 @@ autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight CursorLine ctermbg=NONE guibg=NONE
 
 " Vim Theme
-colorscheme molokai
+colorscheme catppuccin_mocha
+
+" When on, uses |highlight-guifg| and |highlight-guibg| attributes in the terminal
+set termguicolors
 
 " Enable the cursor line highlight
 set cursorline
@@ -468,7 +471,7 @@ nmap <leader>ph :<C-U>call ToggleGitGutterPreviewHunk()<CR>
 let g:airline_enabled = 1
 
 " Theme
-let g:airline_theme = 'simple_carlogtt_ver'
+let g:airline_theme = 'catppuccin_mocha'
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
