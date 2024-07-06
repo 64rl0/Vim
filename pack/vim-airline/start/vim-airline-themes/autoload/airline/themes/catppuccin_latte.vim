@@ -33,6 +33,7 @@ let s:surface1 = "#BCC0CC"
 let s:surface0 = "#CCD0DA"
 "
 let s:base = "#EFF1F5"
+let s:base = "NONE"
 let s:mantle = "#E6E9EF"
 let s:crust = "#DCE0E8"
 
