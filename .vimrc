@@ -198,7 +198,7 @@ function! EnterBuffersNavigationMode()
     nnoremap <silent> <Esc> :<C-U>call ExitBuffersNavigationMode()<CR>
 
     " Notify user
-    echo "BuffersNavigationMode enabled"
+    echo "Buffers NavigationMode enabled"
 endfunction
 
 " Function to exit buffers navigation mode and restore original mappings
@@ -221,7 +221,7 @@ function! ExitBuffersNavigationMode()
     nunmap <silent> <Esc>
 
     " Notify user
-    echo "BuffersNavigationMode disabled"
+    echo "Buffers NavigationMode disabled"
 endfunction
 
 
@@ -251,7 +251,7 @@ function! EnterWindowsNavigationMode()
     nnoremap <silent> <Esc> :<C-U>call ExitWindowsNavigationMode()<CR>
 
     " Notify user
-    echo "WindowsNavigationMode enabled"
+    echo "Windows NavigationMode enabled"
 endfunction
 
 " Function to exit windows navigation mode and restore original mappings
@@ -295,7 +295,7 @@ function! ExitWindowsNavigationMode()
     nunmap <silent> <Esc>
 
     " Notify user
-    echo "WindowsNavigationMode disabled"
+    echo "Windows NavigationMode disabled"
 endfunction
 
 
@@ -320,7 +320,7 @@ function! EnterResizeMode()
     nnoremap <silent> <Esc> :<C-U>call ExitResizeMode()<CR>
 
     " Notify user
-    echo "ResizeWindowMode enabled"
+    echo "Windows ResizeMode enabled"
 endfunction
 
 " Function to exit resize mode and restore original mappings
@@ -357,7 +357,7 @@ function! ExitResizeMode()
     nunmap <silent> <Esc>
 
     " Notify user
-    echo "ResizeWindowMode disabled"
+    echo "Windows ResizeMode disabled"
 endfunction
 
 
@@ -381,7 +381,7 @@ function! EnterTabsNavigationMode()
     nnoremap <silent> <Esc> :<C-U>call ExitTabsNavigationMode()<CR>
 
     " Notify user
-    echo "TabsNavigationMode enabled"
+    echo "Tabs NavigationMode enabled"
 endfunction
 
 " Function to exit tabs navigation mode and restore original mappings
@@ -404,7 +404,7 @@ function! ExitTabsNavigationMode()
     nunmap <silent> <Esc>
 
     " Notify user
-    echo "TabsNavigationMode disabled"
+    echo "Tabs NavigationMode disabled"
 endfunction
 
 
