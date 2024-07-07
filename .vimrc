@@ -27,7 +27,7 @@ set termguicolors
 set cursorline
 
 " Enable line numbers
-set number
+set number relativenumber
 
 " Show (partial) command in the status bar
 set showcmd
@@ -61,6 +61,9 @@ set clipboard^=unnamed,unnamedplus
 " Set the leader key
 let mapleader = "\\"
 
+" VimEnter
+autocmd VimEnter * :Lexplore
+
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
 " :<C-U> Clears any existing input in the command-line buffer
@@ -73,7 +76,7 @@ let mapleader = "\\"
 " | - Separates multiple Vim commands.
 " :edit! - Reloads the current buffer, discarding any changes made
 "    after the previous write command.
-command! W :<C-U>execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Disable arrow keys in ALL modes
 noremap <Up> <NOP>
@@ -439,7 +442,7 @@ let g:netrw_altv = 1
 let g:netrw_alto = 0
 
 " Specify initial size of new windows made with o or v
-" let g:netrw_winsize = 20
+let g:netrw_winsize = 20
 
 " ToggleNetrw
 let g:NetrwIsOpen = 0
@@ -450,18 +453,27 @@ function! ToggleNetrw()
         while (i >= 1)
             if (getbufvar(i, "&filetype") == "netrw")
                 silent exe "bwipeout " . i
-                let g:NetrwIsOpen=0
             endif
             let i-=1
         endwhile
+        let g:NetrwIsOpen=0
     else
         silent Lexplore
         let g:NetrwIsOpen=1
     endif
 endfunction
 
+function! NetrwOpenVSplit()
+    normal v
+    wincmd =
+    wincmd h
+endfunction
+
 " Toggle netrw only NORMAL mode
 nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
+
+" Open in a new split and rebalance split widths
+autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
 
 
 " -------------
