@@ -62,7 +62,7 @@ set clipboard^=unnamed,unnamedplus
 let mapleader = "\\"
 
 " VimEnter
-autocmd VimEnter * :Lexplore
+autocmd VimEnter * if argc() == 0 | Lexplore | endif 
 
 " Defines a new custom Vim command called W to assume sudo privileges
 "    when file is opened without sudo.
@@ -480,6 +480,7 @@ endfunction
 
 " Toggle netrw only NORMAL mode
 nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
+nnoremap <C-W><C-E> :<C-U>call ToggleNetrw()<CR>
 
 " Open in a new split and rebalance split widths
 autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
