@@ -235,6 +235,7 @@ nnoremap <C-W>w :<C-U>call EnterWindowsNavigationMode()<CR>
 function! EnterWindowsNavigationMode()
     " Save the current mappings
     let g:save_rotate = maparg('w', 'n')
+    let g:save_quit = maparg('q', 'n')
     let g:save_up = maparg('k', 'n')
     let g:save_down = maparg('j', 'n')
     let g:save_left = maparg('h', 'n')
@@ -242,6 +243,7 @@ function! EnterWindowsNavigationMode()
 
     " Set new mappings for navigation
     nnoremap <silent> w <C-W>w
+    nnoremap <silent> q <C-W>q
     nnoremap <silent> k <C-W>k
     nnoremap <silent> j <C-W>j
     nnoremap <silent> h <C-W>h
@@ -261,6 +263,13 @@ function! ExitWindowsNavigationMode()
         unlet g:save_rotate
     else
         nunmap <silent> w
+    endif
+
+    if !empty(g:save_quit)
+        execute 'nnoremap <silent> q ' . g:save_quit
+        unlet g:save_quit
+    else
+        nunmap <silent> q
     endif
 
     if !empty(g:save_up)
@@ -424,13 +433,13 @@ let g:netrw_liststyle = 1
 let g:netrw_preview = 1
 
 " The v key splits the window vertically with the new window and cursor at the left
-let g:netrw_altv = 0
+let g:netrw_altv = 1
 
 " The o key splits the window horizontally with the new window and cursor at the top
 let g:netrw_alto = 0
 
 " Specify initial size of new windows made with o or v
-let g:netrw_winsize = 20
+" let g:netrw_winsize = 20
 
 " ToggleNetrw
 let g:NetrwIsOpen = 0
