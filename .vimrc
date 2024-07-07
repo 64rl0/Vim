@@ -446,6 +446,7 @@ let g:netrw_winsize = 20
 
 " ToggleNetrw
 let g:NetrwIsOpen = 0
+let g:NetrwFound = 0
 
 function! ToggleNetrw()
     if g:NetrwIsOpen
@@ -453,10 +454,18 @@ function! ToggleNetrw()
         while (i >= 1)
             if (getbufvar(i, "&filetype") == "netrw")
                 silent exe "bwipeout " . i
+                let g:NetrwFound = 1
             endif
             let i-=1
         endwhile
-        let g:NetrwIsOpen=0
+            if g:NetrwFound == 1
+            let g:NetrwIsOpen = 0
+            let g:NetrwFound = 0
+        else
+            silent Lexplore
+            let g:NetrwIsOpen = 1
+            let g:NetrwFound = 0
+        endif
     else
         silent Lexplore
         let g:NetrwIsOpen=1
