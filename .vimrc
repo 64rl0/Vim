@@ -256,9 +256,6 @@ autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
 " -------------
 " vim-gitgutter
 " -------------
-" Don't let vim-gitgutter set up any mappings at all
-let g:gitgutter_map_keys = 0
-
 " Signs colours
 highlight GitGutterAdd    ctermfg=34
 highlight GitGutterChange ctermfg=39
@@ -266,6 +263,9 @@ highlight GitGutterDelete ctermfg=160
 
 " Disable SignColumn background colour
 highlight SignColumn guibg=NONE ctermbg=NONE
+
+" Don't let vim-gitgutter set up any mappings at all
+let g:gitgutter_map_keys = 0
 
 " Enable and disable GitGutterAutoPreviewHunk
 nmap <leader>pha :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
