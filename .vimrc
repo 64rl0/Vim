@@ -37,7 +37,7 @@ set showcmd
 set showcmdloc="statusline"
 
 " Commands and search patterns in the history
-set history=1000000
+set history=10000
 
 " Maximum number of changes that can be undone
 set undolevels=1000000
