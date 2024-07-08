@@ -6,6 +6,9 @@
 " \___| _/  _\ _|_\ ____| \___/ \___|   _|     _|
 
 
+" ------------
+" VIM SETTINGS
+" ------------
 "This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way
 set nocompatible
 
@@ -61,23 +64,16 @@ set clipboard^=unnamed,unnamedplus
 " Set the leader key
 let mapleader = "\\"
 
+
+" --------
 " VimEnter
-autocmd VimEnter * if argc() == 0 | Lexplore | endif 
+" --------
+autocmd VimEnter * if argc() == 0 | Lexplore | endif
 
-" Defines a new custom Vim command called W to assume sudo privileges
-"    when file is opened without sudo.
-" :<C-U> Clears any existing input in the command-line buffer
-" execute Begins an execution of multiple Vim commands
-" ':silent w !sudo tee % > /dev/null'
-"    writes the current buffer to a file using the tee command with
-"    superuser privileges (using sudo)
-"    The % symbol represents the current file name
-"    The > /dev/null part discards the output of the tee command
-" | - Separates multiple Vim commands.
-" :edit! - Reloads the current buffer, discarding any changes made
-"    after the previous write command.
-command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
+" ------
+" MOTION
+" ------
 " Disable arrow keys in ALL modes
 noremap <Up> <NOP>
 inoremap <Up> <NOP>
@@ -94,7 +90,6 @@ inoremap <PageDown> <NOP>
 inoremap <Home> <NOP>
 inoremap <End> <NOP>
 
-
 " Move cursor to the first character in a line
 noremap H ^
 
@@ -106,7 +101,6 @@ noremap J 5j
 
 " Move cursor up file 5 lines
 noremap K 5k
-
 
 " Move screen down 5 lines with cursor
 " CTRL-J
@@ -138,16 +132,7 @@ inoremap Ô <ESC>5<C-E>
 noremap  5<C-Y>
 inoremap  <ESC>5<C-Y>
 
-
 " Drop a mark before jumping so we can easily come back with 'j
-function! MarkAndJump(prefix)
-    if v:count > 0
-        execute "normal! m" . "j" . v:count . a:prefix
-    else
-        execute "normal! m" . "j" . a:prefix
-    endif
-endfunction
-
 nnoremap <silent> gg :<C-U>call MarkAndJump("gg")<CR>
 nnoremap <silent> G :<C-U>call MarkAndJump("G")<CR>
 
@@ -164,12 +149,27 @@ noremap gM M
 noremap gL L
 
 
+" ---------------
+" CUSTOM COMMANDS
+" ---------------
+" Use W to assume sudo privileges when file is opened without sudo.
+" :<C-U> Clears any existing input in the command-line buffer
+" execute Begins an execution of multiple Vim commands
+" ':silent w !sudo tee % > /dev/null'
+"    writes the current buffer to a file using the tee command with
+"    superuser privileges (using sudo)
+"    The % symbol represents the current file name
+"    The > /dev/null part discards the output of the tee command
+" | - Separates multiple Vim commands.
+" :edit! - Reloads the current buffer, discarding any changes made
+"    after the previous write command.
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " Search word under the cursor
 nnoremap <leader>f *``/<C-R>/<CR>N
 
 " Replace word under the cursor
 nnoremap <leader>r *``:%s/<C-R>///gc<left><left><left>
-
 
 " Comment line out with #
 nnoremap <leader># 0i# <ESC>0
@@ -181,11 +181,127 @@ nnoremap <leader>" 0i" <ESC>0
 nnoremap <leader>/ 0i// <ESC>0
 
 
-" ----
+" -------
 " BUFFERS
-" ----
+" -------
 " Enter buffer navigation
 nnoremap <C-W>b :<C-U>call EnterBuffersNavigationMode()<CR>
+
+
+" -------
+" WINDOWS
+" -------
+" Enter windows navigation
+nnoremap <C-W>w :<C-U>call EnterWindowsNavigationMode()<CR>
+
+" Enter resize mode
+nnoremap <C-W>r :<C-U>call EnterResizeMode()<CR>
+
+" Enter window zoom mode
+nnoremap <C-W>z :<C-U>call Zoom()<CR>
+nnoremap <C-W><C-Z> :<C-U>call Zoom()<CR>
+
+
+" ----
+" TABS
+" ----
+" Enter tabs navigation
+nnoremap <C-W>t :<C-U>call EnterTabsNavigationMode()<CR>
+
+
+" -------
+" PLUGINS
+" -------
+" -----
+" netrw
+" -----
+" Disable top banner
+let g:netrw_banner = 0
+
+" List style
+let g:netrw_liststyle = 1
+
+" Make vertical splitting the default for previewing files
+let g:netrw_preview = 1
+
+" The v key splits the window vertically with the new window and cursor at the left
+let g:netrw_altv = 1
+
+" The o key splits the window horizontally with the new window and cursor at the top
+let g:netrw_alto = 0
+
+" Specify initial size of new windows made with o or v
+let g:netrw_winsize = 20
+
+" Toggle netrw only NORMAL mode
+nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
+nnoremap <C-W><C-E> :<C-U>call ToggleNetrw()<CR>
+
+" Use V to open netrw selected file in a new split and rebalance split widths
+autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
+
+
+" -------------
+" vim-gitgutter
+" -------------
+" Don't let vim-gitgutter set up any mappings at all
+let g:gitgutter_map_keys = 0
+
+" Signs colours
+highlight GitGutterAdd    ctermfg=34
+highlight GitGutterChange ctermfg=39
+highlight GitGutterDelete ctermfg=160
+
+" Disable SignColumn background colour
+highlight SignColumn guibg=NONE ctermbg=NONE
+
+" Enable and disable GitGutterAutoPreviewHunk
+nmap <leader>pha :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
+
+" Preview a hunk changes
+nmap <leader>ph :<C-U>call ToggleGitGutterPreviewHunk()<CR>
+
+
+" -----------
+" vim-airline
+" -----------
+" Enable vim-airline
+let g:airline_enabled = 1
+
+" Theme
+let g:airline_theme = 'catppuccin_mocha'
+
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+
+" Only the extensions listed will be loaded
+" let g:airline_extensions = ['tabline', 'hunks']
+
+
+" --------
+" Undotree
+" --------
+nnoremap <C-W>u :UndotreeToggle<CR><C-W>h<C-W>k
+nnoremap <C-W><C-U> :UndotreeToggle<CR><C-W>h<C-W>k
+
+
+" ---------
+" FUNCTIONS
+" ---------
+" Function to drop a mark and jump to line or top or bottom
+function! MarkAndJump(prefix)
+    if v:count > 0
+        execute "normal! m" . "j" . v:count . a:prefix
+    else
+        execute "normal! m" . "j" . a:prefix
+    endif
+endfunction
 
 " Function to enter buffer navigation mode and set temporary mappings
 function! EnterBuffersNavigationMode()
@@ -226,13 +342,6 @@ function! ExitBuffersNavigationMode()
     " Notify user
     echo "Buffers NavigationMode disabled"
 endfunction
-
-
-" ----
-" WINDOWS
-" ----
-" Enter windows navigation
-nnoremap <C-W>w :<C-U>call EnterWindowsNavigationMode()<CR>
 
 " Function to enter windows navigation mode and set temporary mappings
 function! EnterWindowsNavigationMode()
@@ -310,10 +419,6 @@ function! ExitWindowsNavigationMode()
     echo "Windows NavigationMode disabled"
 endfunction
 
-
-" Enter resize mode
-nnoremap <C-W>r :<C-U>call EnterResizeMode()<CR>
-
 " Function to enter resize mode and set temporary mappings
 function! EnterResizeMode()
     " Save the current mappings
@@ -372,12 +477,25 @@ function! ExitResizeMode()
     echo "Windows ResizeMode disabled"
 endfunction
 
-
-" ----
-" TABS
-" ----
-" Enter tabs navigation
-nnoremap <C-W>t :<C-U>call EnterTabsNavigationMode()<CR>
+" Function to enter zoom mode
+function! Zoom()
+    if winnr('$') > 1
+        let lst = win_findbuf(bufnr())
+        call filter(lst, "tabpagewinnr(win_id2tabwin(v:val)[0], '$') == 1")
+        if len(lst) >=# 1
+            call win_gotoid(lst[0])
+        else
+            tab split
+        endif
+    else
+        let lst = win_findbuf(bufnr())
+        call filter(lst, "v:val !=# " . win_getid())
+        if len(lst) >=# 1
+            wincmd c
+            call win_gotoid(lst[0])
+        endif
+    endif
+endfunction
 
 " Function to enter tabs navigation mode and set temporary mappings
 function! EnterTabsNavigationMode()
@@ -419,32 +537,7 @@ function! ExitTabsNavigationMode()
     echo "Tabs NavigationMode disabled"
 endfunction
 
-
-" -------
-" PLUGINS
-" -------
-" -----
-" netrw
-" -----
-" Disable top banner
-let g:netrw_banner = 0
-
-" List style
-let g:netrw_liststyle = 1
-
-" Make vertical splitting the default for previewing files
-let g:netrw_preview = 1
-
-" The v key splits the window vertically with the new window and cursor at the left
-let g:netrw_altv = 1
-
-" The o key splits the window horizontally with the new window and cursor at the top
-let g:netrw_alto = 0
-
-" Specify initial size of new windows made with o or v
-let g:netrw_winsize = 20
-
-" ToggleNetrw
+" Function to ToggleNetrw sidebar
 let g:NetrwIsOpen = 0
 let g:NetrwFound = 0
 
@@ -472,36 +565,12 @@ function! ToggleNetrw()
     endif
 endfunction
 
+" Function to use V to open file selected in netrw in a new vertical split
 function! NetrwOpenVSplit()
     normal v
     wincmd =
     wincmd h
 endfunction
-
-" Toggle netrw only NORMAL mode
-nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
-nnoremap <C-W><C-E> :<C-U>call ToggleNetrw()<CR>
-
-" Open in a new split and rebalance split widths
-autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
-
-
-" -------------
-" vim-gitgutter
-" -------------
-" Don't let vim-gitgutter set up any mappings at all
-let g:gitgutter_map_keys = 0
-
-" Signs colours
-highlight GitGutterAdd    ctermfg=34
-highlight GitGutterChange ctermfg=39
-highlight GitGutterDelete ctermfg=160
-
-" Disable SignColumn background colour
-highlight SignColumn guibg=NONE ctermbg=NONE
-
-" Show and hide hunk as the pointer enter and leaves the changed hunk
-let g:GitGutterAutoPreviewStatus = 0
 
 " Function to enable the GitGutterAutoPreviewHunk
 function! GitGutterAutoPreviewHunkEnable()
@@ -532,6 +601,8 @@ function! GitGutterAutoPreviewHunkDisable()
 endfunction
 
 " Function to toggle the GitGutterAutoPreviewHunk
+let g:GitGutterAutoPreviewStatus = 0
+
 function! ToggleGitGutterAutoPreviewHunk()
     if !g:GitGutterAutoPreviewStatus
         call GitGutterAutoPreviewHunkEnable()
@@ -540,10 +611,9 @@ function! ToggleGitGutterAutoPreviewHunk()
     endif
 endfunction
 
-" Show and hide hunk
+" Function to toggle the GitGutterPreviewHunk
 let g:GitGutterPreviewStatus = 0
 
-" Function to toggle the GitGutterPreviewHunk
 function! ToggleGitGutterPreviewHunk()
     if !g:GitGutterPreviewStatus
         let l:output = execute('GitGutterPreviewHunk')
@@ -558,32 +628,4 @@ function! ToggleGitGutterPreviewHunk()
 
     endif
 endfunction
-
-" Map shortcuts to enable and disable GitGutterAutoPreviewHunk
-nmap <leader>pha :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
-
-" Preview a hunk changes
-nmap <leader>ph :<C-U>call ToggleGitGutterPreviewHunk()<CR>
-
-
-" -----------
-" vim-airline
-" -----------
-" Enable vim-airline
-let g:airline_enabled = 1
-
-" Theme
-let g:airline_theme = 'catppuccin_mocha'
-
-" Automatically displays all buffers when there's only one tab open
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-
-" Only the extensions listed will be loaded
-" let g:airline_extensions = ['tabline', 'hunks']
 
