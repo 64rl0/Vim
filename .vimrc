@@ -296,8 +296,7 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 " --------
 " Undotree
 " --------
-nnoremap <C-W>u :UndotreeToggle<CR><C-W>h<C-W>k
-nnoremap <C-W><C-U> :UndotreeToggle<CR><C-W>h<C-W>k
+nnoremap <leader>u :UndotreeToggle<CR><C-W>h<C-W>k
 
 
 " ---------
