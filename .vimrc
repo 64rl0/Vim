@@ -15,6 +15,9 @@ set nocompatible
 " Enable color syntax highlighting
 syntax on
 
+" Enable loading the plugin files for specific file types
+filetype plugin on
+
 " Disabling background so we use the shell bg
 autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
