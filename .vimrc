@@ -297,6 +297,10 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 " --------
 " Undotree
 " --------
+" Set window layout
+let g:undotree_WindowLayout = 1
+
+" Toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR><C-W>1w
 
 
