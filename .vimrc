@@ -9,7 +9,7 @@
 " ------------
 " VIM SETTINGS
 " ------------
-"This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way
+" This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way
 set nocompatible
 
 " Enable color syntax highlighting
@@ -35,6 +35,12 @@ set number relativenumber
 " Show (partial) command in the status bar
 set showcmd
 set showcmdloc="statusline"
+
+" Commands and search patterns in the history
+set history=1000000
+
+" Maximum number of changes that can be undone
+set undolevels=1000000
 
 " The time in milliseconds that is waited for a key code or mapped key sequence to complete
 set timeoutlen=1500
