@@ -256,13 +256,11 @@ autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
 " -------------
 " vim-gitgutter
 " -------------
-" Signs colours
+" Color scheme settings
 highlight GitGutterAdd    ctermfg=34
 highlight GitGutterChange ctermfg=39
 highlight GitGutterDelete ctermfg=160
-
-" Disable SignColumn background colour
-highlight SignColumn guibg=NONE ctermbg=NONE
+highlight SignColumn      ctermbg=NONE guibg=NONE
 
 " Don't let vim-gitgutter set up any mappings at all
 let g:gitgutter_map_keys = 0
