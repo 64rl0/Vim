@@ -45,8 +45,11 @@ set history=10000
 " Maximum number of changes that can be undone
 set undolevels=1000000
 
-" The time in milliseconds that is waited for a key code or mapped key sequence to complete
-set timeoutlen=1500
+" The time in milliseconds that is waited for a mapped key sequence to complete
+set timeoutlen=2000
+
+" The time in milliseconds that is waited for a key code sequence to complete
+set ttimeoutlen=100
 
 " The width of a TAB is set to 4.
 " Still it is a \t. It is just that Vim will interpret it to be having a width of 4
@@ -114,32 +117,32 @@ noremap K 5k
 " Move screen down 5 lines with cursor
 " CTRL-J
 noremap <C-J> 5<C-E>5j
-inoremap <C-J> <ESC>5<C-E>5j
+inoremap <C-J> <C-O>5<C-E><C-O>5j
 
 " Move screen up 5 lines with cursor
 " CTRL-K
 noremap <C-K> 5<C-Y>5k
-inoremap <C-K> <ESC>5<C-Y>5k
+inoremap <C-K> <C-O>5<C-Y><C-O>5k
 
 " Move screen down 1/2 page with cursor
 " ALT-J
 noremap ∆ <C-D>
-inoremap ∆ <ESC><C-D>
+inoremap ∆ <C-O><C-D>
 
 " Move screen up 1/2 page with cursor
 " ALT-K
 noremap ˚ <C-U>
-inoremap ˚ <ESC><C-U>
+inoremap ˚ <C-O><C-U>
 
 " Move screen down without moving cursor
 " ALT-SHIFT-J
 noremap Ô 5<C-E>
-inoremap Ô <ESC>5<C-E>
+inoremap Ô <C-O>5<C-E>
 
 " Move screen up without moving cursor
 " ALT-SHIFT-K
 noremap  5<C-Y>
-inoremap  <ESC>5<C-Y>
+inoremap  <C-O>5<C-Y>
 
 " Drop a mark before jumping so we can easily come back with 'j
 nnoremap <silent> gg :<C-U>call MarkAndJump("gg")<CR>
