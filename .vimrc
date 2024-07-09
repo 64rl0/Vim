@@ -116,37 +116,37 @@ noremap K 5k
 
 " Move screen down 5 lines with cursor
 " CTRL-J
-noremap <C-J> 5<C-E>5j
-inoremap <C-J> <C-O>5<C-E><C-O>5j
+noremap <C-j> 5<C-e>5j
+inoremap <C-j> <C-o>5<C-e><C-o>5j
 
 " Move screen up 5 lines with cursor
 " CTRL-K
-noremap <C-K> 5<C-Y>5k
-inoremap <C-K> <C-O>5<C-Y><C-O>5k
+noremap <C-k> 5<C-y>5k
+inoremap <C-k> <C-o>5<C-y><C-o>5k
 
 " Move screen down 1/2 page with cursor
 " ALT-J
-noremap ∆ <C-D>
-inoremap ∆ <C-O><C-D>
+noremap ∆ <C-d>
+inoremap ∆ <C-o><C-d>
 
 " Move screen up 1/2 page with cursor
 " ALT-K
-noremap ˚ <C-U>
-inoremap ˚ <C-O><C-U>
+noremap ˚ <C-u>
+inoremap ˚ <C-o><C-u>
 
 " Move screen down without moving cursor
 " ALT-SHIFT-J
-noremap Ô 5<C-E>
-inoremap Ô <C-O>5<C-E>
+noremap Ô 5<C-e>
+inoremap Ô <C-o>5<C-e>
 
 " Move screen up without moving cursor
 " ALT-SHIFT-K
-noremap  5<C-Y>
-inoremap  <C-O>5<C-Y>
+noremap  5<C-y>
+inoremap  <C-o>5<C-y>
 
 " Drop a mark before jumping so we can easily come back with 'j
-nnoremap <silent> gg :<C-U>call MarkAndJump("gg")<CR>
-nnoremap <silent> G :<C-U>call MarkAndJump("G")<CR>
+nnoremap <silent> gg :<C-u>call MarkAndJump("gg")<CR>
+nnoremap <silent> G :<C-u>call MarkAndJump("G")<CR>
 
 " Jump to last line on the window
 noremap gH H
@@ -162,7 +162,7 @@ noremap gL L
 " CUSTOM COMMANDS
 " ---------------
 " Use W to assume sudo privileges when file is opened without sudo.
-" :<C-U> Clears any existing input in the command-line buffer
+" :<C-u> Clears any existing input in the command-line buffer
 " execute Begins an execution of multiple Vim commands
 " ':silent w !sudo tee % > /dev/null'
 "    writes the current buffer to a file using the tee command with
@@ -175,10 +175,10 @@ noremap gL L
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Search word under the cursor
-nnoremap <leader>f *``/<C-R>/<CR>N
+nnoremap <leader>f *``/<C-r>/<CR>N
 
 " Replace word under the cursor
-nnoremap <leader>r *``:%s/<C-R>///gc<left><left><left>
+nnoremap <leader>r *``:%s/<C-r>///gc<left><left><left>
 
 " Comment line out with #
 nnoremap <leader># 0i# <ESC>0
@@ -194,28 +194,28 @@ nnoremap <leader>/ 0i// <ESC>0
 " BUFFERS
 " -------
 " Enter buffer navigation
-nnoremap <C-W>b :<C-U>call EnterBuffersNavigationMode()<CR>
+nnoremap <C-w>b :<C-u>call EnterBuffersNavigationMode()<CR>
 
 
 " -------
 " WINDOWS
 " -------
 " Enter windows navigation
-nnoremap <C-W>w :<C-U>call EnterWindowsNavigationMode()<CR>
+nnoremap <C-w>w :<C-u>call EnterWindowsNavigationMode()<CR>
 
 " Enter resize mode
-nnoremap <C-W>r :<C-U>call EnterResizeMode()<CR>
+nnoremap <C-w>r :<C-u>call EnterResizeMode()<CR>
 
 " Enter window zoom mode
-nnoremap <C-W>z :<C-U>call Zoom()<CR>
-nnoremap <C-W><C-Z> :<C-U>call Zoom()<CR>
+nnoremap <C-w>z :<C-u>call Zoom()<CR>
+nnoremap <C-w><C-z> :<C-u>call Zoom()<CR>
 
 
 " ----
 " TABS
 " ----
 " Enter tabs navigation
-nnoremap <C-W>t :<C-U>call EnterTabsNavigationMode()<CR>
+nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 
 
 " -------
@@ -244,12 +244,12 @@ let g:netrw_winsize = 20
 
 " Toggle netrw only NORMAL mode
 " Simulate CMD-1 on macOS
-nnoremap ∞ :<C-U>call ToggleNetrw()<CR>
-nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
-nnoremap <C-W><C-E> :<C-U>call ToggleNetrw()<CR>
+nnoremap ∞ :<C-u>call ToggleNetrw()<CR>
+nnoremap <C-w>e :<C-u>call ToggleNetrw()<CR>
+nnoremap <C-w><C-e> :<C-u>call ToggleNetrw()<CR>
 
 " Use V to open netrw selected file in a new split and rebalance split widths
-autocmd FileType netrw nnoremap <buffer>V :<C-U>call NetrwOpenVSplit()<CR>
+autocmd FileType netrw nnoremap <buffer>V :<C-u>call NetrwOpenVSplit()<CR>
 
 
 " -------------
@@ -265,10 +265,10 @@ highlight SignColumn      ctermbg=NONE guibg=NONE
 let g:gitgutter_map_keys = 0
 
 " Enable and disable GitGutterAutoPreviewHunk
-nmap <leader>pha :<C-U>call ToggleGitGutterAutoPreviewHunk()<CR>
+nmap <leader>pha :<C-u>call ToggleGitGutterAutoPreviewHunk()<CR>
 
 " Preview a hunk changes
-nmap <leader>ph :<C-U>call ToggleGitGutterPreviewHunk()<CR>
+nmap <leader>ph :<C-u>call ToggleGitGutterPreviewHunk()<CR>
 
 
 " -----------
@@ -300,7 +300,7 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:undotree_WindowLayout = 1
 
 " Toggle undotree
-nnoremap <leader>u :UndotreeToggle<CR><C-W>1w
+nnoremap <leader>u :UndotreeToggle<CR><C-w>1w
 
 
 " ---------
@@ -322,11 +322,11 @@ function! EnterBuffersNavigationMode()
     let g:save_right = maparg('l', 'n')
 
     " Set new mappings for navigation
-    nnoremap <silent> h :<C-U>bprevious<CR>
-    nnoremap <silent> l :<C-U>bnext<CR>
+    nnoremap <silent> h :<C-u>bprevious<CR>
+    nnoremap <silent> l :<C-u>bnext<CR>
 
     " Set <Esc> to exit buffers navigation mode and restore mappings
-    nnoremap <silent> <Esc> :<C-U>call ExitBuffersNavigationMode()<CR>
+    nnoremap <silent> <Esc> :<C-u>call ExitBuffersNavigationMode()<CR>
 
     " Notify user
     echo "Buffers NavigationMode enabled"
@@ -366,15 +366,15 @@ function! EnterWindowsNavigationMode()
     let g:save_right = maparg('l', 'n')
 
     " Set new mappings for navigation
-    nnoremap <silent> w <C-W>w
-    nnoremap <silent> q <C-W>q
-    nnoremap <silent> k <C-W>k
-    nnoremap <silent> j <C-W>j
-    nnoremap <silent> h <C-W>h
-    nnoremap <silent> l <C-W>l
+    nnoremap <silent> w <C-w>w
+    nnoremap <silent> q <C-w>q
+    nnoremap <silent> k <C-w>k
+    nnoremap <silent> j <C-w>j
+    nnoremap <silent> h <C-w>h
+    nnoremap <silent> l <C-w>l
 
     " Set <Esc> to exit windows navigation mode and restore mappings
-    nnoremap <silent> <Esc> :<C-U>call ExitWindowsNavigationMode()<CR>
+    nnoremap <silent> <Esc> :<C-u>call ExitWindowsNavigationMode()<CR>
 
     " Notify user
     echo "Windows NavigationMode enabled"
@@ -440,13 +440,13 @@ function! EnterResizeMode()
     let g:save_right = maparg('<Right>', 'n')
 
     " Set new mappings for resizing
-    nnoremap <silent> <Up> :<C-U>resize +3<CR>
-    nnoremap <silent> <Down> :<C-U>resize -3<CR>
-    nnoremap <silent> <Left> :<C-U>vertical resize -3<CR>
-    nnoremap <silent> <Right> :<C-U>vertical resize +3<CR>
+    nnoremap <silent> <Up> :<C-u>resize +3<CR>
+    nnoremap <silent> <Down> :<C-u>resize -3<CR>
+    nnoremap <silent> <Left> :<C-u>vertical resize -3<CR>
+    nnoremap <silent> <Right> :<C-u>vertical resize +3<CR>
 
     " Set <Esc> to exit resize mode and restore mappings
-    nnoremap <silent> <Esc> :<C-U>call ExitResizeMode()<CR>
+    nnoremap <silent> <Esc> :<C-u>call ExitResizeMode()<CR>
 
     " Notify user
     echo "Windows ResizeMode enabled"
@@ -516,11 +516,11 @@ function! EnterTabsNavigationMode()
     let g:save_right = maparg('l', 'n')
 
     " Set new mappings for navigation
-    nnoremap <silent> h :<C-U>tabprevious<CR>
-    nnoremap <silent> l :<C-U>tabnext<CR>
+    nnoremap <silent> h :<C-u>tabprevious<CR>
+    nnoremap <silent> l :<C-u>tabnext<CR>
 
     " Set <Esc> to exit tabs navigation mode and restore mappings
-    nnoremap <silent> <Esc> :<C-U>call ExitTabsNavigationMode()<CR>
+    nnoremap <silent> <Esc> :<C-u>call ExitTabsNavigationMode()<CR>
 
     " Notify user
     echo "Tabs NavigationMode enabled"
