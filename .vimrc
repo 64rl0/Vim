@@ -148,9 +148,6 @@ inoremap  <C-O>5<C-Y>
 nnoremap <silent> gg :<C-U>call MarkAndJump("gg")<CR>
 nnoremap <silent> G :<C-U>call MarkAndJump("G")<CR>
 
-" Jump to last change
-nnoremap gI `.
-
 " Jump to last line on the window
 noremap gH H
 
