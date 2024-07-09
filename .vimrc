@@ -12,12 +12,12 @@
 " This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way
 set nocompatible
 
-" Enable color syntax highlighting
-syntax on
-
 " Enable loading the plugin files for specific file types
 " Enable indent file for specific file types with
 filetype plugin indent on
+
+" Enable color syntax highlighting
+syntax on
 
 " Disabling background so we use the shell bg
 autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
