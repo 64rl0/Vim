@@ -18,6 +18,9 @@ syntax on
 " Enable loading the plugin files for specific file types
 filetype plugin on
 
+" Enable indent file for specific file types with
+filetype plugin indent on
+
 " Disabling background so we use the shell bg
 autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
