@@ -16,8 +16,6 @@ set nocompatible
 syntax on
 
 " Enable loading the plugin files for specific file types
-filetype plugin on
-
 " Enable indent file for specific file types with
 filetype plugin indent on
 
