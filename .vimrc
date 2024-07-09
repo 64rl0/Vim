@@ -246,8 +246,7 @@ let g:netrw_alto = 0
 let g:netrw_winsize = 20
 
 " Toggle netrw only NORMAL mode
-" Simulate CMD-1 on macOS
-nnoremap ∞ :<C-U>call ToggleNetrw()<CR>
+nnoremap ∞ :<C-U>call ToggleNetrw()<CR>  " Simulate CMD-1 on macOS
 nnoremap <C-W>e :<C-U>call ToggleNetrw()<CR>
 nnoremap <C-W><C-E> :<C-U>call ToggleNetrw()<CR>
 
