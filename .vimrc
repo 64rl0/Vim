@@ -125,14 +125,14 @@ noremap <C-K> 5<C-Y>5k
 inoremap <C-K> <C-O>5<C-Y><C-O>5k
 
 " Move screen down 1/2 page with cursor
-" CTRL-ALT-J
-noremap <C-∆> <C-D>
-inoremap <C-∆> <C-O><C-D>
+" ALT-J
+noremap ∆ <C-D>
+inoremap ∆ <C-O><C-D>
 
 " Move screen up 1/2 page with cursor
-" CTRL-ALT-K
-noremap <C-˚> <C-U>
-inoremap <C-˚> <C-O><C-U>
+" ALT-K
+noremap ˚ <C-U>
+inoremap ˚ <C-O><C-U>
 
 " Move screen down without moving cursor
 " ALT-SHIFT-J
