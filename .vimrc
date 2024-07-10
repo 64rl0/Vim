@@ -14,7 +14,8 @@ set nocompatible
 
 " Enable loading the plugin files for specific file types
 " Enable indent file for specific file types with
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
 " Enable color syntax highlighting
 syntax on
