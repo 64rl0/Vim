@@ -6,6 +6,27 @@
 " \___| _/  _\ _|_\ ____| \___/ \___|   _|     _|
 
 
+" ----------------
+" Colors and Fonts
+" ----------------
+" Enable color syntax highlighting
+syntax on
+
+" Disabling background so we use the shell bg
+autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight CursorLine ctermbg=NONE guibg=NONE
+
+" When on, uses |highlight-guifg| and |highlight-guibg| attributes in the terminal
+set termguicolors
+
+" Enable the cursor line highlight
+set cursorline
+
+" Vim Theme
+colorscheme catppuccin_mocha
+
+
 " ------------
 " VIM SETTINGS
 " ------------
@@ -17,29 +38,15 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
-" Enable color syntax highlighting
-syntax on
-
-" Disabling background so we use the shell bg
-autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight CursorLine ctermbg=NONE guibg=NONE
-
-" Vim Theme
-colorscheme catppuccin_mocha
-
-" When on, uses |highlight-guifg| and |highlight-guibg| attributes in the terminal
-set termguicolors
-
-" Enable the cursor line highlight
-set cursorline
-
 " Enable line numbers
 set number relativenumber
 
 " Show (partial) command in the status bar
 set showcmd
 set showcmdloc="statusline"
+
+" Yank and paste with the system clipboard
+set clipboard^=unnamed,unnamedplus
 
 " Commands and search patterns in the history
 set history=10000
@@ -53,7 +60,20 @@ set timeoutlen=2000
 " The time in milliseconds that is waited for a key code sequence to complete
 set ttimeoutlen=100
 
-" The width of a TAB is set to 4.
+" Set the leader key
+let mapleader = "\\"
+
+
+" ----------------------------
+" Text, tab and indent related
+" ----------------------------
+" Expand TABs to spaces
+set expandtab
+
+" <Tab> in front of a line inserts blanks according to 'shiftwidth'
+set smarttab
+
+" The width of a TAB is set to 4
 " Still it is a \t. It is just that Vim will interpret it to be having a width of 4
 set tabstop=4
 
@@ -63,20 +83,24 @@ set softtabstop=4
 " Indents will have a width of 4
 set shiftwidth=4
 
-" Expand TABs to spaces
-set expandtab
-
 " Copy indent from current line when starting a new line
 set autoindent
 
 " Do smart autoindenting when starting a new line
 set smartindent
 
-" Yank and paste with the system clipboard
-set clipboard^=unnamed,unnamedplus
 
-" Set the leader key
-let mapleader = "\\"
+" ------
+" Search
+" ------
+" Ignore case when searching
+set ignorecase
+
+" Override the 'ignorecase' option if the search pattern contains upper case characters
+set smartcase
+
+" Highlight search results
+set hlsearch
 
 
 " --------
