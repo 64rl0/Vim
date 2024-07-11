@@ -4,4 +4,4 @@
 
 Over the last 10 years, I have used and tweaked Vim.
 
-This configuration is the ultimate vimrc (or at least my version of it).
+This configuration is my ultimate vimrc.
