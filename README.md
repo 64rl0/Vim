@@ -1,4 +1,4 @@
-![VIM](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vimlogo.svg/544px-Vimlogo.svg.png)
+![VIM](https://i.ibb.co/f1WxxP3/output-onlinepngtools.png)
 
 # The Ultimate vimrc
 
