@@ -209,15 +209,6 @@ nnoremap <leader>f *``/<C-r>/<CR>N
 " Replace word under the cursor
 nnoremap <leader>r *``:%s/<C-r>///gc<left><left><left>
 
-" Comment line out with #
-nnoremap <leader># 0i# <ESC>0
-
-" Comment line out with "
-nnoremap <leader>" 0i" <ESC>0
-
-" Comment line out with //
-nnoremap <leader>/ 0i// <ESC>0
-
 
 " -------
 " BUFFERS
