@@ -238,9 +238,9 @@ nnoremap <C-w><C-z> :<C-u>call Zoom()<CR>
 nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 
 
-" -------
-" PLUGINS
-" -------
+" ----------------
+" PLUGINS PACKLOAD
+" ----------------
 " -----
 " netrw
 " -----
