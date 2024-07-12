@@ -105,6 +105,12 @@ set hlsearch
 " Make clearing the last used search pattern highlighting
 nnoremap <silent> <leader>cp :let @/ = ""<CR>
 
+" Search word under the cursor
+nnoremap <leader>f *``/<C-r>/<CR>N
+
+" Replace word under the cursor
+nnoremap <leader>r *``:%s/<C-r>///gc<left><left><left>
+
 
 " --------
 " VimEnter
@@ -202,12 +208,6 @@ noremap gL L
 " :edit! - Reloads the current buffer, discarding any changes made
 "    after the previous write command.
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-
-" Search word under the cursor
-nnoremap <leader>f *``/<C-r>/<CR>N
-
-" Replace word under the cursor
-nnoremap <leader>r *``:%s/<C-r>///gc<left><left><left>
 
 
 " -------
