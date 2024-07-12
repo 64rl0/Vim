@@ -102,6 +102,9 @@ set smartcase
 " Highlight search results
 set hlsearch
 
+" Make clearing the last used search pattern highlighting
+nnoremap <silent> <leader>cp :let @/ = ""<CR>
+
 
 " --------
 " VimEnter
@@ -282,10 +285,10 @@ autocmd FileType netrw nnoremap <buffer>V :<C-u>call NetrwOpenVSplit()<CR>
 " vim-gitgutter
 " -------------
 " Color scheme settings
-highlight GitGutterAdd    ctermfg=34
-highlight GitGutterChange ctermfg=39
-highlight GitGutterDelete ctermfg=160
-highlight SignColumn      ctermbg=NONE guibg=NONE
+highlight SignColumn      guibg=NONE
+highlight GitGutterAdd    guifg=#A6E3A1 guibg=NONE
+highlight GitGutterChange guifg=#89B4FA guibg=NONE
+highlight GitGutterDelete guifg=#F38BA8 guibg=NONE
 
 " Don't let vim-gitgutter set up any mappings at all
 let g:gitgutter_map_keys = 0
@@ -327,6 +330,27 @@ let g:undotree_WindowLayout = 1
 
 " Toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR><C-w>1w
+
+
+" --------------
+" vim-commentary
+" --------------
+" My favorite file type isn't supported!
+" autocmd FileType apache setlocal commentstring=#\ %s
+
+
+" ------------------------------
+" ALE (Asynchronous Lint Engine)
+" ------------------------------
+" Color scheme settings
+highlight ALEErrorSign   guifg=#F38BA8 guibg=NONE
+highlight ALEWarningSign guifg=#F9E2AF guibg=NONE
+
+" Format for echo messages
+let g:ale_echo_msg_format = '[%linter%] [%severity%] --> %s'
+
+" Disabling highlighting
+let g:ale_set_highlights = 0
 
 
 " ---------
