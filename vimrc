@@ -247,6 +247,9 @@ nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 " Disable top banner
 let g:netrw_banner = 0
 
+" Buffer settings to enable number and relativenumber as off by default
+let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+
 " List style
 let g:netrw_liststyle = 1
 
