@@ -349,6 +349,12 @@ let g:ale_set_highlights = 0
 " The default virtualenv directory
 let g:ale_virtualenv_dir_names = [expand('$VIRTUAL_ENV'), '/Users/carlogtt/Dropbox/SDE/VirtualEnvs/generic']
 
+" Fix files when save
+let g:ale_fix_on_save = 1
+
+" Enable fixers for all files
+let g:ale_fixers = {'*': ['trim_whitespace']}
+
 
 " ---------
 " FUNCTIONS
