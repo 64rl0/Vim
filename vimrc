@@ -346,6 +346,9 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] --> %s'
 " Disabling highlighting
 let g:ale_set_highlights = 0
 
+" The default virtualenv directory
+let g:ale_virtualenv_dir_names = [expand('$VIRTUAL_ENV'), '/Users/carlogtt/Dropbox/SDE/VirtualEnvs/generic']
+
 
 " ---------
 " FUNCTIONS
