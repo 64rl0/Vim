@@ -64,6 +64,22 @@ set ttimeoutlen=100
 let mapleader = "\\"
 
 
+" ---------
+" VIM SPELL
+" ---------
+" Spell enabled
+set spell
+
+" This means US English
+set spelllang=en_us
+
+" Name of the word list file where words are added for the |zg| and |zw|
+set spellfile=$HOME/en.utf-8.add
+
+" List of options for spell checking
+set spelloptions=camel
+
+
 " ----------------------------
 " Text, tab and indent related
 " ----------------------------
@@ -247,7 +263,7 @@ nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 " Disable top banner
 let g:netrw_banner = 0
 
-" Buffer settings to enable number and relativenumber as off by default
+" Buffer settings to enable Number and RelativeNumber as off by default
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
 " List style
@@ -339,7 +355,7 @@ call extend(g:airline_symbols, {
 " Set window layout
 let g:undotree_WindowLayout = 2
 
-" Toggle undotree
+" Toggle Undotree
 nnoremap <leader>u :UndotreeToggle<CR><C-w>1w
 
 
@@ -363,7 +379,7 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] --> %s'
 " Disabling highlighting
 let g:ale_set_highlights = 0
 
-" The default virtualenv directory
+" The default VirtualEnv directory
 let g:ale_virtualenv_dir_names = [expand('$VIRTUAL_ENV'), '/Users/carlogtt/Dropbox/SDE/VirtualEnvs/generic']
 
 " Fix files when save
