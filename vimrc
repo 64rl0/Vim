@@ -284,6 +284,7 @@ let g:netrw_winsize = 20
 " Toggle netrw only NORMAL mode
 " Simulate CMD-1 on macOS
 nnoremap ∞ :<C-u>call ToggleNetrw()<CR>
+nnoremap <leader>e :<C-u>call ToggleNetrw()<CR>
 nnoremap <C-w>e :<C-u>call ToggleNetrw()<CR>
 nnoremap <C-w><C-e> :<C-u>call ToggleNetrw()<CR>
 
@@ -302,6 +303,12 @@ highlight GitGutterDelete guifg=#F38BA8 guibg=NONE
 
 " Don't let vim-gitgutter set up any mappings at all
 let g:gitgutter_map_keys = 0
+
+" Next hunk
+nmap <leader>]h <Plug>(GitGutterNextHunk)
+
+" Previous hunk
+nmap <leader>[h <Plug>(GitGutterPrevHunk)
 
 " Enable and disable GitGutterAutoPreviewHunk
 nmap <leader>pha :<C-u>call ToggleGitGutterAutoPreviewHunk()<CR>
