@@ -337,7 +337,7 @@ call extend(g:airline_symbols, {
 " Undotree
 " --------
 " Set window layout
-let g:undotree_WindowLayout = 1
+let g:undotree_WindowLayout = 2
 
 " Toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR><C-w>1w
