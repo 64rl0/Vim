@@ -13,9 +13,11 @@
 syntax on
 
 " Disabling background so we use the shell bg
-autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight LineNr     ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight CursorLine ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight Normal       ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight LineNr       ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight CursorLine   ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight StatusLine   ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight StatusLineNC ctermbg=NONE guibg=NONE
 
 " When on, uses |highlight-guifg| and |highlight-guibg| attributes in the terminal
 set termguicolors
@@ -131,7 +133,7 @@ nnoremap <leader>r *``:%s/<C-r>///gc<left><left><left>
 " --------
 " VimEnter
 " --------
-autocmd VimEnter * if argc() == 0 | Lexplore | endif
+autocmd VimEnter * if argc() == 0 | call ToggleNetrw() | endif
 
 
 " ------
@@ -291,6 +293,8 @@ nnoremap <C-w><C-e> :<C-u>call ToggleNetrw()<CR>
 " Use V to open netrw selected file in a new split and rebalance split widths
 autocmd FileType netrw nnoremap <buffer>V :<C-u>call NetrwOpenVSplit()<CR>
 
+" Disable vim-airline within Netrw window
+autocmd FileType netrw let b:airline_disable_statusline = 1
 
 " -------------
 " vim-gitgutter
