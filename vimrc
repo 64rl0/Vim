@@ -309,10 +309,10 @@ highlight GitGutterDelete guifg=#F38BA8 guibg=NONE
 let g:gitgutter_map_keys = 0
 
 " Next hunk
-nmap <leader>]h <Plug>(GitGutterNextHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
 
 " Previous hunk
-nmap <leader>[h <Plug>(GitGutterPrevHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " Enable and disable GitGutterAutoPreviewHunk
 nmap <leader>pha :<C-u>call ToggleGitGutterAutoPreviewHunk()<CR>
