@@ -35,6 +35,9 @@ colorscheme catppuccin_mocha
 " This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way
 set nocompatible
 
+" Influences the working of <BS>
+set backspace=indent,eol,start
+
 " Enable loading the plugin files for specific file types
 " Enable indent file for specific file types with
 filetype plugin on
