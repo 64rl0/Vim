@@ -76,7 +76,7 @@ set spell
 set spelllang=en_us
 
 " Name of the word list file where words are added for the |zg| and |zw|
-set spellfile=$HOME/en.utf-8.add
+set spellfile=$HOME/.vim/spell/en.utf-8.add
 
 " List of options for spell checking
 set spelloptions=camel
@@ -398,6 +398,19 @@ let g:ale_fix_on_save = 1
 
 " Enable fixers for all files
 let g:ale_fixers = {'*': ['trim_whitespace']}
+
+
+" -------
+" vim-lsp
+" -------
+" Call s:on_lsp_buffer_enabled only for languages that has the server registered.
+augroup lsp_install
+    autocmd!
+    autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
+augroup END
+
+" Disable diagnostics support
+let g:lsp_diagnostics_enabled = 0
 
 
 " ---------
@@ -736,5 +749,10 @@ function! ToggleGitGutterPreviewHunk()
         let g:GitGutterPreviewStatus = 0
 
     endif
+endfunction
+
+" Initialize vim-lsp
+function! OnLspBufferEnabled() abort
+    setlocal omnifunc=lsp#complete
 endfunction
 

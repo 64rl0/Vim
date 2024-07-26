@@ -1,0 +1,18 @@
+# pack-refs with: peeled fully-peeled sorted 
+b0d2115058e38e73a8520808ef07c05f74f35421 refs/remotes/origin/add-sqls
+597b8da5bdcc2189948273e29e613eab653dca43 refs/remotes/origin/angular
+210b712020be3ee6467e23e8acfd0f28944c8455 refs/remotes/origin/awk-language-server
+c4efee0804d0a5c2dea355ae5bbd883bb41a17d9 refs/remotes/origin/daggerlsp
+26b51965dd7728338c29868739a2c6ed1d2ab13e refs/remotes/origin/fix-177
+7a40df647edbc25c8358d3965fac332c4a77c930 refs/remotes/origin/fix-deno
+65e078604b6a7bb8dc9e28229548fa8374510e1d refs/remotes/origin/fix-yaml
+5a9a1bdc182e8c5ade75bc91ec112d105abb37c7 refs/remotes/origin/glslls
+4abb22f2eb5ab7afe0ce080d6126b71cd7483124 refs/remotes/origin/ijaas
+ca187115385a8cf1c5d1aa11c2be05853646c70e refs/remotes/origin/json-languageserver-2
+65749446c8c8556d0c287bcd724084a625913d02 refs/remotes/origin/master
+080a9a4be194f938a4ee0cf0ebf3ae2d76b0acaf refs/remotes/origin/openscad-lsp
+9a51708ec28c9475d52c486f67e8f85c353ed31c refs/remotes/origin/rucoa
+db44714704ca351c5b777018a5a079e945f60559 refs/remotes/origin/templ
+4c190d46afac1756aa8838818100e4d92207beef refs/remotes/origin/update-servers
+58a139a8308aca6de3d1bebe4c2f7d87e7345fce refs/remotes/origin/zeta-note
+70d4458905da0a22ad439884da73606a5ccc6bd2 refs/tags/v0.0.1
