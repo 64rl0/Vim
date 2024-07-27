@@ -311,10 +311,8 @@ highlight GitGutterDelete guifg=#F38BA8 guibg=NONE
 " Don't let vim-gitgutter set up any mappings at all
 let g:gitgutter_map_keys = 0
 
-" Next hunk
+" Navigate hunks
 nmap ]h <Plug>(GitGutterNextHunk)
-
-" Previous hunk
 nmap [h <Plug>(GitGutterPrevHunk)
 
 " Enable and disable GitGutterAutoPreviewHunk
@@ -401,6 +399,10 @@ let g:ale_fix_on_save = 1
 
 " Enable fixers for all files
 let g:ale_fixers = {'*': ['trim_whitespace']}
+
+" Navigate errors
+nmap ]a <Plug>(ale_next_wrap)
+nmap [a <Plug>(ale_previous_wrap)
 
 
 " -------
