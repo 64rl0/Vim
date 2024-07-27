@@ -48,7 +48,7 @@ set number relativenumber
 
 " Show (partial) command in the status bar
 set showcmd
-set showcmdloc="statusline"
+" set showcmdloc="statusline"
 
 " Yank and paste with the system clipboard
 set clipboard^=unnamed,unnamedplus
@@ -406,7 +406,7 @@ let g:ale_fixers = {'*': ['trim_whitespace']}
 " -------
 " vim-lsp
 " -------
-" Call s:on_lsp_buffer_enabled only for languages that has the server registered.
+" Call OnLspBufferEnabled only for languages that has the server registered
 augroup lsp_install
     autocmd!
     autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
