@@ -346,15 +346,15 @@ if !exists('g:airline_symbols')
 endif
 
 call extend(g:airline_symbols, {
-  \ 'readonly': "\u229D",
-  \ 'whitespace': "\u2632",
-  \ 'maxlinenr': "\u2630",
-  \ 'linenr': " \u33d1",
-  \ 'colnr': "  \u2105:",
-  \ 'branch': "\u16A0",
-  \ 'notexists': "\u0246",
-  \ 'crypt': nr2char(0x1F512),
-  \ 'dirty': '!',
+  \ 'readonly': "ro",
+  \ 'whitespace': "!",
+  \ 'linenr': " ln:",
+  \ 'maxlinenr': "",
+  \ 'colnr': " cn:",
+  \ 'branch': "on",
+  \ 'notexists': "[?]",
+  \ 'crypt': "[crypt]",
+  \ 'dirty': '[!]',
   \ }, 'keep')
 
 " Only the extensions listed will be loaded
