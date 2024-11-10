@@ -422,6 +422,7 @@ let g:lsp_diagnostics_enabled = 0
 " AutoComplPop
 " ------------
 set completeopt=menuone,longest
+set shortmess+=c
 
 
 " ---------
