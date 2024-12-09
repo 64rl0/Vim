@@ -419,10 +419,30 @@ let g:lsp_diagnostics_enabled = 0
 
 
 " ------------
-" AutoComplPop
+" auto-compl-pop
 " ------------
 set completeopt=menuone,longest
 set shortmess+=c
+
+
+" ------------
+" vim-floaterm
+" ------------
+" Floaterm size
+let g:floaterm_width = 0.9
+let g:floaterm_height = 0.9
+
+nnoremap <leader>tt :FloatermToggle<CR>
+tnoremap <leader>tt <C-\><C-n>:FloatermToggle<CR>
+
+nnoremap <leader>tc :FloatermNew<CR>
+tnoremap <leader>tc <C-\><C-n>:FloatermNew<CR>
+
+nnoremap <leader>tp :FloatermPrev<CR>
+tnoremap <leader>tp <C-\><C-n>:FloatermPrev<CR>
+
+nnoremap <leader>tn :FloatermNext<CR>
+tnoremap <leader>tn <C-\><C-n>:FloatermNext<CR>
 
 
 " ---------
