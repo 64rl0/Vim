@@ -444,6 +444,8 @@ tnoremap <leader>tp <C-\><C-n>:FloatermPrev<CR>
 nnoremap <leader>tn :FloatermNext<CR>
 tnoremap <leader>tn <C-\><C-n>:FloatermNext<CR>
 
+nnoremap <leader>lg :FloatermNew lazygit<CR>
+
 
 " ---------
 " FUNCTIONS
