@@ -48,7 +48,7 @@ set number relativenumber
 
 " Show (partial) command in the status bar
 set showcmd
-" set showcmdloc="statusline"
+" set showcmdloc="statusline" " disabled as doesn't work
 
 " Yank and paste with the system clipboard
 set clipboard^=unnamed,unnamedplus
@@ -357,9 +357,6 @@ call extend(g:airline_symbols, {
   \ 'dirty': '[!]',
   \ }, 'keep')
 
-" Only the extensions listed will be loaded
-" let g:airline_extensions = ['tabline', 'hunks']
-
 
 " --------
 " Undotree
@@ -392,7 +389,7 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] --> %s'
 let g:ale_set_highlights = 0
 
 " The default VirtualEnv directory
-let g:ale_virtualenv_dir_names = [expand('$VIRTUAL_ENV'), '/Users/carlogtt/Dropbox/SDE/VirtualEnvs/generic']
+let g:ale_virtualenv_dir_names = [expand('$VIRTUAL_ENV'), '/Users/carlogtt/Dropbox/SDE/VirtualEnvs/generic-new']
 
 " Fix files when save
 let g:ale_fix_on_save = 1
