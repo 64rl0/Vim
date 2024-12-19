@@ -142,21 +142,11 @@ autocmd VimEnter * if argc() == 0 | call ToggleNetrw() | endif
 " ------
 " MOTION
 " ------
-" Disable arrow keys in ALL modes
+" Disable arrow keys in NORMAL modes
 noremap <Up> <NOP>
-inoremap <Up> <NOP>
 noremap <Down> <NOP>
-inoremap <Down> <NOP>
 noremap <Left> <NOP>
-inoremap <Left> <NOP>
 noremap <Right> <NOP>
-inoremap <Right> <NOP>
-
-" Disable Page Up, Page Down, Home, and End keys in INSERT mode
-inoremap <PageUp> <NOP>
-inoremap <PageDown> <NOP>
-inoremap <Home> <NOP>
-inoremap <End> <NOP>
 
 " Move cursor to the first character in a line
 noremap H ^
