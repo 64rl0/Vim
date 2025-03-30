@@ -152,9 +152,11 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " Move cursor to the first character in a line
+noremap B ^
 noremap H ^
 
 " Move cursor to the last character in a line
+noremap E g_
 noremap L g_
 
 " Move cursor down file 5 lines
