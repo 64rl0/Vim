@@ -85,9 +85,9 @@ set spellfile=$HOME/.vim/spell/en.utf-8.add
 set spelloptions=camel
 
 
-" ----------------------------
-" Text, tab and indent related
-" ----------------------------
+" -----------------------------------------
+" Text, whitespaces, tab and indent related
+" -----------------------------------------
 " Expand TABs to spaces
 set expandtab
 
@@ -109,6 +109,9 @@ set autoindent
 
 " Do smart autoindenting when starting a new line
 set smartindent
+
+" Show whitespaces
+set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<,space:·
 
 
 " ------
