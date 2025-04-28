@@ -439,6 +439,14 @@ tnoremap <leader>tn <C-\><C-n>:FloatermNext<CR>
 nnoremap <leader>lg :FloatermNew lazygit<CR>
 
 
+" -----------
+" vim-oscyank
+" -----------
+nmap <leader>y <Plug>OSCYankOperator
+nmap <leader>yy <leader>c_
+vmap <leader>y <Plug>OSCYankVisual
+
+
 " ---------
 " FUNCTIONS
 " ---------
