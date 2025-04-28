@@ -446,6 +446,18 @@ nmap <leader>y <Plug>OSCYankOperator
 nmap <leader>yy <leader>c_
 vmap <leader>y <Plug>OSCYankVisual
 
+" maximum length of a selection, 0 for unlimited length
+let g:oscyank_max_length = 0
+
+" disable message on successful copy
+let g:oscyank_silent = 0
+
+" trim surrounding whitespaces before copy
+let g:oscyank_trim = 0
+
+" the OSC52 format string to use
+let g:oscyank_osc52 = "\x1b]52;c;%s\x07"
+
 
 " ---------
 " FUNCTIONS
