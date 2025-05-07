@@ -153,11 +153,11 @@ noremap <Right> <NOP>
 
 " Move cursor to the first character in a line
 noremap B ^
-noremap H ^
+" noremap H ^
 
 " Move cursor to the last character in a line
 noremap E g_
-noremap L g_
+" noremap L g_
 
 " Move cursor down file 5 lines
 noremap J 5j
@@ -165,32 +165,32 @@ noremap J 5j
 " Move cursor up file 5 lines
 noremap K 5k
 
-" Move screen down 5 lines with cursor
+" Move screen down 5 lines without moving cursor
 " CTRL-J
 noremap <C-j> 5<C-e>5j
 inoremap <C-j> <C-o>5<C-e><C-o>5j
 
-" Move screen up 5 lines with cursor
+" Move screen up 5 lines without moving cursor
 " CTRL-K
 noremap <C-k> 5<C-y>5k
 inoremap <C-k> <C-o>5<C-y><C-o>5k
 
-" Move screen down 1/2 page with cursor
+" Move screen down 1/2 page without moving cursor
 " ALT-J
 noremap ∆ <C-d>
 inoremap ∆ <C-o><C-d>
 
-" Move screen up 1/2 page with cursor
+" Move screen up 1/2 page without moving cursor
 " ALT-K
 noremap ˚ <C-u>
 inoremap ˚ <C-o><C-u>
 
-" Move screen down without moving cursor
+" Move screen down 1 line with cursor
 " ALT-SHIFT-J
 noremap Ô 5<C-e>
 inoremap Ô <C-o>5<C-e>
 
-" Move screen up without moving cursor
+" Move screen up 1 line with cursor
 " ALT-SHIFT-K
 noremap  5<C-y>
 inoremap  <C-o>5<C-y>
@@ -200,13 +200,13 @@ nnoremap <silent> gg :<C-u>call MarkAndJump("gg")<CR>
 nnoremap <silent> G :<C-u>call MarkAndJump("G")<CR>
 
 " Jump to last line on the window
-noremap gH H
+" noremap gH H
 
 " Jump to middle line on the window
-noremap gM M
+" noremap gM M
 
 " Jump to first line on the window
-noremap gL L
+" noremap gL L
 
 
 " ---------------
