@@ -232,6 +232,13 @@ command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 " Enter buffer navigation
 nnoremap <C-w>b :<C-u>call EnterBuffersNavigationMode()<CR>
 
+" Keep buffer in memory, let you :b away from modified buffers 
+" without saving
+set hidden
+
+" Jump to open window that contains the specified buffer
+set switchbuf=useopen,usetab
+
 
 " -------
 " WINDOWS
