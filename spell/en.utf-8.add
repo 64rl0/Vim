@@ -246,3 +246,12 @@ npx
 Filename
 gitignored
 repo
+todowrite
+todoread
+webfetch
+websearch
+codesearch
+invariants
+lockfiles
+Formatter
+Linter
