@@ -1,4 +1,4 @@
-function! Vim_lsp_settings_deno_get_blocklist() abort
+function! s:get_blocklist() abort
     if !empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'deno.json'))
         return []
     endif
@@ -9,75 +9,73 @@ function! Vim_lsp_settings_deno_get_blocklist() abort
     if empty(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'node_modules/'))
         return []
     endif
-    return lsp_settings#utils#warning('server "deno" is disabled since "node_modules" is found', ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'])
+    call timer_start(0, {->lsp_settings#utils#warning('server "deno" is disabled since "node_modules" is found')}, {'repeat': 0})
+    return ['typescript', 'javascript', 'typescriptreact', 'javascriptreact']
 endfunction
 
-augroup vim_lsp_settings_deno
-  au!
-  LspRegisterServer {
-      \ 'name': 'deno',
-      \ 'cmd': {server_info->lsp_settings#get('deno', 'cmd', [lsp_settings#exec_path('deno')]+lsp_settings#get('deno', 'args', ['lsp']))},
-      \ 'root_uri':{server_info->lsp_settings#get('deno', 'root_uri', lsp_settings#root_uri('deno'))},
-      \ 'initialization_options': lsp_settings#get('deno', 'initialization_options', {}),
-      \ 'allowlist': lsp_settings#get('deno', 'allowlist', ['typescript', 'javascript', 'typescriptreact', 'javascriptreact']),
-      \ 'blocklist': lsp_settings#get('deno', 'blocklist', Vim_lsp_settings_deno_get_blocklist()),
-      \ 'config': lsp_settings#get('deno', 'config', lsp_settings#server_config('deno')),
-      \ 'workspace_config': lsp_settings#get('deno', 'workspace_config', {
-      \   'deno': {
-      \     'enable': v:true,
-      \     'lint': v:true,
-      \     'unstable': v:true,
-      \     'importMap': empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'import_map.json')) ? v:null : lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'import_map.json'),
-      \     'codeLens': {
-      \       'implementations': v:true,
-      \       'references': v:true,
-      \       'referencesAllFunctions': v:true,
-      \       'test': v:true,
-      \       'testArgs': ['--allow-all'],
-      \     },
-      \     "suggest": {
-      \       "autoImports": v:true,
-      \       "completeFunctionCalls": v:true,
-      \       "names": v:true,
-      \       "paths": v:true,
-      \       "imports": {
-      \         "autoDiscover": v:false,
-      \         "hosts": {
-      \           "https://deno.land/": v:true,
-      \         },
-      \       },
-      \     },
-      \     'config': empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'tsconfig.json')) ? empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), "deno.json")) ? v:null : lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), "deno.json") : lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'tsconfig.json'),
-      \     'internalDebug': lsp_settings#get('deno', 'internalDebug', v:false),
-      \   },
-      \   'typescript': {
-      \     'inlayHints': {
-      \       'parameterNames': {
-      \         'enabled': 'all',
-      \         'suppressWhenArgumentMatchesName': v:true,
-      \       },
-      \       'parameterTypes': {
-      \         'enabled': v:true,
-      \       },
-      \       'variableTypes': {
-      \         'enabled': v:true,
-      \         'suppressWhenTypeMatchesName': v:true,
-      \       },
-      \       'propertyDeclarationTypes': {
-      \         'enabled': v:true,
-      \       },
-      \       'functionLikeReturnTypes': {
-      \         'enabled': v:true,
-      \       },
-      \       'enumMemberValues': {
-      \         'enabled': v:true,
-      \       },
-      \     },
-      \   },
-      \ }),
-      \ 'semantic_highlight': lsp_settings#get('deno', 'semantic_highlight', {}),
-      \ }
-augroup END
+call lsp_settings#register_server({
+    \ 'name': 'deno',
+    \ 'cmd': {server_info->lsp_settings#get('deno', 'cmd', [lsp_settings#exec_path('deno')]+lsp_settings#get('deno', 'args', ['lsp']))},
+    \ 'root_uri':{server_info->lsp_settings#get('deno', 'root_uri', lsp_settings#root_uri('deno'))},
+    \ 'initialization_options': lsp_settings#get('deno', 'initialization_options', {}),
+    \ 'allowlist': lsp_settings#get('deno', 'allowlist', ['typescript', 'javascript', 'typescriptreact', 'javascriptreact']),
+    \ 'blocklist': lsp_settings#get('deno', 'blocklist', s:get_blocklist()),
+    \ 'config': lsp_settings#get('deno', 'config', lsp_settings#server_config('deno')),
+    \ 'workspace_config': lsp_settings#get('deno', 'workspace_config', {
+    \   'deno': {
+    \     'enable': v:true,
+    \     'lint': v:true,
+    \     'unstable': v:true,
+    \     'importMap': empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'import_map.json')) ? v:null : lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'import_map.json'),
+    \     'codeLens': {
+    \       'implementations': v:true,
+    \       'references': v:true,
+    \       'referencesAllFunctions': v:true,
+    \       'test': v:true,
+    \       'testArgs': ['--allow-all'],
+    \     },
+    \     "suggest": {
+    \       "autoImports": v:true,
+    \       "completeFunctionCalls": v:true,
+    \       "names": v:true,
+    \       "paths": v:true,
+    \       "imports": {
+    \         "autoDiscover": v:false,
+    \         "hosts": {
+    \           "https://deno.land/": v:true,
+    \         },
+    \       },
+    \     },
+    \     'config': empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'tsconfig.json')) ? empty(lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), "deno.json")) ? v:null : lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), "deno.json") : lsp#utils#find_nearest_parent_file(lsp#utils#get_buffer_path(), 'tsconfig.json'),
+    \     'internalDebug': lsp_settings#get('deno', 'internalDebug', v:false),
+    \   },
+    \   'typescript': {
+    \     'inlayHints': {
+    \       'parameterNames': {
+    \         'enabled': 'all',
+    \         'suppressWhenArgumentMatchesName': v:true,
+    \       },
+    \       'parameterTypes': {
+    \         'enabled': v:true,
+    \       },
+    \       'variableTypes': {
+    \         'enabled': v:true,
+    \         'suppressWhenTypeMatchesName': v:true,
+    \       },
+    \       'propertyDeclarationTypes': {
+    \         'enabled': v:true,
+    \       },
+    \       'functionLikeReturnTypes': {
+    \         'enabled': v:true,
+    \       },
+    \       'enumMemberValues': {
+    \         'enabled': v:true,
+    \       },
+    \     },
+    \   },
+    \ }),
+    \ 'semantic_highlight': lsp_settings#get('deno', 'semantic_highlight', {}),
+    \ })
 
 function! s:open_new_buffer(ctx, server, type, data) abort
     " Based on vim-lsp/autoload/lsp/utils/location.vim s:open_location
@@ -120,6 +118,26 @@ function! s:open_new_buffer(ctx, server, type, data) abort
     execute 'call cursor(' . l:line . ',' . l:col . ')'
 endfunction
 
+function! s:normalize_target_uris(result) abort
+    " When run `:LspDenoDefinition` at Deno's built-in function like `console`
+    " `targetUri` is `deno:/asset/lib.deno.shared_globals.d.ts`.
+    " Run `:LspDenoDefinition` again,
+    " Deno targetUri is `file:///path/to/deno/project/deno%3A/asset/lib.deno.shared_globals.d.ts`
+    " and it contains extra file path before `deno:/`
+    " Remove unecessary path from all targetUri for display the definition.
+    for item in a:result
+        if !has_key(item, 'targetUri')
+            continue
+        endif
+        let l:target_uri = item['targetUri']
+        if match(l:target_uri, '^file:///.*/deno%3A/.*') != -1
+            let l:deno_path = matchstr(l:target_uri, 'deno%3A/.*')
+            let item['targetUri'] = substitute(l:deno_path, 'deno%3A', 'deno:', '')
+        endif
+    endfor
+    return a:result
+endfunction
+
 function! s:handle_deno_location(ctx, server, type, data) abort "ctx = {counter, list, last_command_id, jump_if_one, mods, in_preview}
     "" Based on vim-lsp/autoload/lsp/ui/vim.vim s:handle_location()
     if a:ctx['last_command_id'] != lsp#_last_command()
@@ -130,7 +148,13 @@ function! s:handle_deno_location(ctx, server, type, data) abort "ctx = {counter,
     if lsp#client#is_error(a:data['response']) || !has_key(a:data['response'], 'result')
         call lsp#utils#error('Failed to retrieve '. a:type . ' for ' . a:server . ': ' . lsp#client#error_message(a:data['response']))
         return
+    elseif type(a:data['response']['result']) == type(v:null)
+        " e.g.
+        "   `import` response v:null
+        call lsp#utils#error('Failed to retrieve '. a:type . ' for ' . a:server . ': response is null')
+        return
     else
+        let a:data['response']['result'] = s:normalize_target_uris(a:data['response']['result'])
         let a:ctx['list'] = a:ctx['list'] + lsp#utils#location#_lsp_to_vim_list(a:data['response']['result'])
     endif
 
@@ -401,7 +425,7 @@ function! s:register_command() abort
     call lsp#register_command('', function('s:noop'))
 endfunction
 
-augroup lsp_install_deno
+augroup vim_lsp_settings_deno
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
   autocmd User lsp_setup call s:register_command()

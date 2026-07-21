@@ -232,7 +232,7 @@ command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 " Enter buffer navigation
 nnoremap <C-w>b :<C-u>call EnterBuffersNavigationMode()<CR>
 
-" Keep buffer in memory, let you :b away from modified buffers 
+" Keep buffer in memory, let you :b away from modified buffers
 " without saving
 set hidden
 
@@ -332,6 +332,26 @@ let g:airline_enabled = 1
 
 " Theme
 let g:airline_theme = 'catppuccin_mocha'
+
+" Make the middle statusline section (and inactive statuslines) transparent
+" so the terminal background/opacity shows through
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+function! AirlineThemePatch(palette)
+    if get(g:, 'airline_theme', '') !~# 'catppuccin'
+        return
+    endif
+    for l:mode in keys(a:palette)
+        let l:sections = l:mode ==# 'inactive'
+            \ ? ['airline_a', 'airline_b', 'airline_c', 'airline_x', 'airline_y', 'airline_z']
+            \ : ['airline_c', 'airline_x']
+        for l:section in l:sections
+            if has_key(a:palette[l:mode], l:section)
+                let a:palette[l:mode][l:section][1] = 'NONE'
+                let a:palette[l:mode][l:section][3] = 'NONE'
+            endif
+        endfor
+    endfor
+endfunction
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1

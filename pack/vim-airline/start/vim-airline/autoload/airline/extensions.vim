@@ -1,4 +1,4 @@
-" MIT License. Copyright (c) 2013-2021 Bailey Ling et al.
+" MIT License. Copyright (c) 2013-2026 Bailey Ling, Christian Brabandt et al.
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
@@ -175,6 +175,11 @@ function! airline#extensions#load()
   if exists(':NetrwSettings')
     call airline#extensions#netrw#init(s:ext)
     call add(s:loaded_ext, 'netrw')
+  endif
+
+  if get(g:, 'loaded_nerdfont', 0) && get(g:, 'airline#extensions#nerdfont#enabled', 1)
+    call airline#extensions#nerdfont#init(s:ext)
+    call add(s:loaded_ext, 'nerdfont')
   endif
 
   " fzf buffers are also terminal buffers, so this must be above term.
@@ -395,6 +400,11 @@ function! airline#extensions#load()
     call add(s:loaded_ext, 'tabline')
   endif
 
+  if get(g:, 'airline#extensions#tabpanel#enabled', 0)
+    call airline#extensions#tabpanel#Init(s:ext)
+    call add(s:loaded_ext, 'tabpanel')
+  endif
+
   if get(g:, 'airline#extensions#tmuxline#enabled', 1) && exists(':Tmuxline')
     call airline#extensions#tmuxline#init(s:ext)
     call add(s:loaded_ext, 'tmuxline')
@@ -524,6 +534,11 @@ function! airline#extensions#load()
   if (get(g:, 'airline#extensions#rufo#enabled', 0) && get(g:, 'rufo_loaded', 0))
     call airline#extensions#rufo#init(s:ext)
     call add(s:loaded_ext, 'rufo')
+  endif
+
+  if (get(g:, 'airline#extensions#zhihu#enabled', 1) && airline#util#has_zhihu())
+    call airline#extensions#zhihu#init(s:ext)
+    call add(s:loaded_ext, 'zhihu')
   endif
 
 endfunction

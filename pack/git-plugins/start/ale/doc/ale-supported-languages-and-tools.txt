@@ -23,6 +23,7 @@ Notes:
 * API Blueprint
   * `drafter`
 * APKBUILD
+  * `apkbuild-fixer`
   * `apkbuild-lint`
   * `secfixes-check`
 * AsciiDoc
@@ -38,8 +39,11 @@ Notes:
   * `gcc`
   * `llvm-mc`
 * Astro
+  * dprint
   * `eslint`
   * `prettier`
+* Autopkgtest (filetype autopkgtest)
+  * `debian-lsp`
 * AVRA
   * `avra`
 * Awk
@@ -59,6 +63,8 @@ Notes:
   * `bibclean`
 * Bicep
   * `bicep`
+* Bindzone
+  * `checkzone` (named-checkzone)
 * BitBake
   * `oelint-adv`
 * Bourne Shell
@@ -85,6 +91,7 @@ Notes:
   * `csc`!!
   * `cspell`
   * `dotnet-format`
+  * dprint
   * `mcs`
   * `mcsc`!!
   * `uncrustify`
@@ -104,6 +111,8 @@ Notes:
   * `flawfinder`
   * `gcc` (`cc`)
   * `uncrustify`
+* C3
+  * `c3lsp`
 * Cairo
   * `scarb`!!
   * `starknet`
@@ -116,6 +125,7 @@ Notes:
   * `joker`
 * CloudFormation
   * `cfn-python-lint`
+  * `checkov`
 * CMake
   * `cmake-format`
   * `cmake-lint`
@@ -131,6 +141,7 @@ Notes:
   * `cspell`
   * `css-beautify`
   * `csslint`
+  * dprint
   * `fecs`
   * `prettier`
   * `stylelint`
@@ -157,6 +168,18 @@ Notes:
   * `dart-format`!!
   * `dartfmt`!!
   * `language_server`
+* Debian Changelog (filetype debchangelog)
+  * `debian-lsp`
+* Debian Control (filetype debcontrol)
+  * `debian-lsp`
+* Debian Copyright (filetype debcopyright)
+  * `debian-lsp`
+* Debian Sources (filetype debsources)
+  * `debian-lsp`
+* Debian Upstream Metadata (filetype debupstream)
+  * `debian-lsp`
+* Debian Watch (filetype debwatch)
+  * `debian-lsp`
 * desktop
   * `desktop-file-validate`
 * Dhall
@@ -174,6 +197,7 @@ Notes:
   * `dialyxir`
   * `dogma`!!
   * `elixir-ls`
+  * `expert`
   * `lexical`
   * `mix`!!
 * Elm
@@ -200,6 +224,7 @@ Notes:
   * `fish` (-n flag)
   * `fish_indent`
 * Fortran
+  * `fortitude`
   * `gcc`
   * `language_server`
 * Fountain
@@ -217,6 +242,7 @@ Notes:
 * Go
   * `bingo`
   * `cspell`
+  * dprint
   * `go build`!!
   * `go mod`!!
   * `go vet`!!
@@ -231,7 +257,10 @@ Notes:
   * `gotype`!!
   * `revive`!!
   * `staticcheck`!!
+* Go HTML Templates
+  * djlint
 * GraphQL
+  * dprint
   * `eslint`
   * `gqlint`
   * `prettier`
@@ -244,6 +273,7 @@ Notes:
 * Haml
   * `haml-lint`
 * Handlebars
+  * djlint
   * `ember-template-lint`
 * Haskell
   * `brittany`
@@ -271,6 +301,8 @@ Notes:
   * `alex`
   * `angular`
   * `cspell`
+  * djlint
+  * dprint
   * `eslint`
   * `fecs`
   * `html-beautify`
@@ -278,8 +310,15 @@ Notes:
   * `prettier`
   * `proselint`
   * `rustywind`
+  * `superhtml`
   * `tidy`
   * `write-good`
+* HTML Angular
+  * djlint
+* HTML Django
+  * djlint
+* HTTP
+  * kulala_fmt
 * Hurl
   * `hurlfmt`
 * Idris
@@ -317,6 +356,10 @@ Notes:
   * `standard`
   * `tsserver`
   * `xo`
+* Jinja
+  * djlint
+  * dprint
+  * j2lint
 * JSON
   * `VSCode JSON language server`
   * `biome`
@@ -326,6 +369,7 @@ Notes:
   * `eslint`
   * `fixjson`
   * `jq`
+  * `json.tool`
   * `jsonlint`
   * `prettier`
   * `spectral`
@@ -350,14 +394,20 @@ Notes:
   * `lacheck`
   * `proselint`
   * `redpen`
+  * `tex-fmt`
   * `texlab`
   * `textlint`
   * `vale`
   * `write-good`
+* Lean 4
+  * `lake`
 * Less
+  * dprint
   * `lessc`
   * `prettier`
   * `stylelint`
+* LilyPond
+  * `lilypond`
 * LLVM
   * `llc`
 * Lua
@@ -379,6 +429,8 @@ Notes:
 * Markdown
   * `alex`
   * `cspell`
+  * dprint
+  * `harper`
   * `languagetool`!!
   * `markdownlint`!!
   * `marksman`
@@ -386,8 +438,10 @@ Notes:
   * `pandoc`
   * `prettier`
   * `proselint`
+  * `pymarkdown`
   * `redpen`
   * `remark-lint`
+  * `rumdl`
   * `textlint`
   * `vale`
   * `write-good`
@@ -395,6 +449,8 @@ Notes:
   * `mlint`
 * Mercury
   * `mmc`!!
+* Mustache
+  * dprint
 * NASM
   * `nasm`!!
 * Nickel
@@ -415,6 +471,9 @@ Notes:
   * `alex`
   * `proselint`
   * `write-good`
+* Nunjucks
+  * djlint
+  * dprint
 * Objective-C
   * `ccls`
   * `clang`
@@ -440,6 +499,7 @@ Notes:
   * `yamllint`
 * OpenSCAD
   * `SCA2D`
+  * `scadformat`
 * Packer
   * `packer-fmt-fixer`
 * Pascal
@@ -447,13 +507,16 @@ Notes:
 * Pawn
   * `uncrustify`
 * Perl
+  * `languageserver`
   * `perl -c`
   * `perl-critic`
+  * `perlnavigator`
   * `perltidy`
 * Perl6
   * `perl6 -c`
 * PHP
   * `cspell`
+  * dprint
   * `intelephense`
   * `langserver`
   * `phan`
@@ -507,6 +570,7 @@ Notes:
   * `bandit`
   * `black`
   * `cspell`
+  * dprint
   * `flake8`
   * `flakehell`
   * `isort`
@@ -521,11 +585,13 @@ Notes:
   * `pylint`!!
   * `pylsp`
   * `pyre`
+  * `pyrefly`
   * `pyright`
   * `refurb`
   * `reorder-python-imports`
   * ruff
   * ruff-format
+  * `ty`
   * `unimport`
   * `vulture`!!
   * `yapf`
@@ -551,6 +617,11 @@ Notes:
   * `cspell`
   * `opacheck`
   * `opafmt`
+* ReScript
+  * `rescript-language-server`
+  * `rescript_format`
+* REST
+  * kulala_fmt
 * reStructuredText
   * `alex`
   * `cspell`
@@ -562,6 +633,10 @@ Notes:
   * `write-good`
 * Robot
   * `rflint`
+* Roc
+  * roc_annotate
+  * roc_format
+  * roc_language_server
 * RPM spec
   * `rpmlint`
 * Ruby
@@ -591,6 +666,7 @@ Notes:
 * Salt
   * `salt-lint`
 * Sass
+  * dprint
   * `sass-lint`
   * `stylelint`
 * Scala
@@ -602,6 +678,7 @@ Notes:
   * `scalafmt`
   * `scalastyle`
 * SCSS
+  * dprint
   * `prettier`
   * `sass-lint`
   * `scss-lint`
@@ -628,6 +705,7 @@ Notes:
 * SugarSS
   * `stylelint`
 * Svelte
+  * dprint
   * `prettier`
   * `svelteserver`
 * Swift
@@ -667,6 +745,9 @@ Notes:
   * `thriftcheck`
 * TOML
   * `dprint`
+  * `tombi`
+* Twig
+  * `dprint`
 * TypeScript
   * `biome`
   * `cspell`
@@ -679,16 +760,21 @@ Notes:
   * `tslint`
   * `tsserver`
   * `typecheck`
+* Typst
+  * `typstyle`
 * V
   * `v`!!
   * `vfmt`
 * VALA
   * `uncrustify`
   * `vala_lint`!!
+* Vento
+  * `dprint`
 * Verilog
   * `hdl-checker`
   * `iverilog`
   * slang
+  * `verible`
   * `verilator`
   * `vlog`
   * `xvlog`
@@ -706,6 +792,7 @@ Notes:
   * `write-good`
 * Vue
   * `cspell`
+  * `dprint`
   * `prettier`
   * `vls`
   * `volar`
@@ -717,10 +804,12 @@ Notes:
   * `proselint`
   * `write-good`
 * XML
+  * `dprint`
   * `xmllint`
 * YAML
   * `actionlint`
   * `circleci`!!
+  * `dprint`
   * `gitlablint`
   * `prettier`
   * `spectral`
@@ -729,12 +818,16 @@ Notes:
   * `yamlfix`
   * `yamlfmt`
   * `yamllint`
+  * `yq`
 * YANG
   * `yang-lsp`
+* Yara
+  * `yls`
 * Zeek
   * `zeek`!!
 * Zig
   * `zigfmt`
+  * `zlint`
   * `zls`
 
 ===============================================================================

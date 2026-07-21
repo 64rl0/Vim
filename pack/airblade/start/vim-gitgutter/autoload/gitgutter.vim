@@ -41,7 +41,7 @@ function! gitgutter#process_buffer(bufnr, force) abort
 
       let diff = 'NOT SET'
       try
-        let diff = gitgutter#diff#run_diff(a:bufnr, g:gitgutter_diff_relative_to, 0)
+        let diff = gitgutter#diff#run_diff(a:bufnr, g:gitgutter_diff_relative_to)
       catch /gitgutter not tracked/
         call gitgutter#debug#log('Not tracked: '.gitgutter#utility#file(a:bufnr))
       catch /gitgutter assume unchanged/
@@ -118,11 +118,16 @@ endfunction
 " }}}
 
 
-function! gitgutter#git()
+" Optional argument is buffer number
+function! gitgutter#git(...)
+  let git = g:gitgutter_git_executable
+  if a:0
+    let git .= ' -C '.gitgutter#utility#dir(a:1)
+  endif
   if empty(g:gitgutter_git_args)
-    return g:gitgutter_git_executable
+    return git
   else
-    return g:gitgutter_git_executable.' '.g:gitgutter_git_args
+    return git.' '.g:gitgutter_git_args
   endif
 endfunction
 
@@ -254,13 +259,15 @@ function! gitgutter#difforig()
 
   vertical new
   set buftype=nofile
+  if v:version >= 800
+     setlocal bufhidden=wipe
+  endif
+  setlocal noswapfile
   let &filetype = filetype
 
   if g:gitgutter_diff_relative_to ==# 'index'
     let index_name = gitgutter#utility#get_diff_base(bufnr).':'.gitgutter#utility#base_path(bufnr)
-    let cmd = gitgutter#utility#cd_cmd(bufnr,
-          \ gitgutter#git().' --no-pager show '.index_name
-          \ )
+    let cmd = gitgutter#git(bufnr).' --no-pager show '.index_name
     " NOTE: this uses &shell to execute cmd.  Perhaps we should use instead
     " gitgutter#utility's use_known_shell() / restore_shell() functions.
     silent! execute "read ++edit !" cmd
@@ -270,6 +277,7 @@ function! gitgutter#difforig()
 
   0d_
   diffthis
+  setlocal nomodifiable
   wincmd p
   diffthis
 endfunction

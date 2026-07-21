@@ -12,16 +12,19 @@ function! s:gb() abort
     return
   end
 
-  let id = matchstr(getline("."), ' \[\zsSC\d\+\ze\]$')
+  let id = matchstr(getline("."), ' \(error\|warning\|note\) \zs\d\+\ze')
 
-  if id =~# '^SC\d\+$'
-    let url = "https://github.com/koalaman/shellcheck/wiki/" . id
+  if id =~# '^\d\+$'
+    let url = "https://github.com/koalaman/shellcheck/wiki/SC" . id
 
     if !exists('g:loaded_netrw')
       runtime! autoload/netrw.vim
+      runtime! autoload/netrw/os.vim
     endif
 
-    if exists('*netrw#BrowseX') && exists('*netrw#CheckIfRemote')
+    if has('patch-9.1.1485') && exists('*netrw#os#Open')
+      call netrw#os#Open(url)
+    elseif exists('*netrw#BrowseX') && exists('*netrw#CheckIfRemote')
       call netrw#BrowseX(url, netrw#CheckIfRemote())
     endif
 

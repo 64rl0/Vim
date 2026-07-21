@@ -1,4 +1,4 @@
-" Apache 2.0 license. Copyright (c) 2019-2021 Copyright Neovim contributors.
+" Apache 2.0 license. Copyright (c) 2019-2026 Copyright Neovim contributors.
 " Plugin: https://github.com/neovim/nvim-lsp
 " vim: et ts=2 sts=2 sw=2
 
@@ -47,7 +47,7 @@ endfunction
 
 function! s:airline_nvimlsp_get_line_number(cnt, type) abort
   let severity = a:type == 'Warning' ? 'Warn' : a:type
-  let num = v:lua.vim.diagnostic.get(0, { 'severity': severity })[0].lnum
+  let num = v:lua.vim.diagnostic.get(0, { 'severity': severity })[0].lnum + 1
 
   let l:open_lnum_symbol  =
     \ get(g:, 'airline#extensions#nvimlsp#open_lnum_symbol', '(L')

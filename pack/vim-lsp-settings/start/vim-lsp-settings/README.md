@@ -84,6 +84,8 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | Apex/VisualForce  | apex-jorje-lsp                      |    Yes    |      Yes      |
 | Astro             | astro-ls                            |    Yes    |      Yes      |
 | Astro             | biome                               |    Yes    |      Yes      |
+| Astro             | oxlint                              |    Yes    |      Yes      |
+| Astro             | oxfmt                               |    Yes    |      Yes      |
 | Bash              | bash-language-server                |    Yes    |      Yes      |
 | C#                | omnisharp                           |    Yes    |      Yes      |
 | C/C++             | clangd                              |    Yes    |      Yes      |
@@ -93,6 +95,8 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | Clojure           | clojure-lsp                         |    Yes    |      Yes      |
 | Clojure           | clj-kondo-lsp                       |    Yes    |      Yes      |
 | Cmake             | cmake-language-server               |    Yes    |      Yes      |
+| Crystal           | crystalline                         |    Yes    |      Yes      |
+| Debian            | debian-lsp                          |    No     |      No       |
 | D                 | dls                                 |    Yes    |      No       |
 | D                 | serve-d                             |    Yes    |      No       |
 | Dart              | analysis-server-dart-snapshot       |    Yes    |      Yes      |
@@ -101,9 +105,14 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | Elixir            | elixir-ls                           |    Yes    |      Yes      |
 | Elm               | elm-language-server                 |    Yes    |      Yes      |
 | Erlang            | erlang-ls                           |    Yes    |      Yes      |
+| Eruby             | herb-language-server                |    Yes    |      Yes      |
 | F#                | fsautocomplete                      |    Yes    |      Yes      |
 | F#                | fsharp-language-server              |    Yes    |      Yes      |
+| Fennel            | fennel-ls                           |    Yes    |      Yes      |
 | Fortran           | fortls                              |    Yes    |      Yes      |
+| GDScript          | godot                               |    Yes    |      Yes      |
+| Gleam             | gleam                               |    Yes    |      Yes      |
+| GLSL              | glslls                              |    Yes    |      Yes      |
 | Go                | gopls                               |    Yes    |      Yes      |
 | Go                | golangci-lint-langserver            |    Yes    |      Yes      |
 | GraphQL           | graphql-language-service-cli        |    Yes    |      Yes      |
@@ -119,6 +128,7 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | JSON              | json-languageserver                 |    Yes    |      Yes      |
 | JSON              | rome                                |    Yes    |      Yes      |
 | JSON              | biome                               |    Yes    |      Yes      |
+| JSON              | package-version-server              |    Yes    |      Yes      |
 | Jsonnet           | jsonnet-language-server             |    Yes    |      Yes      |
 | Java              | eclipse-jdt-ls                      |    Yes    |      Yes      |
 | Java              | java-language-server                |    No     |      Yes      |
@@ -129,20 +139,32 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | JavaScript        | flow                                |    Yes    |      Yes      |
 | JavaScript        | eslint-language-server              |    Yes    |      Yes      |
 | JavaScript        | biome                               |    Yes    |      Yes      |
+| JavaScript        | oxlint                              |    Yes    |      Yes      |
+| JavaScript        | oxfmt                               |    Yes    |      Yes      |
 | Julia             | LanguageServer.jl                   |    Yes    |      No       |
 | Kotlin            | kotlin-language-server              |    Yes    |      Yes      |
+| Kotlin            | kotlin-lsp                          |    Yes    |      Yes      |
 | Lisp              | cl-lsp                              |    Yes    |      No       |
 | Lua               | emmylua-ls                          |    Yes    |      Yes      |
 | Lua               | sumneko-lua-language-server         |    Yes    |      Yes      |
 | Markdown (remark) | remark-language-server              |    Yes    |      Yes      |
 | Markdown          | Marksman                            |    Yes    |      Yes      |
+| Markdown          | markdown-oxide                      |    Yes    |      Yes      |
+| Moonbit           | moon-lsp                            |    No     |      No       |
 | Nim               | nimls                               |    No     |      No       |
 | Nix               | nixd                                |    Yes    |      Yes      |
+| Nix               | nil                                 |    Yes    |      Yes      |
 | Nix               | rnix-lsp                            |    Yes    |      Yes      |
+| Odin              | ols                                 |    Yes    |      Yes      |
+| OpenSCAD          | openscad-lsp                        |    Yes    |      Yes      |
 | PHP               | intelephense                        |    Yes    |      Yes      |
 | PHP               | psalm-language-server               |    Yes    |      Yes      |
 | OCaml             | ocaml-lsp                           | UNIX Only |      Yes      |
-| Protobuf          | bufls                               |    Yes    |      Yes      |
+| Perl              | perl-languageserver                 |    Yes    |      Yes      |
+| Perl              | perlnavigator                       |    Yes    |      Yes      |
+| PowerShell        | powershell-languageserver           |    Yes    |      Yes      |
+| Prolog            | prolog-lsp_server                   |    Yes    |      Yes      |
+| Protobuf          | buf                                 |    Yes    |      Yes      |
 | Puppet            | puppet-languageserver               |    Yes    |      Yes      |
 | PureScript        | purescript-language-server          |    Yes    |      Yes      |
 | Python            | pyls-all (pyls with dependencies)   |    Yes    |      Yes      |
@@ -153,13 +175,19 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | Python            | pylsp-all (pylsp with dependencies) |    Yes    |      Yes      |
 | Python            | pylsp (pylsp without dependencies)  |    Yes    |      Yes      |
 | Python            | pylyzer                             |    Yes    |      Yes      |
+| Python            | pyrefly                             |    Yes    |      Yes      |
 | Python            | ruff                                |    Yes    |      Yes      |
 | Python            | ruff-lsp                            |    Yes    |      Yes      |
+| Python            | ty                                  |    Yes    |      Yes      |
+| Python            | zuban                               |    Yes    |      Yes      |
+| Python            | basedpyright-langserver             |    Yes    |      Yes      |
 | Prisma            | prisma-language-server              |    Yes    |      Yes      |
+| Qml               | qmlls                               |    Yes    |      Yes      |
 | R                 | languageserver                      |    Yes    |      No       |
 | Racket            | racket-lsp                          |    Yes    |      No       |
 | Reason            | reason-language-server              |    Yes    |      Yes      |
 | Ruby              | ruby-lsp                            | UNIX Only |      Yes      |
+| Ruby              | ruby_language_server                |    Yes    |      Yes      |
 | Ruby              | solargraph                          |    Yes    |      Yes      |
 | Ruby              | steep                               |    Yes    |      Yes      |
 | Ruby              | typeprof                            |    Yes    |      Yes      |
@@ -167,15 +195,21 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | Ruby              | sorbet                              |    Yes    |      No       |
 | Rust              | rls                                 |    Yes    |      No       |
 | Rust              | rust-analyzer                       |    Yes    |      Yes      |
+| Rust              | bacon-ls                            |    Yes    |      Yes      |
 | Sphinx            | esbonio                             |    Yes    |      Yes      |
 | SQL               | sql-language-server                 |    Yes    |      Yes      |
 | SQL               | sqls                                |    Yes    |      Yes      |
 | SQL               | plpgsql-server                      | UNIX Only |      Yes      |
+| SQL               | plpgsql-lsp                         | UNIX Only |      Yes      |
+| Starlark          | starpls                             |    Yes    |      Yes      |
 | Scala             | Metals                              |    Yes    |      Yes      |
 | Svelte            | svelte-language-server              |    Yes    |      Yes      |
 | Svelte            | tailwindcss-intellisense            |    Yes    |      Yes      |
 | Svelte            | biome                               |    Yes    |      Yes      |
+| Svelte            | oxlint                              |    Yes    |      Yes      |
+| Svelte            | oxfmt                               |    Yes    |      Yes      |
 | Swift             | sourcekit-lsp                       |    Yes    |      No       |
+| systemd           | systemd-lsp                         | UNIX Only |      Yes      |
 | SystemVerilog     | verible-verilog-ls                  | UNIX Only |      Yes      |
 | SystemVerilog     | svls                                |    Yes    |      Yes      |
 | TeX               | texlab                              |    Yes    |      Yes      |
@@ -186,11 +220,15 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | TTCN-3            | ntt                                 |    Yes    |      Yes      |
 | TypeScript        | typescript-language-server          |    Yes    |      Yes      |
 | TypeScript        | vtsls                               |    Yes    |      Yes      |
+| TypeScript        | tsp-server                          |    Yes    |      Yes      |
 | TypeScript        | deno                                |    Yes    |      Yes      |
 | TypeScript        | rome                                |    Yes    |      Yes      |
 | TypeScript        | eslint-language-server              |    Yes    |      Yes      |
 | TypeScript        | biome                               |    Yes    |      Yes      |
+| TypeScript        | oxlint                              |    Yes    |      Yes      |
+| TypeScript        | oxfmt                               |    Yes    |      Yes      |
 | Typst             | typst-lsp                           |    Yes    |      Yes      |
+| Typst             | tinymist                            |    Yes    |      Yes      |
 | Vim               | vim-language-server                 |    Yes    |      Yes      |
 | Vala              | vala-language-server                |    No     |      No       |
 | Verilog           | verible-verilog-ls                  | UNIX Only |      Yes      |
@@ -198,12 +236,21 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 | Vue               | volar-server (Vue Language Tools)   |    Yes    |      Yes      |
 | Vue               | vls                                 |    Yes    |      Yes      |
 | Vue               | biome                               |    Yes    |      Yes      |
+| Vue               | oxlint                              |    Yes    |      Yes      |
+| Vue               | oxfmt                               |    Yes    |      Yes      |
 | V                 | v-analyzer                          |    Yes    |      Yes      |
 | V                 | vlang-vls                           |    Yes    |      Yes      |
 | XML               | lemminx                             |    Yes    |      Yes      |
 | YAML              | yaml-language-server                |    Yes    |      Yes      |
+| YAML              | aws-lsp-yaml                        |    Yes    |      Yes      |
+| YANG              | yang-lsp                            |    Yes    |      Yes      |
 | ZIG               | zls                                 |    Yes    |      Yes      |
 | \*                | efm-langserver                      |    Yes    |      Yes      |
+| \*                | typos-lsp                           |    Yes    |      Yes      |
+| \*                | copilot-language-server             |    Yes    |      Yes      |
+| \*                | kakehashi                           |    Yes    |      Yes      |
+| \*                | monastery                           |    Yes    |      Yes      |
+| \*                | mozuku-lsp                          |    Yes    |      Yes      |
 
 ## Notes
 
@@ -278,6 +325,26 @@ subdictionaries (`cargo`, `completion`, `procMacro`, etc.) in your
 | Colored Diagnostic Output       | ❌     |
 | Dependency Tree                 | ❌     |
 | View Recursive Memory Layout    | ❌     |
+
+### [bacon-ls](https://github.com/crisidev/bacon-ls) (Rust)
+
+The `bacon` command is required. If not exists, it will be installed globally.
+
+`bacon-ls` is not a replacement for `rust-analyzer`, they can be used together. The workspace folders feature is required. Therefore, the following configuration is necessary:
+```vim
+let g:lsp_experimental_workspace_folders = 1
+let g:lsp_settings_filetype_rust = ['rust-analyzer', 'bacon-ls']
+let g:lsp_settings = {
+\ 'rust-analyzer': {
+\   'initialization_options': {
+\     'checkOnSave': v:false,
+\     'diagnostics': v:false,
+\   },
+\ }
+\}
+```
+
+For detailed configuration options, please refer to the [`bacon-ls` configuration documentation](https://github.com/crisidev/bacon-ls/blob/main/README.md#configuration).
 
 ### deno (TypeScript)
 
@@ -396,6 +463,20 @@ let g:lsp_settings = {
 \  }
 \}
 ```
+### [qmlls](https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html)
+
+To use the language server you need a .qmlls.ini, which can be generated
+automatically. Additionally, you have to configure your the qml include
+directories from the qt install root.
+```vim
+ let g:lsp_settings = {
+ \  'qmlls': {
+ \    'args': ['-I', '[QTROOT]/qml'],
+ \  },
+ \}
+
+ By default, the qmlls server will search the QML_IMPORT PATH (-E option).
+```
 
 ### [rubocop lsp mode (Ruby)](https://docs.rubocop.org/rubocop/usage/lsp.html)
 
@@ -409,10 +490,12 @@ For more details, please see [Sorbet](https://sorbet.org/docs/vscode#installing-
 
 ### [volar (Vue Language Tools)](https://github.com/vuejs/language-tools)
 
-To enable full Vue support, both `typescript-language-server` and `volar-server` should be installed and enabled in `vue` filetype.
+Vue Language Tools v3 works only with `vtsls`, which is another TypeScript Language Server implementation.
+So, you need to install both `vtsls` and `volar-server` and specify them to be used with the following code:
 
 ```vim
-let g:lsp_settings_filetype_vue = ['typescript-language-server', 'volar-server']
+let g:lsp_settings_filetype_vue = ['vtsls', 'volar-server']
+let g:lsp_settings_filetype_typescript = ['vtsls']
 ```
 
 ## Extra Configurations

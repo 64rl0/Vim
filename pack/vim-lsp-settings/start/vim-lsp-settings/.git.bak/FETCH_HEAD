@@ -1,0 +1,27 @@
+22d06c9e4b620d5c2f055aec590dec6d383e5316		branch 'master' of https://github.com/mattn/vim-lsp-settings
+b0d2115058e38e73a8520808ef07c05f74f35421	not-for-merge	branch 'add-sqls' of https://github.com/mattn/vim-lsp-settings
+597b8da5bdcc2189948273e29e613eab653dca43	not-for-merge	branch 'angular' of https://github.com/mattn/vim-lsp-settings
+210b712020be3ee6467e23e8acfd0f28944c8455	not-for-merge	branch 'awk-language-server' of https://github.com/mattn/vim-lsp-settings
+c4efee0804d0a5c2dea355ae5bbd883bb41a17d9	not-for-merge	branch 'daggerlsp' of https://github.com/mattn/vim-lsp-settings
+26b51965dd7728338c29868739a2c6ed1d2ab13e	not-for-merge	branch 'fix-177' of https://github.com/mattn/vim-lsp-settings
+7a40df647edbc25c8358d3965fac332c4a77c930	not-for-merge	branch 'fix-deno' of https://github.com/mattn/vim-lsp-settings
+482c1a6904b1b8f1baff434ace07c3919bf7b7b0	not-for-merge	branch 'fix-volar-caret-windows' of https://github.com/mattn/vim-lsp-settings
+65e078604b6a7bb8dc9e28229548fa8374510e1d	not-for-merge	branch 'fix-yaml' of https://github.com/mattn/vim-lsp-settings
+5a9a1bdc182e8c5ade75bc91ec112d105abb37c7	not-for-merge	branch 'glslls' of https://github.com/mattn/vim-lsp-settings
+87b24346f69b2489ef21cae07ea0758e5baa9342	not-for-merge	branch 'hjkls' of https://github.com/mattn/vim-lsp-settings
+4abb22f2eb5ab7afe0ce080d6126b71cd7483124	not-for-merge	branch 'ijaas' of https://github.com/mattn/vim-lsp-settings
+ca187115385a8cf1c5d1aa11c2be05853646c70e	not-for-merge	branch 'json-languageserver-2' of https://github.com/mattn/vim-lsp-settings
+6cfd5b7cdd3eae5078749043ca2cfbe08156f881	not-for-merge	branch 'kakehashi' of https://github.com/mattn/vim-lsp-settings
+9674c485eed014dbe0cad3a3424f8d970cccb958	not-for-merge	branch 'lsp-ai' of https://github.com/mattn/vim-lsp-settings
+bd5353820e05880b7489b2f3c1b53d1621ec8b0b	not-for-merge	branch 'markdown-oxide' of https://github.com/mattn/vim-lsp-settings
+b7f6f8a82a0e00079d42f6b67fef876bbc1a576a	not-for-merge	branch 'neocmakelsp' of https://github.com/mattn/vim-lsp-settings
+080a9a4be194f938a4ee0cf0ebf3ae2d76b0acaf	not-for-merge	branch 'openscad-lsp' of https://github.com/mattn/vim-lsp-settings
+1e1c77eeede63e4f2a773d5a400d738fa6844a5c	not-for-merge	branch 'perf/cache-lsp-settings-load' of https://github.com/mattn/vim-lsp-settings
+9a51708ec28c9475d52c486f67e8f85c353ed31c	not-for-merge	branch 'rucoa' of https://github.com/mattn/vim-lsp-settings
+db44714704ca351c5b777018a5a079e945f60559	not-for-merge	branch 'templ' of https://github.com/mattn/vim-lsp-settings
+853e9a6bc93d953efd401e0bc72bbfa077eac151	not-for-merge	branch 'tsp-server' of https://github.com/mattn/vim-lsp-settings
+aef09c6a95c57779c4f3885579e8aec8eae6739a	not-for-merge	branch 'typescript-go' of https://github.com/mattn/vim-lsp-settings
+75603fcf66bc644be6371e2e3cbb31f759fc2f29	not-for-merge	branch 'update-installer-versions' of https://github.com/mattn/vim-lsp-settings
+4c190d46afac1756aa8838818100e4d92207beef	not-for-merge	branch 'update-servers' of https://github.com/mattn/vim-lsp-settings
+bba0ff636fca5eb338ed27a77b2e77f2117cc7f9	not-for-merge	branch 'update-versions' of https://github.com/mattn/vim-lsp-settings
+58a139a8308aca6de3d1bebe4c2f7d87e7345fce	not-for-merge	branch 'zeta-note' of https://github.com/mattn/vim-lsp-settings

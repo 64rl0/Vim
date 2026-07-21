@@ -63,7 +63,7 @@ function! ale_linters#python#flake8#GetCwd(buffer) abort
     endif
 
     if (l:change_directory is# 'project' && empty(l:cwd))
-    \|| l:change_directory is# 1
+    \|| l:change_directory
     \|| l:change_directory is# 'file'
         let l:cwd = '%s:h'
     endif
@@ -87,7 +87,7 @@ function! ale_linters#python#flake8#GetCommand(buffer, version) abort
     let l:options = ale#Var(a:buffer, 'python_flake8_options')
 
     return ale#Escape(l:executable) . l:exec_args
-    \   . (!empty(l:options) ? ' ' . l:options : '')
+    \   . ale#Pad(l:options)
     \   . ' --format=default'
     \   . l:display_name_args . ' -'
 endfunction

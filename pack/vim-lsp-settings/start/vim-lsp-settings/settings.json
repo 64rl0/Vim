@@ -9,6 +9,51 @@
       "requires": [
         "go"
       ]
+    },
+    {
+      "command": "debian-lsp",
+      "description": "LSP implementation for Debian packaging files",
+      "url": "https://github.com/jelmer/debian-lsp",
+      "disabled": true,
+      "requires": []
+    },
+    {
+      "command": "typos-lsp",
+      "description": "typos language server",
+      "url": "https://github.com/tekumara/typos-lsp",
+      "disabled": true,
+      "requires": []
+    },
+    {
+      "command": "copilot-language-server",
+      "description": "copilot language server",
+      "url": "https://github.com/orgs/github/packages/npm/package/copilot-language-server",
+      "config": {
+        "refresh_always": 1
+      },
+      "disabled": true,
+      "requires": [
+        "node"
+      ]
+    },
+    {
+      "command": "mozuku-lsp",
+      "description": "mozuku language server",
+      "url": "https://github.com/t3tra-dev/MoZuku",
+      "config": {
+        "refresh_always": 1
+      },
+      "disabled": true,
+      "requires": []
+    },
+    {
+      "command": "kakehashi",
+      "description": "language server that bridges the gap between languages, editors, and tooling",
+      "url": "https://github.com/atusy/kakehashi",
+      "config": {
+      },
+      "disabled": true,
+      "requires": []
     }
   ],
   "apex": [
@@ -64,6 +109,35 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
+    }
+  ],
+  "bzl": [
+    {
+      "command": "starpls",
+      "url": "https://github.com/withered-magic/starpls",
+      "description": "An LSP implementation for Starlark, the configuration language used by Bazel and Buck2.",
+      "requires": []
     }
   ],
   "c": [
@@ -154,6 +228,20 @@
       "url": "https://github.com/clangd/clangd",
       "description": "clangd language server",
       "requires": []
+    }
+  ],
+  "crystal": [
+    {
+      "command": "crystalline",
+      "url": "https://github.com/elbywan/crystalline",
+      "description": "A Language Server Protocol implementation for Crystal. 🔮",
+      "requires": [],
+      "vim_plugin": {
+        "extensions": [
+          "cr"
+        ],
+        "name": "vim-crystal/vim-crystal"
+      }
     }
   ],
   "cs": [
@@ -306,6 +394,30 @@
         ],
         "name": "vim-erlang/vim-erlang-runtime"
       }
+    }
+  ],
+  "eruby": [
+    {
+      "command": "herb-language-server",
+      "url": "https://github.com/marcoroth/herb",
+      "description": "Powerful and seamless HTML-aware ERB toolchain.",
+      "config": {
+        "refresh_pattern": "\\(/\\|\\k\\+\\)$"
+      },
+      "requires": [
+        "npm"
+      ]
+    }
+  ],
+  "fennel": [
+    {
+      "command": "fennel-ls",
+      "url": "https://git.sr.ht/~xerool/fennel-ls",
+      "description": "Provides intelligent editing features for fennel files.",
+      "requires": [
+        "lua",
+        "make"
+      ]
     }
   ],
   "fortran": [
@@ -753,6 +865,27 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
     }
   ],
   "javascriptreact": [
@@ -844,6 +977,27 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
     }
   ],
   "json": [
@@ -886,6 +1040,18 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "package-version-server",
+      "url": "https://github.com/zed-industries/package-version-server",
+      "description": "A language server that handles hover information in package.json files",
+      "requires": [],
+      "root_uri_patterns": [
+        "package.json"
+      ],
+      "config": {
+        "refresh_pattern": "\\([a-zA-Z0-9.-]\\+\\|/\\|\\k\\+\\)$"
+      }
     }
   ],
   "jsonc": [
@@ -945,6 +1111,23 @@
       "command": "kotlin-language-server",
       "url": "https://github.com/fwcd/kotlin-language-server",
       "description": "Kotlin code completion, linting and more for any editor/IDE using the Language Server Protocol",
+      "requires": [
+        "java"
+      ],
+      "root_uri_patterns": [
+        "pom.xml"
+      ],
+      "vim_plugin": {
+        "extensions": [
+          "kt"
+        ],
+        "name": "udalov/kotlin-vim"
+      }
+    },
+    {
+      "command": "kotlin-lsp",
+      "url": "https://github.com/Kotlin/kotlin-lsp",
+      "description": "Kotlin Language Server and plugin for Visual Studio Code",
       "requires": [
         "java"
       ],
@@ -1020,6 +1203,34 @@
       "url": "https://github.com/artempyanykh/marksman",
       "description": "Markdown LSP server providing completion, cross-references, diagnostics, and more.",
       "requires": []
+    },
+    {
+      "command": "markdown-oxide",
+      "url": "https://github.com/Feel-ix-343/markdown-oxide",
+      "description": "PKM Markdown Language Server",
+      "requires": [],
+      "config": {
+        "refresh_pattern": "\\(\\k\\| \\|/\\|#\\)\\+$"
+      },
+      "root_uri_patterns": [
+        ".git",
+        ".moxide.toml",
+        ".obsidian"
+      ]
+    }
+  ],
+  "moonbit": [
+    {
+      "command": "moon-lsp",
+      "url": "https://github.com/moonbitlang/moon",
+      "description": "The build system and package manager for MoonBit",
+      "requires": [],
+      "vim_plugin": {
+        "extensions": [
+          "mbt"
+        ],
+        "name": "https://github.com/mattn/vim-moonbit"
+      }
     }
   ],
   "nim": [
@@ -1039,6 +1250,14 @@
     }
   ],
   "nix": [
+    {
+      "command": "nil",
+      "url": "https://github.com/oxalica/nil",
+      "description": "Nix Language server, an incremental analysis assistant for writing in Nix",
+      "requires": [
+        "nix"
+      ]
+    },
     {
       "command": "rnix-lsp",
       "url": "https://github.com/nix-community/rnix-lsp",
@@ -1229,9 +1448,9 @@
   ],
   "proto": [
     {
-      "command": "bufls",
-      "url": "https://github.com/bufbuild/buf-language-server",
-      "description": "Prototype for a Protobuf language server compatible with Buf.",
+      "command": "buf",
+      "url": "https://github.com/bufbuild/buf",
+      "description": "Protobuf language server.",
       "requires": [
         "go"
       ]
@@ -1406,6 +1625,22 @@
       ]
     },
     {
+      "command": "ty",
+      "url": "https://github.com/astral-sh/ty",
+      "description": "An extremely fast Python type checker and language server.",
+      "requires": [
+        "py"
+      ]
+    },
+    {
+      "command": "ty",
+      "url": "https://github.com/astral-sh/ty",
+      "description": "An extremely fast Python type checker and language server.",
+      "requires": [
+        "python3"
+      ]
+    },
+    {
       "command": "ruff-lsp",
       "url": "https://github.com/charliermarsh/ruff-lsp",
       "description": "A Language Server Protocol implementation for Ruff.",
@@ -1419,6 +1654,65 @@
       "description": "A Language Server Protocol implementation for Ruff.",
       "requires": [
         "python3"
+      ]
+    },
+    {
+      "command": "zuban",
+      "url": "https://zubanls.com",
+      "description": "The Python Language Server for Professionals. A Mypy-compatible Python Language Server built in Rust",
+      "requires": [
+        "py"
+      ]
+    },
+    {
+      "command": "zuban",
+      "url": "https://zubanls.com",
+      "description": "The Python Language Server for Professionals. A Mypy-compatible Python Language Server built in Rust",
+      "requires": [
+        "python3"
+      ]
+    },
+    {
+      "command": "basedpyright-langserver",
+      "url": "https://github.com/detachhead/basedpyright",
+      "description": "Basedpyright is a fork of pyright with various type checking improvements, pylance features and more.",
+      "requires": [
+        "py"
+      ]
+    },
+    {
+      "command": "basedpyright-langserver",
+      "url": "https://github.com/detachhead/basedpyright",
+      "description": "Basedpyright is a fork of pyright with various type checking improvements, pylance features and more.",
+      "requires": [
+        "python3"
+      ]
+    },
+    {
+      "command": "pyrefly",
+      "url": "https://pyrefly.org/",
+      "description": "A fast type checker and language server for Python with powerful IDE features",
+      "requires": [
+        "py"
+      ]
+    },
+    {
+      "command": "pyrefly",
+      "url": "https://pyrefly.org/",
+      "description": "A fast type checker and language server for Python with powerful IDE features",
+      "requires": [
+        "python3"
+      ]
+    }
+  ],
+  "qml": [
+    {
+      "command": "qmlls",
+      "url" : "https://github.com/qt/qtdeclarative",
+      "description": "An implementation of the Language Server Protocol for qml/qmljs",
+      "requires": [],
+      "root_uri_patterns": [
+        ".qmlls.ini"
       ]
     }
   ],
@@ -1539,12 +1833,22 @@
   ],
   "rust": [
     {
+      "command": "bacon-ls",
+      "url": "https://github.com/crisidev/bacon-ls",
+      "description": "A Language Server for Rust using Bacon diagnostics",
+      "requires": [],
+      "root_uri_patterns": [
+        "Cargo.toml"
+      ]
+    },
+    {
       "command": "rust-analyzer",
       "url": "https://github.com/rust-analyzer/rust-analyzer",
       "description": "A Rust compiler front-end for IDEs",
       "requires": [],
       "root_uri_patterns": [
-        "Cargo.toml"
+        "Cargo.toml",
+        "rust-project.json"
       ]
     },
     {
@@ -1554,6 +1858,18 @@
       "requires": [],
       "root_uri_patterns": [
         "Cargo.toml"
+      ]
+    },
+    {
+      "command": "bacon-ls",
+      "url": "https://github.com/crisidev/bacon-ls",
+      "description": "A Language Server for Rust using Bacon diagnostics",
+      "requires": [
+        "cargo"
+      ],
+      "root_uri_patterns": [
+        "bacon.toml",
+        "Cargo.lock"
       ]
     }
   ],
@@ -1692,6 +2008,27 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
     }
   ],
   "swift": [
@@ -1715,6 +2052,14 @@
         ],
         "name": "keith/swift.vim"
       }
+    }
+  ],
+  "systemd": [
+    {
+      "command": "systemd-lsp",
+      "url": "https://github.com/JFryy/systemd-lsp",
+      "description": "a language server implementation for systemd unit files made in rust 🦀",
+      "requires": []
     }
   ],
   "systemverilog": [
@@ -1872,6 +2217,27 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
     }
   ],
   "typescriptreact": [
@@ -1945,6 +2311,37 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
+    }
+  ],
+  "typespec": [
+    {
+      "command": "tsp-server",
+      "url": "https://github.com/microsoft/typespec",
+      "description": "TypeSpec Language Server",
+      "requires": [
+        "npm"
+      ]
     }
   ],
   "typ": [
@@ -1953,6 +2350,12 @@
       "url": "https://github.com/nvarner/typst-lsp",
       "description": "Language server for Typst",
       "requires": []
+    },
+    {
+      "command": "tinymist",
+      "url": "https://github.com/Myriad-Dreamin/tinymist",
+      "description": "An integrated language service for Typst",
+      "requires": []
     }
   ],
   "typst": [
@@ -1960,6 +2363,12 @@
       "command": "typst-lsp",
       "url": "https://github.com/nvarner/typst-lsp",
       "description": "Language server for Typst",
+      "requires": []
+    },
+    {
+      "command": "tinymist",
+      "url": "https://github.com/Myriad-Dreamin/tinymist",
+      "description": "An integrated language service for Typst",
       "requires": []
     }
   ],
@@ -2065,18 +2474,6 @@
       }
     },
     {
-      "command": "typescript-language-server",
-      "url": "https://github.com/typescript-language-server/typescript-language-server",
-      "description": "TypeScript & JavaScript Language Server",
-      "requires": [
-        "npm"
-      ],
-      "root_uri_patterns": [
-        "package.json",
-        "tsconfig.json"
-      ]
-    },
-    {
       "command": "vtsls",
       "url": "https://github.com/yioneko/vtsls",
       "description": "LSP wrapper for typescript extension of vscode",
@@ -2117,6 +2514,27 @@
         "biome.json",
         "biome.jsonc"
       ]
+    },
+    {
+      "command": "oxlint",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [],
+      "root_uri_patterns": [
+        ".oxlintrc.json"
+      ]
+    },
+    {
+      "command": "oxfmt",
+      "url": "https://oxc.rs",
+      "description": "A collection of JavaScript tools written in Rust",
+      "requires": [
+        "npm"
+      ],
+      "root_uri_patterns": [
+        ".oxfmtrc.json",
+        ".oxfmtrc.jsonc"
+      ]
     }
   ],
   "xml": [
@@ -2137,6 +2555,35 @@
       "requires": [
         "npm"
       ]
+    },
+    {
+      "command": "aws-lsp-yaml",
+      "url": "https://github.com/aws/language-servers",
+      "description": "AWS related Language Servers",
+      "requires": [
+        "npm"
+      ]
+    }
+  ],
+  "yang": [
+    {
+      "command": "yang-lsp",
+      "url": "https://github.com/TypeFox/yang-lsp",
+      "description": "Language Server for YANG Files",
+      "requires": [
+        "java"
+      ],
+      "root_uri_patterns": [
+        ".git",
+        ".git/",
+        "yang.settings"
+      ],
+      "vim_plugin": {
+        "extensions": [
+          "yang"
+        ],
+        "name": "nathanalderson/yang.vim"
+      }
     }
   ],
   "zig": [

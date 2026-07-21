@@ -1,4 +1,4 @@
-" MIT License. Copyright (c) 2017-2021 YoungHoon Rhiu et al.
+" MIT License. Copyright (c) 2017-2026 YoungHoon Rhiu et al.
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
@@ -17,9 +17,13 @@ function! airline#extensions#xkblayout#status()
     let keyboard_layout = FcitxCurrentIM()
   elseif has('nvim')
     try
-      let keyboard_layout = luaeval('require"fcitx5-ui".displayCurrentIM()')
+      let keyboard_layout = luaeval('require"ime".current()')
     catch /.*/
-      let keyboard_layout = ''
+      try
+        let keyboard_layout = luaeval('require"fcitx5-ui".displayCurrentIM()')
+      catch /.*/
+        let keyboard_layout = ''
+      endtry
     endtry
   else
     let keyboard_layout = ''

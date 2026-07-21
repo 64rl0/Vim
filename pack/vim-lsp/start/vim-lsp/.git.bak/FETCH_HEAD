@@ -1,0 +1,23 @@
+474c656659b5fb51eec6770309e0211c8aa49b5b		branch 'master' of https://github.com/prabirshrestha/vim-lsp
+1803c3f671e9ba6f04cfeb269766eae8747b2d92	not-for-merge	branch 'add-detail-to-resolve-support' of https://github.com/prabirshrestha/vim-lsp
+6d4719e794ff0051c97eed825c1d93fd7d3a93f3	not-for-merge	branch 'add-lsp-ensure-flush-all' of https://github.com/prabirshrestha/vim-lsp
+e9a2bd9cf06366e8adb04ea369495f7130d69d57	not-for-merge	branch 'add-popup-opacity-highlight' of https://github.com/prabirshrestha/vim-lsp
+c2c166975efef9b4c450fef7da97a32ded87314d	not-for-merge	branch 'array-perf' of https://github.com/prabirshrestha/vim-lsp
+ec8b1f0f08ac9e0c2a770694e7f4775ef0e708f7	not-for-merge	branch 'bits-tune' of https://github.com/prabirshrestha/vim-lsp
+6b613f0daa1b042a6a8e16baba1a89be0a9a771a	not-for-merge	branch 'callbag-new' of https://github.com/prabirshrestha/vim-lsp
+293e8ae932ffb70fe444c89e7aa995eecbc5c1fa	not-for-merge	branch 'client-parse' of https://github.com/prabirshrestha/vim-lsp
+c37f2d3e8c4a9c8726b07928982b7aa105768f51	not-for-merge	branch 'fix-1625' of https://github.com/prabirshrestha/vim-lsp
+383f690e80ed9e2697eb40020532ef1f66c010e7	not-for-merge	branch 'fix-completion-documentation-maxheight' of https://github.com/prabirshrestha/vim-lsp
+723fa3a0b6c36d5cda56f9fb9f803cc4f90b8eed	not-for-merge	branch 'fix-filter-text-correction' of https://github.com/prabirshrestha/vim-lsp
+1a84ed5f68b2ed0f35aa5999d24f96a89e6a515f	not-for-merge	branch 'fix-float' of https://github.com/prabirshrestha/vim-lsp
+2f062f825872c6e55cffa35c87f559b66b465fed	not-for-merge	branch 'fix-listener-multi-change' of https://github.com/prabirshrestha/vim-lsp
+49a886853e0b9e61fc1ac11802b77a601c266c6e	not-for-merge	branch 'fix-root_uri' of https://github.com/prabirshrestha/vim-lsp
+0616aab6aa1923b3cf35300a87b731fba9a7a464	not-for-merge	branch 'fix-vim-popup-conceal' of https://github.com/prabirshrestha/vim-lsp
+1724318f4f838d7de31ad4146e5f4eed0348d317	not-for-merge	branch 'get_kind_perf' of https://github.com/prabirshrestha/vim-lsp
+92a925346dc30074783a5125782e5bfe10c2245f	not-for-merge	branch 'lua-lsp-client' of https://github.com/prabirshrestha/vim-lsp
+231ab3cb230e599b83f4f2eaf4a1cc03a4cff4dd	not-for-merge	branch 'pr1078' of https://github.com/prabirshrestha/vim-lsp
+038e613d005827f605969ca11e369389b6a37a3d	not-for-merge	branch 'renovate/actions-cache-6.x' of https://github.com/prabirshrestha/vim-lsp
+dc72bde917f9bffe54151792898d5cca7df0b010	not-for-merge	branch 'renovate/actions-checkout-7.x' of https://github.com/prabirshrestha/vim-lsp
+dccc74a0db783e613a80c24f69af5c27d56c55d0	not-for-merge	branch 'renovate/actions-setup-go-7.x' of https://github.com/prabirshrestha/vim-lsp
+f03ddc3daef6cb6ec06cbf68ce5d5581f5e9ff57	not-for-merge	branch 'revert-1567-use-new-health-api' of https://github.com/prabirshrestha/vim-lsp
+82796606f058c3f33eef6f5f881007cb62c04967	not-for-merge	branch 'use-lua' of https://github.com/prabirshrestha/vim-lsp

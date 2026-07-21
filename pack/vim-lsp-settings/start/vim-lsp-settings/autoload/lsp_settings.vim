@@ -12,10 +12,21 @@ else
 endif
 let s:servers_dir = s:data_dir . '/servers'
 
-let s:settings = json_decode(join(readfile(s:root_dir . '/settings.json'), "\n"))
-call remove(s:settings, '$schema')
+let s:settings_cache = {}
+
+function! s:load_settings() abort
+  if empty(s:settings_cache)
+    let s:settings_cache = json_decode(join(readfile(s:root_dir . '/settings.json'), "\n"))
+    call remove(s:settings_cache, '$schema')
+  endif
+  return s:settings_cache
+endfunction
+
+let s:settings = s:load_settings()
 
 let s:ftmap = {}
+
+let s:capture = v:null
 
 function! lsp_settings#installer_dir() abort
   return s:installer_dir
@@ -23,17 +34,13 @@ endfunction
 
 function! lsp_settings#servers_dir() abort
   let l:path = resolve(fnamemodify(get(g:, 'lsp_settings_servers_dir', s:servers_dir), ':p'))
-  if has('win32')
-     let l:path = substitute(l:path, '/', '\', 'g')
-  endif
+  let l:path = lsp_settings#utils#normalize_path(l:path)
   return substitute(l:path, '[\/]$', '', '')
 endfunction
 
 function! lsp_settings#global_settings_dir() abort
   let l:path = fnamemodify(get(g:, 'lsp_settings_global_settings_dir', s:data_dir), ':p')
-  if has('win32')
-     let l:path = substitute(l:path, '/', '\', 'g')
-  endif
+  let l:path = lsp_settings#utils#normalize_path(l:path)
   return substitute(l:path, '[\/]$', '', '')
 endfunction
 
@@ -77,6 +84,50 @@ function! lsp_settings#executable(cmd) abort
   return 0
 endfunction
 
+function! s:get_filetype_default(ft) abort
+  let l:default = get(g:, 'lsp_settings_filetype_' . a:ft, '')
+  if type(l:default) ==# v:t_list && len(l:default) == 1 && type(l:default[0]) == v:t_func
+    let l:V = l:default[0]
+    try
+      let l:default = l:V()
+      let g:['lsp_settings_filetype_' . a:ft] = l:default
+    catch
+      let l:default = ''
+    endtry
+  endif
+  return l:default
+endfunction
+
+function! s:is_server_disabled(conf) abort
+  return lsp_settings#get(a:conf.command, 'disabled', get(a:conf, 'disabled', 0))
+endfunction
+
+function! s:is_server_filtered_by_default(command, default) abort
+  if type(a:default) ==# v:t_list
+    return len(a:default) ># 0 && index(a:default, a:command) == -1
+  elseif type(a:default) ==# v:t_string
+    return !empty(a:default) && a:default != a:command
+  endif
+  return 1
+endfunction
+
+function! s:has_missing_requires(conf) abort
+  for l:require in a:conf.requires
+    if !executable(l:require)
+      return 1
+    endif
+  endfor
+  return 0
+endfunction
+
+function! s:installer_path(command) abort
+  let l:command = printf('%s/install-%s', s:installer_dir, a:command)
+  if has('win32')
+    return lsp_settings#utils#normalize_path(l:command) . '.cmd'
+  endif
+  return l:command . '.sh'
+endfunction
+
 function! s:vim_lsp_installer(ft, ...) abort
   let l:ft = tolower(get(split(a:ft, '\.'), 0, ''))
   let l:ft = empty(l:ft) ? '_' : l:ft
@@ -91,7 +142,7 @@ function! s:vim_lsp_installer(ft, ...) abort
     let l:servers += s:settings['_']
   endif
 
-  let l:default = get(g:, 'lsp_settings_filetype_' . a:ft, '')
+  let l:default = s:get_filetype_default(a:ft)
 
   let l:name = get(a:000, 0, '')
   for l:conf in l:servers
@@ -99,49 +150,25 @@ function! s:vim_lsp_installer(ft, ...) abort
       continue
     endif
 
-    if lsp_settings#get(l:conf.command, 'disabled', get(l:conf, 'disabled', 0))
+    if s:is_server_disabled(l:conf)
       if !empty(l:name) && l:conf.command == l:name
         call lsp_settings#utils#warning(l:name . ' requested but is disabled by global or local settings')
       endif
       continue
     endif
 
-    if type(l:default) ==# v:t_list
-      if len(l:default) ># 0 && index(l:default, l:conf.command) == -1
-        if !empty(l:name) && l:conf.command == l:name
-          call lsp_settings#utils#warning(l:name . ' requested but is disabled by g:lsp_settings_filetype_' . a:ft)
-        endif
-        continue
-      endif
-    elseif type(l:default) ==# v:t_string
-      if !empty(l:default) && l:default != l:conf.command
-        if !empty(l:name) && l:conf.command == l:name
-          call lsp_settings#utils#warning(l:name . ' requested but is disabled by g:lsp_settings_filetype_' . a:ft)
-        endif
-        continue
-      endif
-    else
+    if s:is_server_filtered_by_default(l:conf.command, l:default)
       if !empty(l:name) && l:conf.command == l:name
         call lsp_settings#utils#warning(l:name . ' requested but is disabled by g:lsp_settings_filetype_' . a:ft)
       endif
       continue
     endif
 
-    let l:command = printf('%s/install-%s', s:installer_dir, l:conf.command)
-    if has('win32')
-      let l:command = substitute(l:command, '/', '\', 'g') . '.cmd'
-    else
-      let l:command = l:command . '.sh'
-    endif
-    let l:missing = 0
-    for l:require in l:conf.requires
-      if !lsp_settings#executable(l:require)
-        call lsp_settings#utils#warning(l:conf.command . ' requires ' . l:require)
-        let l:missing = 1
-        break
+    let l:command = s:installer_path(l:conf.command)
+    if s:has_missing_requires(l:conf)
+      if !empty(l:name)
+        call lsp_settings#utils#warning(l:conf.command . ' requires ' . join(l:conf.requires, ', '))
       endif
-    endfor
-    if l:missing !=# 0
       continue
     endif
     if lsp_settings#executable(l:command)
@@ -240,11 +267,10 @@ function! lsp_settings#exec_path(cmd) abort
   if type(l:paths) == type([])
     let l:paths = join(l:paths, ',') . ','
   endif
+  let l:paths .= lsp_settings#servers_dir() . '/' . a:cmd
   if !has('win32')
-    let l:paths .= lsp_settings#servers_dir() . '/' . a:cmd
     return lsp_settings#utils#first_one(globpath(l:paths, a:cmd, 1))
   endif
-  let l:paths .= lsp_settings#servers_dir() . '\' . a:cmd
   for l:ext in ['.exe', '.cmd', '.bat']
     let l:path = globpath(l:paths, a:cmd . l:ext, 1)
     if !empty(l:path)
@@ -314,28 +340,17 @@ endfunction
 function! lsp_settings#complete_install(arglead, cmdline, cursorpos) abort
   let l:installers = []
 
-  for l:ft in split(&filetype . '.', '\.', 1)
+  let l:filetype = getcmdwintype() !=# '' && getcmdtype() ==# '' ? getbufvar('#', '&filetype') : &filetype
+  for l:ft in split(l:filetype . '.', '\.', 1)
     let l:ft = tolower(empty(l:ft) ? '_' : l:ft)
     if !has_key(s:settings, l:ft)
       continue
     endif
     for l:conf in s:settings[l:ft]
-      let l:missing = 0
-      for l:require in l:conf.requires
-        if !executable(l:require)
-          let l:missing = 1
-          break
-        endif
-      endfor
-      if l:missing !=# 0
+      if s:has_missing_requires(l:conf)
         continue
       endif
-      let l:command = printf('%s/install-%s', s:installer_dir, l:conf.command)
-      if has('win32')
-        let l:command = substitute(l:command, '/', '\', 'g') . '.cmd'
-      else
-        let l:command = l:command . '.sh'
-      endif
+      let l:command = s:installer_path(l:conf.command)
       if executable(l:command)
         call add(l:installers, l:conf.command)
       endif
@@ -350,10 +365,7 @@ function! s:vim_lsp_uninstall_server(command) abort
     return
   endif
   call lsp_settings#utils#msg('Uninstalling ' . a:command)
-  let l:server_install_dir = lsp_settings#servers_dir() . '/' . a:command
-  if has('win32')
-     let l:server_install_dir = substitute(l:server_install_dir, '/', '\', 'g')
-  endif
+  let l:server_install_dir = lsp_settings#utils#normalize_path(lsp_settings#servers_dir() . '/' . a:command)
   if !isdirectory(l:server_install_dir)
     call lsp_settings#utils#error('Server not found')
     return
@@ -370,11 +382,7 @@ function! s:vim_lsp_install_server_post(command, job, code, ...) abort
   if lsp_settings#executable(a:command)
     let l:script = printf('%s/%s.vim', s:settings_dir, a:command)
     if filereadable(l:script)
-      if has('patch-8.1.1113')
-        command! -nargs=1 LspRegisterServer autocmd User lsp_setup ++once call lsp_settings#register_server(<args>)
-      else
-        command! -nargs=1 LspRegisterServer autocmd User lsp_setup call lsp_settings#register_server(<args>)
-      endif
+      command! -nargs=1 LspRegisterServer call lsp_settings#register_server(<args>)
       exe 'source' l:script
       delcommand LspRegisterServer
       doautocmd <nomodeline> User lsp_setup
@@ -405,10 +413,7 @@ function! s:vim_lsp_install_server(ft, command, bang) abort
   if empty(a:bang) && confirm(printf('Install %s ?', l:entry[0]), "&Yes\n&Cancel") !=# 1
     return
   endif
-  let l:server_install_dir = lsp_settings#servers_dir() . '/' . l:entry[0]
-  if has('win32')
-    let l:server_install_dir = substitute(l:server_install_dir, '/', '\', 'g')
-  endif
+  let l:server_install_dir = lsp_settings#utils#normalize_path(lsp_settings#servers_dir() . '/' . l:entry[0])
   if isdirectory(l:server_install_dir)
     call lsp_settings#utils#msg('Uninstalling ' . l:entry[0])
     call delete(l:server_install_dir, 'rf')
@@ -439,10 +444,11 @@ function! s:vim_lsp_settings_suggest(ft) abort
     return
   endif
 
+  augroup vim_lsp_settings_suggest
+    autocmd!
+    exe printf("autocmd VimEnter <buffer> echohl Directory|echomsg 'Please do :LspInstallServer to enable Language Server %s'|echohl None", l:entry[0])
+  augroup END
   redraw!
-  echohl Directory
-  unsilent echomsg 'Please do :LspInstallServer to enable Language Server ' . l:entry[0]
-  echohl None
 endfunction
 
 function! s:vim_lsp_suggest_plugin() abort
@@ -468,6 +474,10 @@ function! s:vim_lsp_suggest_plugin() abort
 endfunction
 
 function! lsp_settings#register_server(...) abort
+  if s:capture isnot v:null
+    call add(s:capture, a:000[0])
+    return
+  endif
   let l:name = a:000[0]['name']
   if get(a:000[0], 'deprecated', v:false) ==# v:true
     call lsp_settings#utils#warning(l:name . ' is deprecated')
@@ -477,6 +487,90 @@ function! lsp_settings#register_server(...) abort
     let a:000[0]['env'] = l:env
   endif
   return call('lsp#register_server', a:000)
+endfunction
+
+" Returns the server information that settings/<command>.vim would pass to
+" lsp#register_server(), without actually registering it.
+function! lsp_settings#server_info(command) abort
+  let l:script = printf('%s/%s.vim', s:settings_dir, a:command)
+  if !filereadable(l:script)
+    return {}
+  endif
+  let l:defined = exists(':LspRegisterServer') ==# 2
+  if !l:defined
+    command! -nargs=1 LspRegisterServer call lsp_settings#register_server(<args>)
+  endif
+  let l:prev = s:capture
+  let s:capture = []
+  try
+    exe 'source' fnameescape(l:script)
+    let l:captured = s:capture
+  finally
+    let s:capture = l:prev
+    if !l:defined
+      delcommand LspRegisterServer
+    endif
+  endtry
+  for l:info in l:captured
+    if get(l:info, 'name', '') ==# a:command
+      return l:info
+    endif
+  endfor
+  return empty(l:captured) ? {} : l:captured[0]
+endfunction
+
+" Returns the command used to launch the given server, as a list including
+" default arguments and user overrides. Returns an empty list if the server
+" is not available.
+function! lsp_settings#server_command(command) abort
+  let l:info = lsp_settings#server_info(a:command)
+  if !has_key(l:info, 'cmd')
+    return []
+  endif
+  let l:Cmd = l:info['cmd']
+  if type(l:Cmd) ==# v:t_func
+    try
+      let l:Cmd = l:Cmd(l:info)
+    catch
+      return []
+    endtry
+  endif
+  return type(l:Cmd) ==# v:t_list ? l:Cmd : []
+endfunction
+
+" Returns the command names of the servers vim-lsp-settings would launch for
+" the given filetype: disabled servers, servers filtered out by
+" g:lsp_settings_filetype_<ft>, servers with missing requires and servers
+" not installed nor found in $PATH are excluded. Fallback checkers are not
+" taken into account.
+function! lsp_settings#filetype_servers(ft) abort
+  if !has_key(s:settings, a:ft)
+    return []
+  endif
+  let l:default = s:get_filetype_default(a:ft)
+  let l:servers = []
+  for l:conf in s:settings[a:ft]
+    if index(l:servers, l:conf.command) >= 0
+      continue
+    endif
+    if s:is_server_disabled(l:conf)
+      continue
+    endif
+    if s:is_server_filtered_by_default(l:conf.command, l:default)
+      continue
+    endif
+    if s:has_missing_requires(l:conf)
+      continue
+    endif
+    if empty(lsp_settings#get(l:conf.command, 'cmd', [])) && !lsp_settings#executable(l:conf.command)
+      continue
+    endif
+    call add(l:servers, l:conf.command)
+    if a:ft !=# '_' && type(l:default) !=# v:t_list
+      break
+    endif
+  endfor
+  return l:servers
 endfunction
 
 function! s:vim_lsp_load_or_suggest(ft) abort
@@ -501,6 +595,10 @@ function! s:vim_lsp_load_or_suggest(ft) abort
       if !empty(l:refresh_pattern)
         let b:asyncomplete_refresh_pattern = l:refresh_pattern
       endif
+      let l:refresh_always = get(l:config, 'refresh_always', 0)
+      if l:refresh_always
+        let b:asyncomplete_refresh_always = l:refresh_always
+      endif
     endfor
   endif
 
@@ -513,35 +611,26 @@ function! s:vim_lsp_load_or_suggest(ft) abort
   augroup END
   exe 'augroup!' l:group_name
 
-  if has('patch-8.1.1113')
-    command! -nargs=1 LspRegisterServer autocmd User lsp_setup ++once call lsp_settings#register_server(<args>)
-  else
-    command! -nargs=1 LspRegisterServer autocmd User lsp_setup call lsp_settings#register_server(<args>)
-  endif
+  command! -nargs=1 LspRegisterServer call lsp_settings#register_server(<args>)
 
-  let l:default = get(g:, 'lsp_settings_filetype_' . a:ft, '')
+  let l:default = s:get_filetype_default(a:ft)
 
   let l:found = 0
   let l:disabled = 0
 
   for l:server in s:settings[a:ft]
-    if lsp_settings#get(l:server.command, 'disabled', get(l:server, 'disabled', 0))
+    if s:is_server_disabled(l:server)
       let l:disabled += 1
       continue
     endif
 
-    if type(l:default) ==# v:t_list
-      if len(l:default) ># 0 && index(l:default, l:server.command) == -1
-        continue
-      endif
-    elseif type(l:default) ==# v:t_string
-      if !empty(l:default) && l:default != l:server.command
-        continue
-      endif
-    else
+    if s:is_server_filtered_by_default(l:server.command, l:default)
       continue
     endif
 
+    if s:has_missing_requires(l:server)
+      continue
+    endif
     let l:command = lsp_settings#get(l:server.command, 'cmd', [])
     if empty(l:command) && !lsp_settings#executable(l:server.command)
       let l:script = printf('%s/%s.vim', s:checkers_dir, l:server.command)
@@ -570,7 +659,8 @@ function! s:vim_lsp_load_or_suggest(ft) abort
       let s:ftmap[a:ft] = 1
 
       " If default server is specified as list, continue to look next.
-      if type(l:default) !=# v:t_list
+      " For '_' (all filetypes), always continue to allow multiple servers.
+      if a:ft !=# '_' && type(l:default) !=# v:t_list
         break
       endif
     endif
@@ -619,20 +709,23 @@ function! lsp_settings#init() abort
     endfor
   endfor
 
-  for l:ft in keys(s:settings)
-    if has_key(g:, 'lsp_settings_allowlist') && index(g:lsp_settings_allowlist, l:ft) == -1 || empty(s:settings[l:ft])
-      continue
-    endif
-    exe 'augroup' lsp_settings#utils#group_name(l:ft)
-      autocmd!
-      exe 'autocmd FileType' l:ft 'call' printf("s:vim_lsp_load_or_suggest('%s')", l:ft)
-    augroup END
-  endfor
-  augroup vim_lsp_suggest
+  augroup vim_lsp_settings_lazy
     autocmd!
+    autocmd FileType * call s:vim_lsp_load_or_suggest(&filetype)
     autocmd BufNewFile,BufRead * call s:vim_lsp_suggest_plugin()
   augroup END
   command! -nargs=? -complete=customlist,lsp_settings#complete_uninstall LspUninstallServer call s:vim_lsp_uninstall_server(<q-args>)
   command! -bang -nargs=? -complete=customlist,lsp_settings#complete_install LspInstallServer call s:vim_lsp_install_server(&l:filetype, <q-args>, '<bang>')
   call s:vim_lsp_load_or_suggest('_')
+
+  if get(g:, 'lsp_settings_lazyload', 0)
+    doautocmd BufNewFile,BufEnter
+    for l:buf in range(1, bufnr('$'))
+      if !bufexists(l:buf) || !bufloaded(l:buf)
+        continue
+      endif
+      call lsp#log_verbose('lsp#ensure_flush_all()', l:buf)
+      call lsp#ensure_flush_all(l:buf, lsp#get_allowed_servers(l:buf))
+    endfor
+  endif
 endfunction

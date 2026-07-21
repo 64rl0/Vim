@@ -1,40 +1,41 @@
+call lsp_settings#register_server({
+    \ 'name': 'gopls',
+    \ 'cmd': {server_info->lsp_settings#get('gopls', 'cmd', [lsp_settings#exec_path('gopls')]+lsp_settings#get('gopls', 'args', []))},
+    \ 'root_uri':{server_info->lsp_settings#get('gopls', 'root_uri', lsp_settings#root_uri('gopls'))},
+    \ 'initialization_options': lsp_settings#get('gopls', 'initialization_options', {
+    \     'completeUnimported': v:true,
+    \     'matcher': 'fuzzy',
+    \     'ui.inlayhint.hints': {
+    \         'assignVariableTypes': v:true,
+    \         'compositeLiteralFields': v:true,
+    \         'compositeLiteralTypes': v:true,
+    \         'constantValues': v:true,
+    \         'functionTypeParameters': v:true,
+    \         'parameterNames': v:true,
+    \         'rangeVariableTypes': v:true,
+    \     },
+    \     'codelenses': {
+    \         'generate': v:true,
+    \         'test': v:true,
+    \         'run_vulncheck_exp': v:true,
+    \     },
+    \ }),
+    \ 'capabilities': lsp_settings#get('gopls', 'capabilities', {
+    \     'textDocument': {
+    \         'documentSymbol': {
+    \             'hierarchicalDocumentSymbolSupport': v:true,
+    \         },
+    \     },
+    \ }),
+    \ 'allowlist': lsp_settings#get('gopls', 'allowlist', ['go', 'gomod', 'gohtmltmpl', 'gotexttmpl']),
+    \ 'blocklist': lsp_settings#get('gopls', 'blocklist', []),
+    \ 'config': lsp_settings#get('gopls', 'config', lsp_settings#server_config('gopls')),
+    \ 'workspace_config': lsp_settings#get('gopls', 'workspace_config', {}),
+    \ 'semantic_highlight': lsp_settings#get('gopls', 'semantic_highlight', {}),
+    \ })
+
 augroup vim_lsp_settings_gopls
   au!
-  LspRegisterServer {
-      \ 'name': 'gopls',
-      \ 'cmd': {server_info->lsp_settings#get('gopls', 'cmd', [lsp_settings#exec_path('gopls')]+lsp_settings#get('gopls', 'args', []))},
-      \ 'root_uri':{server_info->lsp_settings#get('gopls', 'root_uri', lsp_settings#root_uri('gopls'))},
-      \ 'initialization_options': lsp_settings#get('gopls', 'initialization_options', {
-      \     'completeUnimported': v:true,
-      \     'matcher': 'fuzzy',
-      \     'ui.inlayhint.hints': {
-      \         'assignVariableTypes': v:true,
-      \         'compositeLiteralFields': v:true,
-      \         'compositeLiteralTypes': v:true,
-      \         'constantValues': v:true,
-      \         'functionTypeParameters': v:true,
-      \         'parameterNames': v:true,
-      \         'rangeVariableTypes': v:true,
-      \     },
-      \     'codelenses': {
-      \         'generate': v:true,
-      \         'test': v:true,
-      \         'run_vulncheck_exp': v:true,
-      \     },
-      \ }),
-      \ 'capabilities': lsp_settings#get('gopls', 'capabilities', {
-      \     'textDocument': {
-      \         'documentSymbol': {
-      \             'hierarchicalDocumentSymbolSupport': v:true,
-      \         },
-      \     },
-      \ }),
-      \ 'allowlist': lsp_settings#get('gopls', 'allowlist', ['go', 'gomod', 'gohtmltmpl', 'gotexttmpl']),
-      \ 'blocklist': lsp_settings#get('gopls', 'blocklist', []),
-      \ 'config': lsp_settings#get('gopls', 'config', lsp_settings#server_config('gopls')),
-      \ 'workspace_config': lsp_settings#get('gopls', 'workspace_config', {}),
-      \ 'semantic_highlight': lsp_settings#get('gopls', 'semantic_highlight', {}),
-      \ }
   autocmd User lsp_setup call s:register_command()
 augroup END
 
