@@ -299,7 +299,10 @@ nnoremap <C-w><C-e> :<C-u>call ToggleNetrw()<CR>
 autocmd FileType netrw nnoremap <buffer>V :<C-u>call NetrwOpenVSplit()<CR>
 
 " Disable vim-airline within Netrw window
+" airline skips disabled windows but doesn't clear the statusline the netrw
+" window inherits from the window it was split from, so reset it explicitly
 autocmd FileType netrw let b:airline_disable_statusline = 1
+autocmd FileType netrw setlocal statusline<
 
 " -------------
 " vim-gitgutter
@@ -336,22 +339,6 @@ let g:airline_theme = 'catppuccin_mocha'
 " Make the middle statusline section (and inactive statuslines) transparent
 " so the terminal background/opacity shows through
 let g:airline_theme_patch_func = 'AirlineThemePatch'
-function! AirlineThemePatch(palette)
-    if get(g:, 'airline_theme', '') !~# 'catppuccin'
-        return
-    endif
-    for l:mode in keys(a:palette)
-        let l:sections = l:mode ==# 'inactive'
-            \ ? ['airline_a', 'airline_b', 'airline_c', 'airline_x', 'airline_y', 'airline_z']
-            \ : ['airline_c', 'airline_x']
-        for l:section in l:sections
-            if has_key(a:palette[l:mode], l:section)
-                let a:palette[l:mode][l:section][1] = 'NONE'
-                let a:palette[l:mode][l:section][3] = 'NONE'
-            endif
-        endfor
-    endfor
-endfunction
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
@@ -827,5 +814,20 @@ endfunction
 " Initialize vim-lsp
 function! OnLspBufferEnabled() abort
     setlocal omnifunc=lsp#complete
+endfunction
+
+" Make the middle statusline section (and inactive statuslines) transparent
+" so the terminal background/opacity shows through
+function! AirlineThemePatch(palette)
+    let l:middle = ['airline_c', 'airline_x']
+    let l:whole_bar = ['airline_a', 'airline_b', 'airline_c', 'airline_x', 'airline_y', 'airline_z']
+    for l:mode in keys(a:palette)
+        for l:section in (l:mode ==# 'inactive' ? l:whole_bar : l:middle)
+            if has_key(a:palette[l:mode], l:section)
+                let a:palette[l:mode][l:section][1] = 'NONE'
+                let a:palette[l:mode][l:section][3] = 'NONE'
+            endif
+        endfor
+    endfor
 endfunction
 
