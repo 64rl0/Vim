@@ -273,6 +273,13 @@ nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 autocmd FileType fern silent! nunmap <buffer> J
 autocmd FileType fern silent! nunmap <buffer> K
 
+" Free CTRL-J/CTRL-K (fern binds them to mark+move)
+" use Space to toggle a mark instead
+autocmd FileType fern silent! nunmap <buffer> <C-j>
+autocmd FileType fern silent! nunmap <buffer> <C-k>
+autocmd FileType fern nmap <buffer><nowait> <Space> <Plug>(fern-action-mark:toggle)
+autocmd FileType fern vmap <buffer><nowait> <Space> <Plug>(fern-action-mark:toggle)
+
 " Toggle fern only NORMAL mode
 " Simulate CMD-1 on macOS
 nnoremap ∞ :<C-u>call ToggleFern()<CR>
