@@ -139,7 +139,9 @@ nnoremap <leader>r *``:%s/<C-r>///gc<left><left><left>
 " --------
 " VimEnter
 " --------
-autocmd VimEnter * if argc() == 0 | call ToggleNetrw() | endif
+" ++nested is required by fern: it renders the drawer through autocmd events
+" which do not fire inside a non-nested autocmd
+autocmd VimEnter * ++nested if argc() == 0 | call ToggleFern() | endif
 
 
 " ------
@@ -264,6 +266,29 @@ nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 " ----------------
 " PLUGINS PACKLOAD
 " ----------------
+" ----
+" fern
+" ----
+" Free J/K so the global J/K 5-line moves work in the drawer
+autocmd FileType fern silent! nunmap <buffer> J
+autocmd FileType fern silent! nunmap <buffer> K
+
+" Toggle fern only NORMAL mode
+" Simulate CMD-1 on macOS
+nnoremap ∞ :<C-u>call ToggleFern()<CR>
+nnoremap <leader>e :<C-u>call ToggleFern()<CR>
+nnoremap <C-w>e :<C-u>call ToggleFern()<CR>
+nnoremap <C-w><C-e> :<C-u>call ToggleFern()<CR>
+
+" Use V to open fern selected file in a new split and rebalance split widths
+autocmd FileType fern nnoremap <buffer>V :<C-u>call FernOpenVSplit()<CR>
+
+" Disable vim-airline within fern window
+" airline skips disabled windows but doesn't clear the statusline the fern
+" window inherits from the window it was split from, so reset it explicitly
+autocmd FileType fern let b:airline_disable_statusline = 1
+autocmd FileType fern setlocal statusline<
+
 " -----
 " netrw
 " -----
@@ -290,10 +315,10 @@ let g:netrw_winsize = 20
 
 " Toggle netrw only NORMAL mode
 " Simulate CMD-1 on macOS
-nnoremap ∞ :<C-u>call ToggleNetrw()<CR>
-nnoremap <leader>e :<C-u>call ToggleNetrw()<CR>
-nnoremap <C-w>e :<C-u>call ToggleNetrw()<CR>
-nnoremap <C-w><C-e> :<C-u>call ToggleNetrw()<CR>
+" nnoremap ∞ :<C-u>call ToggleNetrw()<CR>
+" nnoremap <leader>e :<C-u>call ToggleNetrw()<CR>
+" nnoremap <C-w>e :<C-u>call ToggleNetrw()<CR>
+" nnoremap <C-w><C-e> :<C-u>call ToggleNetrw()<CR>
 
 " Use V to open netrw selected file in a new split and rebalance split widths
 autocmd FileType netrw nnoremap <buffer>V :<C-u>call NetrwOpenVSplit()<CR>
@@ -750,6 +775,36 @@ endfunction
 " Function to use V to open file selected in netrw in a new vertical split
 function! NetrwOpenVSplit()
     normal v
+    wincmd =
+    wincmd h
+endfunction
+
+" Function to ToggleFern sidebar
+function! ToggleFern()
+    " fern-git-status defers its own init to VimEnter which fires after our
+    " VimEnter drawer-open, leaving the first drawer without badge colors;
+    " init it explicitly (guarded and idempotent) before opening the drawer
+    if exists('g:loaded_fern_git_status')
+        call fern_git_status#init()
+    endif
+    " Same width as g:netrw_winsize: 20% of the screen (fern -width is in
+    " columns, not percentage). Drop fern's remembered width from the last
+    " session so the 20% is re-evaluated against the current terminal size
+    unlet! t:fern_drawer_auto_resize_width
+    execute 'silent Fern . -drawer -toggle -width=' . (&columns / 5)
+endfunction
+
+" Function to use V to open file selected in fern in a new vertical split
+" fern open actions are async so instead of hooking into them we resolve the
+" cursor node synchronously and split ourselves, like netrw does
+function! FernOpenVSplit()
+    let l:node = fern#helper#new().sync.get_cursor_node()
+    if empty(l:node)
+        return
+    endif
+    " jump out of the drawer so the fixed-width drawer window is not split
+    wincmd l
+    execute 'leftabove vsplit ' . fnameescape(l:node._path)
     wincmd =
     wincmd h
 endfunction

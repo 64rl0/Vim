@@ -1,0 +1,7 @@
+# pack-refs with: peeled fully-peeled sorted 
+01ce9acdd5db68970efd186e29105935413c4dee refs/remotes/origin/fix-msys2
+151336335d3b6975153dad77e60049ca7111da8e refs/remotes/origin/master
+d0c76b8266e3923fb7e48b0466ddd77682f0703b refs/tags/v0.1.0
+516fc39b2148573c4832cdf171cb0c9bb3a4eb94 refs/tags/v0.2.0
+5c9fc219d9b8cd3e39e78d285874665f79ffb1b4 refs/tags/v0.3.0
+151336335d3b6975153dad77e60049ca7111da8e refs/tags/v0.4.0
