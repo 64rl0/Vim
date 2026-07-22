@@ -286,8 +286,10 @@ autocmd FileType fern nnoremap <buffer>V :<C-u>call FernOpenVSplit()<CR>
 " Disable vim-airline within fern window
 " airline skips disabled windows but doesn't clear the statusline the fern
 " window inherits from the window it was split from, so reset it explicitly
+" to a single space (empty would fall back to vim's default bar); let-form
+" instead of :set to survive trailing-whitespace trimming
 autocmd FileType fern let b:airline_disable_statusline = 1
-autocmd FileType fern setlocal statusline<
+autocmd FileType fern let &l:statusline = ' '
 
 " -----
 " netrw
