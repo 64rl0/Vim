@@ -19,6 +19,10 @@ autocmd ColorScheme * highlight CursorLine   ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight StatusLine   ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight StatusLineNC ctermbg=NONE guibg=NONE
 
+" Catppuccin sets ColorColumn to mantle (#181825) which renders near-black
+" on the transparent background; use surface0 grey instead
+autocmd ColorScheme * highlight ColorColumn  ctermbg=236  guibg=#313244
+
 " When on, uses |highlight-guifg| and |highlight-guibg| attributes in the terminal
 set termguicolors
 
