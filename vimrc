@@ -159,11 +159,9 @@ noremap <Right> <NOP>
 
 " Move cursor to the first character in a line
 noremap B ^
-" noremap H ^
 
 " Move cursor to the last character in a line
 noremap E g_
-" noremap L g_
 
 " Move cursor down file 5 lines
 noremap J 5j
@@ -204,15 +202,6 @@ inoremap  <C-o>5<C-y>
 " Drop a mark before jumping so we can easily come back with 'j
 nnoremap <silent> gg :<C-u>call MarkAndJump("gg")<CR>
 nnoremap <silent> G :<C-u>call MarkAndJump("G")<CR>
-
-" Jump to last line on the window
-" noremap gH H
-
-" Jump to middle line on the window
-" noremap gM M
-
-" Jump to first line on the window
-" noremap gL L
 
 
 " ---------------
@@ -308,6 +297,7 @@ autocmd FileType fern nnoremap <buffer>V :<C-u>call FernOpenVSplit()<CR>
 autocmd FileType fern let b:airline_disable_statusline = 1
 autocmd FileType fern let &l:statusline = ' '
 
+
 " -----
 " netrw
 " -----
@@ -347,6 +337,7 @@ autocmd FileType netrw nnoremap <buffer>V :<C-u>call NetrwOpenVSplit()<CR>
 " window inherits from the window it was split from, so reset it explicitly
 autocmd FileType netrw let b:airline_disable_statusline = 1
 autocmd FileType netrw setlocal statusline<
+
 
 " -------------
 " vim-gitgutter
@@ -468,9 +459,9 @@ augroup END
 let g:lsp_diagnostics_enabled = 0
 
 
-" ------------
+" --------------
 " auto-compl-pop
-" ------------
+" --------------
 set completeopt=menuone,longest
 set shortmess+=c
 
@@ -515,6 +506,17 @@ let g:oscyank_trim = 0
 
 " the OSC52 format string to use
 let g:oscyank_osc52 = "\x1b]52;c;%s\x07"
+
+
+" -------
+" vim-fzf
+" -------
+" Fuzzy find open buffers
+nnoremap <leader>b :Buffers<CR>
+
+" Fuzzy find lines in the current buffer and all open buffers
+" mirrors vim's native / search key
+nnoremap <leader>/ :Lines<CR>
 
 
 " ---------
