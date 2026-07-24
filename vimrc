@@ -273,6 +273,12 @@ nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 " ----
 " fern
 " ----
+" Show hidden files by default (! toggles them in the drawer)
+let g:fern#default_hidden = 1
+
+" Free z
+autocmd FileType fern silent! nunmap <buffer> z
+
 " Free J/K so the global J/K 5-line moves work in the drawer
 autocmd FileType fern silent! nunmap <buffer> J
 autocmd FileType fern silent! nunmap <buffer> K
