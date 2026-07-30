@@ -265,6 +265,10 @@ nnoremap <C-w>t :<C-u>call EnterTabsNavigationMode()<CR>
 " Show hidden files by default (! toggles them in the drawer)
 let g:fern#default_hidden = 1
 
+" Reload the tree every time the cursor enters the fern window so the
+" git status badges reflect edits made in other windows
+autocmd BufEnter fern://* execute "normal \<Plug>(fern-action-reload:all)"
+
 " Free z
 autocmd FileType fern silent! nunmap <buffer> z
 
