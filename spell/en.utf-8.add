@@ -511,3 +511,12 @@ dedupes
 mutex
 subprocesses
 trimmable
+STRATEGY_PERFORMANCE_FILE
+cpython
+centos
+inode
+Oneshots
+journalctl
+oneshots
+numpy
+accessor
