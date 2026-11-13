@@ -541,3 +541,5 @@ hhkb
 ecdsa
 sha
 nistp
+Yubi
+heredoc
