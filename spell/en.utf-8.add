@@ -538,3 +538,6 @@ workspaces
 discretescroll
 displaylink
 hhkb
+ecdsa
+sha
+nistp
